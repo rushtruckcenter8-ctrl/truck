@@ -5,10 +5,22 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const images = [
-  { src: "/images/gallery-1.svg", alt: "Truck workshop exterior" },
-  { src: "/images/gallery-2.svg", alt: "Fleet lined up at the yard" },
-  { src: "/images/gallery-3.svg", alt: "Mechanic servicing a truck" },
-  { src: "/images/gallery-4.svg", alt: "Parts warehouse interior" },
+  {
+    src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80",
+    alt: "Truck workshop exterior",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1519003300449-424ad0405076?auto=format&fit=crop&w=1200&q=80",
+    alt: "Fleet lined up at the yard",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1625047509248-ec889cbff17f?auto=format&fit=crop&w=1200&q=80",
+    alt: "Mechanic servicing a truck",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=1200&q=80",
+    alt: "Parts warehouse interior",
+  },
 ];
 
 export default function Gallery() {

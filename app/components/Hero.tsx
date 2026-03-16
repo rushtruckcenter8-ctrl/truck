@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <section
       className="relative min-h-[80vh] flex items-center justify-center bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('/images/hero-trucks.svg')" }}
+      style={{ backgroundImage: "url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1920&q=80')" }}
     >
       {/* Dark overlay for text readability */}
       <div className="absolute inset-0 bg-black/60" />

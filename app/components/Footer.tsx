@@ -1,7 +1,6 @@
 import Link from "next/link";
 import {
   Phone,
-  MapPin,
   Mail,
   Facebook,
   Instagram,
@@ -23,15 +22,15 @@ export default function Footer() {
           <div>
             <Link href="/" className="inline-block">
               <span className="text-2xl font-extrabold tracking-tight">
-                EURO<span className="text-blue-400">TRUCK</span>
+                RUSH<span className="text-blue-400">TRUCK</span>
               </span>
               <span className="ml-2 text-xs leading-tight text-slate-400">
-                SALES &amp; SERVICE
+                CENTER
               </span>
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-slate-400">
-              Your trusted partner for quality used trucks from Europe.
-              Scania, Volvo, MAN, DAF, and Renault — all in one place.
+              Your trusted partner for quality used trucks. Freightliner, Volvo,
+              and more — all in one place.
             </p>
           </div>
 
@@ -63,53 +62,25 @@ export default function Footer() {
               <li className="flex items-start gap-2">
                 <Phone size={16} className="mt-0.5 shrink-0" />
                 <span>
-                  <a href="tel:+41781234567" className="hover:text-white transition-colors">
+                  {/* <a href="tel:+41781234567" className="hover:text-white transition-colors">
                     +41 78 123 45 67
-                  </a>
+                  </a> */}
                   <br />
-                  <a href="tel:+41791234567" className="hover:text-white transition-colors">
-                    +41 79 123 45 67
-                  </a>
+                 
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <Mail size={16} className="mt-0.5 shrink-0" />
-                <a href="mailto:info@eurotruck.ch" className="hover:text-white transition-colors">
-                  info@eurotruck.ch
+                <a href="mailto:info@rushtruckcenter.com" className="hover:text-white transition-colors">
+                  info@rushtruckcenter.com
                 </a>
-              </li>
-              <li className="flex items-start gap-2">
-                <MapPin size={16} className="mt-0.5 shrink-0" />
-                123 Industrial Ave, Zurich
               </li>
             </ul>
           </div>
 
           {/* Column 4 — Socials */}
           <div>
-            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-300">
-              Follow Us
-            </h4>
-            <div className="flex items-center gap-4">
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-lg bg-slate-800 p-2.5 text-slate-400 hover:bg-primary hover:text-white transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook size={18} />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-lg bg-slate-800 p-2.5 text-slate-400 hover:bg-primary hover:text-white transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram size={18} />
-              </a>
-            </div>
+          
           </div>
         </div>
       </div>
@@ -118,7 +89,7 @@ export default function Footer() {
       <div className="border-t border-slate-700">
         <div className="mx-auto max-w-7xl px-6 py-4">
           <p className="text-center text-xs text-slate-500">
-            &copy; {new Date().getFullYear()} Euro Truck Sales. All rights reserved.
+            &copy; {new Date().getFullYear()} Rush Truck Center. All rights reserved.
           </p>
         </div>
       </div>

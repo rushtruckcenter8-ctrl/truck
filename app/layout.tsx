@@ -18,19 +18,19 @@ const slabo = Slabo_13px({
 });
 
 export const metadata: Metadata = {
-  title: "Euro Truck Sales — Affordable Truck Sales & Service",
+  title: "Rush Truck Center — Affordable Truck Sales & Service",
   description:
-    "Europe's trusted truck sales platform. Browse quality used trucks from Scania, Volvo, MAN, DAF, and Renault. Parts, service, and accessories.",
+    "Rush Truck Center — your trusted source for quality used trucks. Browse Freightliner, Volvo, and more. Parts, service, and accessories.",
   keywords: [
     "truck sales",
     "used trucks",
-    "Scania",
+    "Freightliner",
     "Volvo",
-    "MAN",
-    "DAF",
-    "Renault",
+    "Cascadia",
+    "semi truck",
     "truck service",
     "truck parts",
+    "Rush Truck Center",
   ],
 };
 

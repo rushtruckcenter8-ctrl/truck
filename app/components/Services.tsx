@@ -1,29 +1,33 @@
-import Image from "next/image";
+import { Package, Sparkles, ShoppingBag, Droplets } from "lucide-react";
 
 const services = [
   {
-    title: "Used Truck Parts from Europe",
+    title: "Used Truck Parts",
     description:
-      "High-quality spare parts sourced directly from European suppliers. Affordable, reliable, and ready to ship.",
-    image: "/images/service-parts.svg",
+      "High-quality spare parts sourced directly from top suppliers. Affordable, reliable, and ready to ship.",
+    icon: Package,
+    color: "bg-blue-100 text-blue-600",
   },
   {
     title: "Truck & Vehicle Wash",
     description:
       "Professional cleaning for heavy-duty trucks and light commercial vehicles. Interior and exterior packages available.",
-    image: "/images/service-wash.svg",
+    icon: Sparkles,
+    color: "bg-cyan-100 text-cyan-600",
   },
   {
     title: "Accessories Store",
     description:
       "Everything you need to outfit your truck — from lighting and mirrors to cab comfort accessories.",
-    image: "/images/service-accessories.svg",
+    icon: ShoppingBag,
+    color: "bg-orange-100 text-orange-600",
   },
   {
     title: "Oil Change & Fluid Service",
     description:
       "Quick and thorough oil changes and fluid top-ups for trucks and commercial vehicles of all sizes.",
-    image: "/images/service-oil.svg",
+    icon: Droplets,
+    color: "bg-green-100 text-green-600",
   },
 ];
 
@@ -44,32 +48,35 @@ export default function Services() {
 
         {/* 2 × 2 card grid */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {services.map((service, idx) => (
-            <div
-              key={service.title}
-              data-aos="fade-up"
-              data-aos-once="true"
-              data-aos-delay={idx * 100}
-              className="group flex flex-col overflow-hidden rounded-xl bg-white border border-border shadow-sm hover:shadow-md transition-shadow"
-            >
-              <div className="relative h-48 w-full overflow-hidden">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
+          {services.map((service, idx) => {
+            const Icon = service.icon;
+            return (
+              <div
+                key={service.title}
+                data-aos="fade-up"
+                data-aos-once="true"
+                data-aos-delay={idx * 100}
+                className="group flex flex-col gap-5 rounded-xl bg-white border border-border shadow-sm hover:shadow-md transition-shadow p-8"
+              >
+                {/* Icon badge */}
+                <div
+                  className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl ${service.color} transition-transform duration-300 group-hover:scale-110`}
+                >
+                  <Icon size={32} strokeWidth={1.5} />
+                </div>
+
+                {/* Text */}
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground">
+                    {service.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">
+                    {service.description}
+                  </p>
+                </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-lg font-semibold text-foreground">
-                  {service.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">
-                  {service.description}
-                </p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

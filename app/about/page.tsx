@@ -6,9 +6,9 @@ import Footer from "../components/Footer";
 import Brands from "../components/Brands";
 
 export const metadata: Metadata = {
-  title: "About Us — Euro Truck Sales",
+  title: "About Us — Rush Truck Center",
   description:
-    "Learn about Euro Truck Sales — over 10 years connecting buyers with quality European trucks. Our story, mission, and the brands we work with.",
+    "Learn about Rush Truck Center — connecting buyers with quality used trucks. Our story, mission, and the brands we work with.",
 };
 
 const stats = [
@@ -76,7 +76,7 @@ export default function AboutPage() {
             {/* Image */}
             <div className="flex-1" data-aos="fade-right" data-aos-once="true">
               <Image
-                src="/images/about-hero.svg"
+                src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80"
                 alt="Our team at the truck yard"
                 width={600}
                 height={400}
@@ -88,10 +88,10 @@ export default function AboutPage() {
             <div className="flex-1" data-aos="fade-left" data-aos-once="true">
               <h2 className="text-3xl font-bold text-foreground">Our Story</h2>
               <p className="mt-4 leading-relaxed text-muted">
-                Euro Truck Sales was founded in Zurich in 2015 with a simple
+                Rush Truck Center was founded with a simple
                 mission: make buying a quality used truck easy, transparent, and
-                affordable. We started with a small yard and three trucks — today we
-                move hundreds of vehicles a year across Europe.
+                affordable. We started with a small yard and a handful of trucks — today we
+                move hundreds of vehicles a year across the country.
               </p>
               <p className="mt-3 leading-relaxed text-muted">
                 We work directly with fleet operators and manufacturers to source

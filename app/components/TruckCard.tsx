@@ -2,12 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { Calendar, Gauge } from "lucide-react";
 import type { Truck } from "../data/trucks";
+import { formatPrice, formatMileage } from "../data/trucks";
 
 interface TruckCardProps {
   truck: Truck;
 }
 
 export default function TruckCard({ truck }: TruckCardProps) {
+  // Use first gallery image if available, otherwise fall back to the single image
+  const thumbnail = truck.images?.[0] ?? truck.image;
+
   return (
     <Link
       href={`/trucks/${truck.id}`}
@@ -16,7 +20,7 @@ export default function TruckCard({ truck }: TruckCardProps) {
       {/* Image */}
       <div className="relative h-48 w-full overflow-hidden bg-accent">
         <Image
-          src={truck.image}
+          src={thumbnail}
           alt={truck.name}
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-300"
@@ -25,6 +29,12 @@ export default function TruckCard({ truck }: TruckCardProps) {
         <span className="absolute top-3 left-3 rounded-md bg-foreground/80 px-2.5 py-1 text-xs font-medium text-white capitalize">
           {truck.category}
         </span>
+        {/* Condition badge (shown only when available) */}
+        {truck.condition && (
+          <span className="absolute top-3 right-3 rounded-md bg-primary px-2.5 py-1 text-xs font-medium text-white">
+            {truck.condition}
+          </span>
+        )}
       </div>
 
       {/* Details */}
@@ -45,15 +55,20 @@ export default function TruckCard({ truck }: TruckCardProps) {
           </span>
           <span className="flex items-center gap-1">
             <Gauge size={14} />
-            {truck.mileage.toLocaleString()} km
+            {formatMileage(truck)}
           </span>
         </div>
 
-        {/* Price */}
+        {/* Price + optional down payment */}
         <div className="mt-auto pt-4">
           <span className="text-xl font-extrabold text-foreground">
-            &euro;{truck.price.toLocaleString()}
+            {formatPrice(truck)}
           </span>
+          {truck.downPayment && (
+            <p className="mt-0.5 text-xs text-muted">
+              Down payment: ${truck.downPayment.toLocaleString()}
+            </p>
+          )}
         </div>
       </div>
     </Link>

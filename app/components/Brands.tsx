@@ -34,26 +34,8 @@ export default function Brands() {
             </p>
           </div>
 
-          {/* Brand logos grid */}
-          <div className="flex-1 grid grid-cols-3 gap-6 place-items-center sm:grid-cols-5 md:grid-cols-3 lg:grid-cols-5">
-            {brands.map((brand, idx) => (
-              <div
-                key={brand.name}
-                data-aos="zoom-in"
-                data-aos-once="true"
-                data-aos-delay={idx * 50}
-                className="flex h-20 w-28 items-center justify-center rounded-lg border border-border bg-accent p-3 hover:shadow-md transition-shadow"
-              >
-                <Image
-                  src={brand.logo}
-                  alt={brand.name}
-                  width={120}
-                  height={60}
-                  className="h-auto w-full object-contain"
-                />
-              </div>
-            ))}
-          </div>
+         
+        
         </div>
       </div>
     </section>
