@@ -129,10 +129,7 @@ export default function Header() {
 
             {/* Mobile contact info */}
             <div className="mt-4 flex flex-col gap-2 text-sm text-muted border-t border-border pt-4">
-              <span className="flex items-center gap-1.5">
-                <Clock size={14} />
-                Mon–Sat 8:00–18:00
-              </span>
+            
               <a href="tel:+41781234567" className="flex items-center gap-1.5">
                 <Phone size={14} />
                 +41 78 123 45 67
