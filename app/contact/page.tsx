@@ -20,8 +20,8 @@ const contactDetails = [
   {
     icon: <Mail size={20} />,
     label: "Email",
-    lines: ["info@rushtruckcenter.com"],
-    hrefs: ["mailto:info@rushtruckcenter.com"],
+    lines: ["contact@rushtruckcentersales.com"],
+    hrefs: ["mailto:contact@rushtruckcentersales.com"],
   },
 
 ];
