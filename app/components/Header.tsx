@@ -44,10 +44,7 @@ export default function Header() {
             </span>
           </div>
           <div className="flex items-center gap-4">
-            <a href="tel:+41781234567" className="flex items-center gap-1.5 hover:text-blue-300 transition-colors">
-              <Phone size={14} />
-              +41 78 123 45 67
-            </a>
+           
             <a href="tel:+41791234567" className="flex items-center gap-1.5 hover:text-blue-300 transition-colors">
               <Phone size={14} />
               +41 79 123 45 67
@@ -146,10 +143,7 @@ export default function Header() {
                 <Clock size={14} />
                 Mon–Sat 8:00–18:00
               </span>
-              <a href="tel:+41781234567" className="flex items-center gap-1.5">
-                <Phone size={14} />
-                +41 78 123 45 67
-              </a>
+             
             </div>
           </div>
         )}

@@ -142,7 +142,7 @@ function getCustomerEmailHTML(data: InquiryData): string {
 
             <p>If you have any urgent questions, please feel free to call us directly:</p>
             <ul>
-              <li>+41 78 123 45 67</li>
+              
               <li>+41 79 123 45 67</li>
             </ul>
 
@@ -239,7 +239,7 @@ ${data.truckStockNumber ? `Stock #: ${data.truckStockNumber}\n` : ""}
 We have received your inquiry and one of our sales representatives will contact you within 24 hours.
 
 If you have any urgent questions, please call us:
-+41 78 123 45 67
+
 +41 79 123 45 67
 
 Best regards,
