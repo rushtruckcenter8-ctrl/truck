@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Phone, Mail, Clock } from "lucide-react";
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ContactForm from "../components/ContactForm";
+import LocationMap from "../components/LocationMap";
 
 export const metadata: Metadata = {
   title: "Contact Us — Rush Truck Center",
@@ -14,16 +15,27 @@ const contactDetails = [
   {
     icon: <Phone size={20} />,
     label: "Phone",
-    lines: ["+41 78 123 45 67",],
-    hrefs: ["tel:+41781234567"],
+    lines: ["+41 78 123 45 67", "+41 79 123 45 67"],
+    hrefs: ["tel:+41781234567", "tel:+41791234567"],
   },
   {
     icon: <Mail size={20} />,
     label: "Email",
-    lines: ["contact@rushtruckcentersales.com"],
-    hrefs: ["mailto:contact@rushtruckcentersales.com"],
+    lines: ["info@rushtruckcenter.com"],
+    hrefs: ["mailto:info@rushtruckcenter.com"],
   },
-
+  {
+    icon: <MapPin size={20} />,
+    label: "Address",
+    lines: ["12253 Gateway Blvd W", "El Paso, TX 79936"],
+    hrefs: [],
+  },
+  {
+    icon: <Clock size={20} />,
+    label: "Working Hours",
+    lines: ["Mon – Fri: 8:00 – 18:00", "Saturday: 9:00 – 15:00", "Sunday: Closed"],
+    hrefs: [],
+  },
 ];
 
 export default function ContactPage() {
@@ -98,6 +110,9 @@ export default function ContactPage() {
             </div>
           </div>
         </section>
+
+        {/* ── Full-width map ── */}
+        <LocationMap />
       </main>
       <Footer />
     </>

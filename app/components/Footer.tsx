@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {
   Phone,
+  MapPin,
   Mail,
   Facebook,
   Instagram,
@@ -62,25 +63,53 @@ export default function Footer() {
               <li className="flex items-start gap-2">
                 <Phone size={16} className="mt-0.5 shrink-0" />
                 <span>
-                  {/* <a href="tel:+41781234567" className="hover:text-white transition-colors">
+                  <a href="tel:+41781234567" className="hover:text-white transition-colors">
                     +41 78 123 45 67
-                  </a> */}
+                  </a>
                   <br />
-                 
+                  <a href="tel:+41791234567" className="hover:text-white transition-colors">
+                    +41 79 123 45 67
+                  </a>
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <Mail size={16} className="mt-0.5 shrink-0" />
-                <a href="mailto:contact@rushtruckcentersales.com" className="hover:text-white transition-colors">
-                  contact@rushtruckcentersales.com
+                <a href="mailto:info@rushtruckcenter.com" className="hover:text-white transition-colors">
+                  info@rushtruckcenter.com
                 </a>
+              </li>
+              <li className="flex items-start gap-2">
+                <MapPin size={16} className="mt-0.5 shrink-0" />
+                12253 Gateway Blvd W, El Paso, TX 79936
               </li>
             </ul>
           </div>
 
           {/* Column 4 — Socials */}
           <div>
-          
+            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-300">
+              Follow Us
+            </h4>
+            <div className="flex items-center gap-4">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-lg bg-slate-800 p-2.5 text-slate-400 hover:bg-primary hover:text-white transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook size={18} />
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-lg bg-slate-800 p-2.5 text-slate-400 hover:bg-primary hover:text-white transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram size={18} />
+              </a>
+            </div>
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
+  MapPin,
   Clock,
   Phone,
   Menu,
@@ -34,15 +35,23 @@ export default function Header() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2">
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1.5">
-             
+              <MapPin size={14} />
+              12253 Gateway Blvd W, El Paso, TX 79936
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Clock size={14} />
+              Mon–Sat 8:00–18:00
             </span>
           </div>
           <div className="flex items-center gap-4">
             <a href="tel:+41781234567" className="flex items-center gap-1.5 hover:text-blue-300 transition-colors">
               <Phone size={14} />
-              {/* +41 78 123 45 67 */}
+              +41 78 123 45 67
             </a>
-          
+            <a href="tel:+41791234567" className="flex items-center gap-1.5 hover:text-blue-300 transition-colors">
+              <Phone size={14} />
+              +41 79 123 45 67
+            </a>
           </div>
         </div>
       </div>
@@ -129,7 +138,14 @@ export default function Header() {
 
             {/* Mobile contact info */}
             <div className="mt-4 flex flex-col gap-2 text-sm text-muted border-t border-border pt-4">
-            
+              <span className="flex items-center gap-1.5">
+                <MapPin size={14} />
+                12253 Gateway Blvd W, El Paso, TX 79936
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Clock size={14} />
+                Mon–Sat 8:00–18:00
+              </span>
               <a href="tel:+41781234567" className="flex items-center gap-1.5">
                 <Phone size={14} />
                 +41 78 123 45 67

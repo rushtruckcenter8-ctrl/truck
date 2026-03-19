@@ -153,7 +153,7 @@ function getCustomerEmailHTML(data: InquiryData): string {
 
             <div class="footer">
               <p>Rush Truck Center — Affordable Truck Sales & Service</p>
-              <p>contact@rushtruckcentersales.com</p>
+              <p>info@rushtruckcenter.com</p>
             </div>
           </div>
         </div>
@@ -246,7 +246,7 @@ Best regards,
 Rush Truck Center Team
 
 Rush Truck Center — Affordable Truck Sales & Service
-contact@rushtruckcentersales.com
+info@rushtruckcenter.com
       `.trim(),
     });
 
