@@ -35,7 +35,7 @@ export default function Brands() {
           </div>
 
           {/* Brand logos grid */}
-          <div className="flex-1 grid grid-cols-3 gap-6 place-items-center sm:grid-cols-5 md:grid-cols-3 lg:grid-cols-5">
+          {/* <div className="flex-1 grid grid-cols-3 gap-6 place-items-center sm:grid-cols-5 md:grid-cols-3 lg:grid-cols-5">
             {brands.map((brand, idx) => (
               <div
                 key={brand.name}
@@ -53,7 +53,7 @@ export default function Brands() {
                 />
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
