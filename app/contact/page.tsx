@@ -62,8 +62,8 @@ export default function ContactPage() {
                   Send Us a Message
                 </h2>
                 <p className="mt-2 mb-8 text-muted">
-                  Fill out the form below and we&apos;ll get back to you within
-                  24 hours.
+                  Fill out the form below — include your location so we can route
+                  your request — and we&apos;ll get back to you within 24 hours.
                 </p>
                 <ContactForm expanded />
               </div>

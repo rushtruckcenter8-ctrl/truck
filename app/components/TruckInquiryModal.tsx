@@ -2,7 +2,7 @@
 
 import { useState, FormEvent, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { X, Phone, Mail, User, MessageSquare, Loader2 } from "lucide-react";
+import { X, Phone, Mail, User, MessageSquare, Loader2, MapPin } from "lucide-react";
 import type { Truck } from "../data/trucks";
 import { formatPrice, formatMileage } from "../data/trucks";
 
@@ -21,6 +21,7 @@ export default function TruckInquiryModal({
     name: "",
     email: "",
     phone: "",
+    location: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -81,7 +82,7 @@ export default function TruckInquiryModal({
 
       setSubmitStatus("success");
       // Reset form
-      setFormData({ name: "", email: "", phone: "", message: "" });
+      setFormData({ name: "", email: "", phone: "", location: "", message: "" });
       // Auto-close after 3 seconds
       setTimeout(() => {
         onClose();
@@ -218,6 +219,32 @@ export default function TruckInquiryModal({
                   required
                   className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-border bg-white text-foreground placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
                   placeholder="+1 234 567 8900"
+                />
+              </div>
+            </div>
+
+            {/* Location */}
+            <div>
+              <label
+                htmlFor="inquiry-location"
+                className="block text-sm font-medium text-foreground mb-1.5"
+              >
+                Your location <span className="text-red-500">*</span>
+              </label>
+              <div className="relative">
+                <MapPin
+                  size={18}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-muted"
+                />
+                <input
+                  type="text"
+                  id="inquiry-location"
+                  name="location"
+                  value={formData.location}
+                  onChange={handleChange}
+                  required
+                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-border bg-white text-foreground placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
+                  placeholder="City, state / region, or ZIP"
                 />
               </div>
             </div>

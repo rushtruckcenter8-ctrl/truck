@@ -16,7 +16,7 @@ export default function Hero() {
           data-aos-once="true"
           className="text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
         >
-          Affordable Truck
+          Rush Trucks
           <br />
           <span className="text-primary">Sales &amp; Service</span>
         </h1>

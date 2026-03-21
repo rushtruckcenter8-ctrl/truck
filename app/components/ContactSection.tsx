@@ -18,8 +18,9 @@ export default function ContactSection() {
             Have Questions?
           </h2>
           <p className="mt-4 max-w-md text-slate-400 leading-relaxed">
-            Leave your details and we&apos;ll call you back. We are happy to
-            discuss pricing, delivery, or any custom requirements.
+            Leave your details and your general location — we&apos;ll call you
+            back. We are happy to discuss pricing, delivery, or any custom
+            requirements.
           </p>
         </div>
 

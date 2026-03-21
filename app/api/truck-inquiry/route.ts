@@ -5,6 +5,7 @@ interface InquiryData {
   name: string;
   email: string;
   phone: string;
+  location: string;
   message?: string;
   truckId: string;
   truckName: string;
@@ -84,6 +85,9 @@ function getBusinessEmailHTML(data: InquiryData): string {
             <div class="field">
               <span class="label">Phone:</span> <a href="tel:${data.phone}">${data.phone}</a>
             </div>
+            <div class="field">
+              <span class="label">Location:</span> ${data.location}
+            </div>
             ${data.message ? `
               <div class="field">
                 <span class="label">Message:</span>
@@ -138,6 +142,7 @@ function getCustomerEmailHTML(data: InquiryData): string {
             <ul>
               <li>Email: ${data.email}</li>
               <li>Phone: ${data.phone}</li>
+              <li>Location: ${data.location}</li>
             </ul>
 
             <p>If you have any urgent questions, please feel free to call us directly:</p>
@@ -165,10 +170,21 @@ function getCustomerEmailHTML(data: InquiryData): string {
 // ── API Route Handler ───────────────────────────────────────────────────────
 export async function POST(request: NextRequest) {
   try {
-    const data: InquiryData = await request.json();
+    const body = await request.json();
+    const data: InquiryData = {
+      ...body,
+      location:
+        typeof body.location === "string" ? body.location.trim() : "",
+    };
 
     // Validate required fields
-    if (!data.name || !data.email || !data.phone || !data.truckId) {
+    if (
+      !data.name ||
+      !data.email ||
+      !data.phone ||
+      !data.location ||
+      !data.truckId
+    ) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
@@ -215,6 +231,7 @@ Customer Information:
 Name: ${data.name}
 Email: ${data.email}
 Phone: ${data.phone}
+Location: ${data.location}
 ${data.message ? `\nMessage:\n${data.message}` : ""}
       `.trim(),
     });
@@ -237,6 +254,8 @@ Price: ${data.truckCurrency === "USD" ? "$" : "€"}${data.truckPrice.toLocaleSt
 ${data.truckStockNumber ? `Stock #: ${data.truckStockNumber}\n` : ""}
 
 We have received your inquiry and one of our sales representatives will contact you within 24 hours.
+
+Your location: ${data.location}
 
 If you have any urgent questions, please call us:
 
