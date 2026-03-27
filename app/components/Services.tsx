@@ -1,4 +1,4 @@
-import { Package, Sparkles, ShoppingBag, Droplets } from "lucide-react";
+import { Package, Sparkles, CircleDot, Droplets } from "lucide-react";
 
 const services = [
   {
@@ -16,10 +16,10 @@ const services = [
     color: "bg-cyan-100 text-cyan-600",
   },
   {
-    title: "Accessories Store",
+    title: "Rims & Tires",
     description:
-      "Everything you need to outfit your truck — from lighting and mirrors to cab comfort accessories.",
-    icon: ShoppingBag,
+      "Durable truck rims and high-performance tires for long-haul, regional, and off-road operations.",
+    icon: CircleDot,
     color: "bg-orange-100 text-orange-600",
   },
   {

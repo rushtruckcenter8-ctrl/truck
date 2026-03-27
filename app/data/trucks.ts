@@ -25,7 +25,7 @@ export interface Truck {
 
   // ── Description ───────────────────────────────────────────────
   description: string;
-  category: "tractor" | "dump truck" | "trailer" | "box truck" | "flatbed";
+  category: "tractor" | "dump truck" | "trailer" | "box truck" | "flatbed" | "parts";
 
   // ── Engine ────────────────────────────────────────────────────
   engine: string;             // formatted display string
@@ -67,6 +67,163 @@ function galleryImages(prefix: string, count: number): string[] {
 }
 
 export const trucks: Truck[] = [
+  {
+    id: "north-star-rims-22-5x8-5-rim1",
+    name: "North Star Aluminum Rims",
+    brand: "North Star",
+    year: 2026,
+    condition: "Used",
+
+    price: 150,
+    currency: "USD",
+
+    mileage: 0,
+    mileageUnit: "mi",
+
+    image: "/images/rim1%20(1).jpeg",
+    images: galleryImages("rim1", 4),
+
+    description:
+      "North Star aluminum rims, size 22.5x8.5. Priced at $150 each. Clean set, ready for install.",
+    category: "parts",
+
+    engine: "Size 22.5x8.5",
+    horsepower: 0,
+    fuelType: "N/A",
+    transmission: "N/A",
+    wheelType: "Aluminum",
+  },
+  {
+    id: "tire1-295-75r22-5-full-set",
+    name: "295/75R22.5 Tires on Hub Pilot Rims",
+    brand: "Generic",
+    year: 2026,
+    condition: "New",
+
+    price: 1500,
+    currency: "USD",
+
+    mileage: 0,
+    mileageUnit: "mi",
+
+    image: "/images/tire1.jpeg",
+    images: ["/images/tire1.jpeg"],
+
+    description:
+      "Full set of 295/75R22.5 tires mounted on hub pilot rims. 14-ply, brand-new virgin open-shoulder tires. Shipping is available.",
+    category: "parts",
+
+    engine: "295/75R22.5 (14 Ply)",
+    horsepower: 0,
+    fuelType: "N/A",
+    transmission: "Mounted on Hub Pilot Rims",
+    wheelType: "Hub Pilot Rims",
+  },
+  {
+    id: "alcoa-aluminum-rims-rim2",
+    name: "Alcoa Aluminum Rims",
+    brand: "Alcoa",
+    year: 2026,
+    condition: "New",
+
+    price: 100,
+    currency: "USD",
+
+    mileage: 0,
+    mileageUnit: "mi",
+
+    image: "/images/rim2%20(1).jpeg",
+    images: galleryImages("rim2", 3),
+
+    description:
+      "Upgrade your ride with premium Alcoa Aluminum Rims. Sizes available: 22.5 import ($100), 22.5 Alcoa ($150), 24.5 Alcoa ($180), car carrier rim ($250), and dump truck rim ($300). FREE nationwide delivery. Don't wait - stock is limited!",
+    category: "parts",
+
+    engine: "Multiple Sizes Available",
+    horsepower: 0,
+    fuelType: "N/A",
+    transmission: "N/A",
+    wheelType: "Aluminum (Import and Alcoa options)",
+  },
+  {
+    id: "heavy-duty-295-75r22-5-drive-tires-tire2",
+    name: "HEAVY-DUTY 295/75R22.5 DRIVE TIRES",
+    brand: "Multi-Brand",
+    year: 2026,
+    condition: "New",
+
+    price: 0,
+    currency: "USD",
+
+    mileage: 0,
+    mileageUnit: "mi",
+
+    image: "/images/tire2%20(1).jpeg",
+    images: galleryImages("tire2", 7),
+
+    description:
+      "READY FOR THE ROAD! Looking for strong, reliable drive tires for your semi-truck? We've got you covered with top budget-friendly brands that deliver serious performance and durability. KORYO 295/75R22.5 - built tough for long hauls with excellent traction and solid tread life. ROADX 295/75R22.5 - smooth ride, strong grip, and designed for long-distance trucking. V Drive Force 295/75R22.5 - heavy-duty construction made for power, stability, and reliability under heavy loads. V Land Golden 295/75R22.5 - durable drive tires with aggressive tread patterns that handle tough roads and keep your truck moving.",
+    category: "parts",
+
+    engine: "295/75R22.5 Drive Tires",
+    horsepower: 0,
+    fuelType: "N/A",
+    transmission: "KORYO, ROADX, V Drive Force, V Land Golden",
+    wheelType: "Heavy-Duty Drive Tire",
+  },
+  {
+    id: "alcoa-level-1-polish-rim3",
+    name: "Alcoa Wheels - Level 1 Polish",
+    brand: "Alcoa",
+    year: 2026,
+    condition: "New",
+
+    price: 250,
+    currency: "USD",
+
+    mileage: 0,
+    mileageUnit: "mi",
+
+    image: "/images/rim3.jpeg",
+    images: ["/images/rim3.jpeg"],
+
+    description:
+      "22.5 and 24.5 Alcoa wheels with Level 1 polish. In stock now. Pricing: 22.5 ($250) and 24.5 ($300). We can pallet and ship.",
+    category: "parts",
+
+    engine: "22.5 and 24.5",
+    horsepower: 0,
+    fuelType: "N/A",
+    transmission: "Can pallet and ship",
+    wheelType: "Alcoa Aluminum Wheels (Level 1 Polish)",
+  },
+  {
+    id: "alcoa-22-5-drive-rims-285-pcd-rim4",
+    name: "22.5 Drive Rims Alcoa 285 PCD",
+    brand: "Alcoa",
+    year: 2026,
+    condition: "Used",
+
+    price: 250,
+    currency: "USD",
+
+    mileage: 0,
+    mileageUnit: "mi",
+
+    image: "/images/rim4%20(1).jpeg",
+    images: galleryImages("rim4", 5),
+
+    description:
+      "22.5 drive rims, Alcoa 285 PCD. All in good condition. $250 each.",
+    category: "parts",
+
+    engine: "22.5 Drive Rims (285 PCD)",
+    horsepower: 0,
+    fuelType: "N/A",
+    transmission: "N/A",
+    wheelType: "Alcoa Aluminum Drive Rims",
+  },
+
   // ────────────────────────────────────────────────
   //  REAL TRUCKS
   // ────────────────────────────────────────────────
