@@ -148,7 +148,7 @@ function getCustomerEmailHTML(data: InquiryData): string {
             <p>If you have any urgent questions, please feel free to call us directly:</p>
             <ul>
               
-              <li>+41 79 123 45 67</li>
+              <li></li>
             </ul>
 
             <p>We look forward to helping you find the perfect truck for your needs!</p>
@@ -259,7 +259,7 @@ Your location: ${data.location}
 
 If you have any urgent questions, please call us:
 
-+41 79 123 45 67
+
 
 Best regards,
 Rush Truck Center Team

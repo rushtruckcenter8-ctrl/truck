@@ -15,8 +15,8 @@ const contactDetails = [
   {
     icon: <Phone size={20} />,
     label: "Phone",
-    lines: [ "+41 79 123 45 67"],
-    hrefs: [ "tel:+41791234567"],
+    lines: [ ""],
+    hrefs: [ "tel:"],
   },
   {
     icon: <Mail size={20} />,
