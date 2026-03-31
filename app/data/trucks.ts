@@ -172,6 +172,32 @@ export const trucks: Truck[] = [
     wheelType: "Heavy-Duty Drive Tire",
   },
   {
+    id: "tire3-255-70r22-5-koryo-virgin",
+    name: "255/70 R22.5 KORYO VIRGIN",
+    brand: "Koryo",
+    year: 2026,
+    condition: "New",
+
+    price: 115,
+    currency: "USD",
+
+    mileage: 0,
+    mileageUnit: "mi",
+
+    image: "/images/tire3%20(1).jpeg",
+    images: galleryImages("tire3", 6),
+
+    description:
+      "Brand drive tires, heavy duty 16 ply. New stock just arrived. Only $115 each (tax included). Built tough for semi-trucks, 18 wheelers, dump trucks, and heavy-duty rigs. Long-lasting tread for maximum traction and durability. Perfect fit for Freightliner, Peterbilt, Kenworth, Volvo, International, Mack, and more. Ideal for highway and off-road hauling.",
+    category: "parts",
+
+    engine: "255/70 R22.5 (16 Ply)",
+    horsepower: 0,
+    fuelType: "N/A",
+    transmission: "Koryo Virgin Drive Tires",
+    wheelType: "Heavy-Duty Drive Tire",
+  },
+  {
     id: "alcoa-level-1-polish-rim3",
     name: "Alcoa Wheels - Level 1 Polish",
     brand: "Alcoa",
@@ -1147,6 +1173,268 @@ export const trucks: Truck[] = [
     wheelType: "All Aluminum",
     driveSide: "Left Hand Drive",
     sleeperType: "Flat Top Sleeper",
+    cabStyle: "Conventional",
+  },
+  {
+    id: "kenworth-w900l-truck21",
+    name: "Kenworth W900L",
+    brand: "Kenworth",
+    year: 2018,
+    condition: "Used",
+
+    price: 25000,
+    downPayment: 2000,
+    currency: "USD",
+
+    mileage: 395573,
+    mileageUnit: "mi",
+
+    image: "/images/truck21%20(1).jpeg",
+    images: galleryImages("truck21", 13),
+
+    description:
+      "Excellent condition, work-ready 2018 Kenworth W900L with strong specs and low recent maintenance miles. Cummins X15 (565 HP), Fuller Super 18 manual transmission with about 25,000 miles on transmission, 8x4 drive, tri-axle setup with 46,000 lb rear ends, drop axle, and wet kit configured for side dump and belly dump. Dual fuel tanks (90 gal/100 gal), 11R22.5 tires, front tires around 1,000 miles, rear tires about 50% remaining, dual Legacy low-back seats, heated LED headlights, and full locking differentials. No downtime - get in and go to work.",
+    category: "tractor",
+
+    engine: "Cummins X15",
+    engineManufacturer: "Cummins",
+    engineModel: "X15",
+    horsepower: 565,
+    fuelType: "Diesel",
+
+    transmission: "Fuller Super 18 Manual",
+    transmissionSpeeds: 18,
+
+    drive: "8x4",
+    suspension: "Air Ride",
+    rearAxles: "Tri (46,000 lb)",
+    gvwr: "Class 8: 33,001 pounds or greater",
+    wheelType: "All Aluminum",
+    wheelbase: "283 in",
+    driveSide: "Left Hand Drive",
+    sleeperType: "Mid Roof Sleeper",
+    sleeperSize: "38 in AeroCab",
+    fuelCapacity: "90 gal / 100 gal",
+    cabStyle: "Conventional",
+  },
+  {
+    id: "kenworth-i680-truck22",
+    name: "Kenworth I680",
+    brand: "Kenworth",
+    year: 2022,
+    condition: "Used",
+    vin: "1XKYP40X3NJ471200",
+
+    price: 30000,
+    downPayment: 2000,
+    currency: "USD",
+
+    mileage: 424550,
+    mileageUnit: "mi",
+
+    image: "/images/truck22%20(1).jpeg",
+    images: galleryImages("truck22", 17),
+
+    description:
+      "Work-ready 2022 Kenworth I680 with Cummins power and lift axle setup. 500 HP Cummins engine paired with a 13-speed UltraShift automated transmission. 8x4 drive with AG 400 suspension, tri rear axles rated at 40,000 lb, all aluminum wheels, and 250-inch wheelbase.",
+    category: "tractor",
+
+    engine: "Cummins X15",
+    engineManufacturer: "Cummins",
+    engineModel: "X15",
+    engineDisplacement: 15.1,
+    horsepower: 500,
+    fuelType: "Diesel",
+
+    transmission: "UltraShift 13-Speed Automated",
+    transmissionSpeeds: 13,
+
+    drive: "8x4",
+    suspension: "AG 400",
+    rearAxles: "Tri (40,000 lb)",
+    gvwr: "Class 8: 33,001 pounds or greater",
+    wheelType: "All Aluminum",
+    wheelbase: "250 in",
+    driveSide: "Left Hand Drive",
+    sleeperType: "Mid Roof Sleeper",
+    cabStyle: "Conventional",
+  },
+  {
+    id: "kenworth-t680-truck23",
+    name: "Kenworth T680",
+    brand: "Kenworth",
+    year: 2022,
+    condition: "Used",
+    stockNumber: "NJ101217U",
+    vin: "1XKYD49X7NJ101217",
+
+    price: 30000,
+    downPayment: 2000,
+    currency: "USD",
+
+    mileage: 399103,
+    mileageUnit: "mi",
+
+    image: "/images/truck23%20(1).jpeg",
+    images: galleryImages("truck23", 19),
+
+    description:
+      "2022 Kenworth T680 in used condition. Cummins X15 rated at 450 HP with Endurant 12-speed automated transmission. 6x4 drive, AG 400L suspension, tandem rear axles with 40,000 lb rear axle rating, all aluminum wheels, and 244-inch wheelbase. Mid roof sleeper with 76-inch sleeper size and one bed. Power locks, A/C in good condition, vinyl/cloth seats, and APU equipped.",
+    category: "tractor",
+
+    engine: "Cummins X15",
+    engineManufacturer: "Cummins",
+    engineModel: "X15",
+    engineDisplacement: 15.1,
+    horsepower: 450,
+    fuelType: "Diesel",
+
+    transmission: "Endurant 12-Speed Automated",
+    transmissionSpeeds: 12,
+
+    drive: "6x4",
+    suspension: "AG 400L",
+    rearAxles: "Tandem (40,000 lb)",
+    gvwr: "Class 8: 33,001 pounds or greater",
+    wheelType: "All Aluminum",
+    wheelbase: "244 in",
+    driveSide: "Left Hand Drive",
+    sleeperType: "Mid Roof Sleeper",
+    sleeperSize: "76 in",
+    beds: 1,
+    hasApu: true,
+    cabStyle: "Conventional",
+  },
+  {
+    id: "kenworth-w900-truck24",
+    name: "Kenworth W900",
+    brand: "Kenworth",
+    year: 2019,
+    condition: "Used",
+    stockNumber: "XTN1735A",
+    vin: "1XKWDPOXXKJ255082",
+
+    price: 35000,
+    downPayment: 2000,
+    currency: "USD",
+
+    mileage: 403779,
+    mileageUnit: "mi",
+
+    image: "/images/truck24%20(1).jpeg",
+    images: galleryImages("truck24", 14),
+
+    description:
+      "2019 Kenworth W900 in used condition. PACCAR MX-13 engine (12.9L) rated at 510 HP with an 18-speed manual transmission. 6x4 drive with Air Ride suspension, tandem rear axles, 59,200 lb gross vehicle weight, 13,200 lb front axle, and 46,000 lb rear axle rating. Runs 11R24.5 tires on aluminum wheels. Standard conventional cab in green.",
+    category: "tractor",
+
+    engine: "PACCAR MX-13",
+    engineManufacturer: "PACCAR",
+    engineModel: "MX-13",
+    engineDisplacement: 12.91,
+    horsepower: 510,
+    fuelType: "Diesel",
+
+    transmission: "18-Speed Manual",
+    transmissionSpeeds: 18,
+
+    drive: "6x4",
+    suspension: "Air Ride",
+    rearAxles: "Tandem (46,000 lb)",
+    gvwr: "Class 8: 33,001 pounds or greater (59,200 lb GVW)",
+    wheelType: "Aluminum",
+    driveSide: "Left Hand Drive",
+    color: "Green",
+    cabStyle: "Conventional",
+  },
+  {
+    id: "kenworth-w900-truck25",
+    name: "Kenworth W900",
+    brand: "Kenworth",
+    year: 2017,
+    condition: "Used",
+    stockNumber: "158433",
+    vin: "1XKWD40X0HJ158433",
+
+    price: 30000,
+    downPayment: 2000,
+    currency: "USD",
+
+    mileage: 610537,
+    mileageUnit: "mi",
+
+    image: "/images/truck25%20(1).jpeg",
+    images: galleryImages("truck25", 10),
+
+    description:
+      "2017 Kenworth W900 heavy spec day cab. Cummins ISX engine rated at 525 HP with Jake brake and Eaton-Fuller 18-speed manual transmission. 13,200 lb front axle, 46,000 lb rear axles, 8-bag air ride suspension, 11R24.5 tires, and all aluminum wheels. About 60,320 miles on overhaul. Well-equipped with dual exhaust, dual breathers, turbo, overdrive, differential lock, power steering, and A/C.",
+    category: "tractor",
+
+    engine: "Cummins ISX — 15L",
+    engineManufacturer: "Cummins",
+    engineModel: "ISX",
+    engineDisplacement: 15,
+    horsepower: 525,
+    fuelType: "Diesel",
+
+    transmission: "Eaton-Fuller 18-Speed Manual",
+    transmissionSpeeds: 18,
+    axleRatio: "3.73",
+
+    suspension: "8 Bag Air Ride",
+    rearAxles: "Tandem (46,000 lb)",
+    gvwr: "Class 8: 33,001 pounds or greater",
+    wheelType: "All Aluminum",
+    wheelbase: "227 in",
+    driveSide: "Left Hand Drive",
+    color: "Red",
+    cabStyle: "Conventional",
+  },
+  {
+    id: "kenworth-w900-truck26",
+    name: "Kenworth W900 Extended Day Cab",
+    brand: "Kenworth",
+    year: 2015,
+    condition: "Used",
+    stockNumber: "X1766",
+    vin: "1XKWD40X4FJ446047",
+    dot: true,
+    hours: 30561,
+
+    price: 25000,
+    downPayment: 2000,
+    currency: "USD",
+
+    mileage: 677071,
+    mileageUnit: "mi",
+
+    image: "/images/truck26%20(1).jpeg",
+    images: galleryImages("truck26", 9),
+
+    description:
+      "2015 Kenworth W900 Extended Day Cab, purchased new and fleet maintained. Cummins ISX15 rated at 600 HP paired with Eaton UltraShift Plus 18-speed automated transmission. Air disc brakes, wheel diff lock, heavy-duty frame and equipment, loaded premium cab/interior and gauge package, lights and signal package, premium air equipment, and zinc phosphate frame rail process. 14,600 lb front axle, 46,000 lb rear axle, 60,600 lb GVW, 135-gallon fuel capacity, and sliding fifth wheel.",
+    category: "tractor",
+
+    engine: "Cummins ISX15",
+    engineManufacturer: "Cummins",
+    engineModel: "ISX15",
+    engineDisplacement: 15,
+    horsepower: 600,
+    fuelType: "Diesel",
+
+    transmission: "Eaton UltraShift Plus 18-Speed Automated",
+    transmissionSpeeds: 18,
+
+    drive: "4x2",
+    suspension: "Air Ride",
+    rearAxles: "Tandem (46,000 lb)",
+    gvwr: "Class 8: 33,001 pounds or greater (60,600 lb GVW)",
+    wheelType: "Aluminum",
+    wheelbase: "220 in",
+    driveSide: "Left Hand Drive",
+    fifthWheelType: "Sliding",
+    fuelCapacity: "135 gal",
+    color: "Red",
     cabStyle: "Conventional",
   },
 
