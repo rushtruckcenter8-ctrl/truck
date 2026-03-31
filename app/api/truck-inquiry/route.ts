@@ -148,7 +148,7 @@ function getCustomerEmailHTML(data: InquiryData): string {
             <p>If you have any urgent questions, please feel free to call us directly:</p>
             <ul>
               
-              <li></li>
+              <li>+1 (830) 259-1503</li>
             </ul>
 
             <p>We look forward to helping you find the perfect truck for your needs!</p>
