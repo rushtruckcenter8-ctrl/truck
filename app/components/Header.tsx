@@ -47,7 +47,7 @@ export default function Header() {
            
             <a href="tel:+18302591503" className="flex items-center gap-1.5 hover:text-blue-300 transition-colors">
               <Phone size={14} />
-              +1 (830) 259-1503
+              +1 (915) 253-3976
             </a>
           </div>
         </div>
