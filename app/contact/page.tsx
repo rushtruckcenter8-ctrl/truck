@@ -15,8 +15,8 @@ const contactDetails = [
   {
     icon: <Phone size={20} />,
     label: "Phone",
-    lines: [ "+1 (830) 259-1503"],
-    hrefs: [ "tel:+18302591503"],
+    lines: [ "+1 (915) 253-3976"],
+    hrefs: [ "tel:+1915253-3976"],
   },
   {
     icon: <Mail size={20} />,
