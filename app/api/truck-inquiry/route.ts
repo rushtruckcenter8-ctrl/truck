@@ -265,7 +265,7 @@ Best regards,
 Rush Truck Center Team
 
 Rush Truck Center — Affordable Truck Sales & Service
-contact@rushtruckcentersales.com
+contact@rushtruckcenterllc.com
       `.trim(),
     });
 
