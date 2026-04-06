@@ -21,8 +21,8 @@ const contactDetails = [
   {
     icon: <Mail size={20} />,
     label: "Email",
-    lines: ["contact@rushtruckcentersales.com"],
-    hrefs: ["mailto:contact@rushtruckcentersales.com"],
+    lines: ["contact@rushtruckcenterllc.com"],
+    hrefs: ["mailto:contact@rushtruckcenterllc.com"],
   },
   {
     icon: <MapPin size={20} />,
