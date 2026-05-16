@@ -9,7 +9,7 @@ export default function LocationMap() {
             </h2>
             <p className="mt-4 text-muted leading-relaxed max-w-2xl">
               Visit our showroom and service center in El Paso, TX. We&apos;re conveniently
-              located off Gateway Blvd with easy highway access for truck
+              located off Suwannee St with easy highway access for truck
               deliveries.
             </p>
             <p className="mt-3 text-muted leading-relaxed max-w-2xl">
@@ -26,8 +26,8 @@ export default function LocationMap() {
           data-aos-once="true"
         >
           <iframe
-            title="Rush Truck Center Location"
-            src="https://maps.google.com/maps?q=12253+Gateway+Blvd+W,+El+Paso,+TX+79936&output=embed"
+            title="Hega Truck Sales Location"
+            src="https://maps.google.com/maps?q=5200+Suwannee+St,+El+Paso,+TX+79938&output=embed"
             width="100%"
             height="400"
             style={{ border: 0 }}

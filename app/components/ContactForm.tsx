@@ -93,7 +93,7 @@ export default function ContactForm({ expanded = false }: ContactFormProps) {
         onChange={handleChange}
         placeholder="Name"
         required
-        className="w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-foreground placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
+        className="w-full rounded-lg border border-border bg-accent px-4 py-3 text-sm text-foreground placeholder:text-muted focus:outline-none focus:ring-1 focus:ring-foreground/30 transition"
       />
 
       {/* Email — only in expanded mode */}
@@ -104,7 +104,7 @@ export default function ContactForm({ expanded = false }: ContactFormProps) {
           value={formData.email}
           onChange={handleChange}
           placeholder="Email"
-          className="w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-foreground placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
+          className="w-full rounded-lg border border-border bg-accent px-4 py-3 text-sm text-foreground placeholder:text-muted focus:outline-none focus:ring-1 focus:ring-foreground/30 transition"
         />
       )}
 
@@ -116,7 +116,7 @@ export default function ContactForm({ expanded = false }: ContactFormProps) {
         onChange={handleChange}
         placeholder="Phone number"
         required
-        className="w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-foreground placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
+        className="w-full rounded-lg border border-border bg-accent px-4 py-3 text-sm text-foreground placeholder:text-muted focus:outline-none focus:ring-1 focus:ring-foreground/30 transition"
       />
 
       {/* Location */}
@@ -127,7 +127,7 @@ export default function ContactForm({ expanded = false }: ContactFormProps) {
         onChange={handleChange}
         placeholder="City, state / region, or ZIP"
         required
-        className="w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-foreground placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
+        className="w-full rounded-lg border border-border bg-accent px-4 py-3 text-sm text-foreground placeholder:text-muted focus:outline-none focus:ring-1 focus:ring-foreground/30 transition"
       />
 
       {/* Message — only in expanded mode */}
@@ -138,7 +138,7 @@ export default function ContactForm({ expanded = false }: ContactFormProps) {
           onChange={handleChange}
           placeholder="Your message..."
           rows={4}
-          className="w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-foreground placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition resize-none"
+          className="w-full rounded-lg border border-border bg-accent px-4 py-3 text-sm text-foreground placeholder:text-muted focus:outline-none focus:ring-1 focus:ring-foreground/30 transition resize-none"
         />
       )}
 
@@ -150,7 +150,7 @@ export default function ContactForm({ expanded = false }: ContactFormProps) {
       <button
         type="submit"
         disabled={isSubmitting || submitted}
-        className="w-full rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white hover:bg-primary-dark disabled:opacity-60 transition-colors flex items-center justify-center gap-2"
+        className="w-full rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-black hover:bg-primary-dark disabled:opacity-60 transition-colors flex items-center justify-center gap-2"
       >
         {isSubmitting ? (
           <>

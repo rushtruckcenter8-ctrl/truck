@@ -6,7 +6,7 @@ import ContactForm from "./ContactForm";
  */
 export default function ContactSection() {
   return (
-    <section id="contact" className="relative bg-foreground section-padding">
+    <section id="contact" className="relative bg-accent border-t border-border section-padding">
       <div className="mx-auto max-w-7xl px-6 flex flex-col items-center md:flex-row md:items-start md:gap-16">
         {/* Left text */}
         <div
@@ -14,10 +14,10 @@ export default function ContactSection() {
           data-aos="fade-right"
           data-aos-once="true"
         >
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">
+          <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
             Have Questions?
           </h2>
-          <p className="mt-4 max-w-md text-slate-400 leading-relaxed">
+          <p className="mt-4 max-w-md text-muted leading-relaxed">
             Leave your details and your general location — we&apos;ll call you
             back. We are happy to discuss pricing, delivery, or any custom
             requirements.
@@ -26,7 +26,7 @@ export default function ContactSection() {
 
         {/* Form card */}
         <div
-          className="w-full max-w-md rounded-xl bg-white p-8 shadow-xl"
+          className="w-full max-w-md rounded-xl bg-background border border-border p-8"
           data-aos="fade-left"
           data-aos-once="true"
         >

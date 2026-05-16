@@ -36,7 +36,7 @@ export default function HomeVideos() {
     <section className="bg-white section-padding">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mb-10 text-center" data-aos="fade-up" data-aos-once="true">
-          <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
+          <h2 className="text-3xl font-bold text-black sm:text-4xl">
             Featured Videos
           </h2>
           <p className="mt-3 text-muted">

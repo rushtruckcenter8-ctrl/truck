@@ -1,0 +1,1595 @@
+From d0715abaae97137cd9e26f6df2724f4b94ae8ed8 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 16 May 2026 11:39:51 +0000
+Subject: [PATCH] Rebrand to Hega Truck Sales with dark minimal UI overhaul
+
+- Rename company from Rush Truck Center to Hega Truck Sales throughout
+- Switch design system to dark minimal palette (near-black bg, off-white text, gray accents)
+- Replace font stack with system Inter/sans-serif (clean, no decorative fonts)
+- Update hero section: new Unsplash image, new headline "Quality Trucks. Honest Deals."
+- Update contact info: 5200 Suwannee St El Paso TX 79938, (915) 253-3976, contact@hegatrucksales.com
+- Rewrite About page with new Hega Truck Sales story, stats, and "Why Choose Us" content
+- Update all components (Header, Footer, TruckCard, Services, ContactForm, etc.) for dark theme
+- Update LocationMap to new address embed
+- Update email templates in API routes with new branding
+
+https://claude.ai/code/session_01LAnqGbpi7QG5jJhZHZ3BVz
+---
+ app/about/page.tsx                |  94 +++++-----
+ app/api/contact/route.ts          |   2 +-
+ app/api/truck-inquiry/route.ts    |  18 +-
+ app/components/Brands.tsx         |  13 +-
+ app/components/ContactForm.tsx    |  12 +-
+ app/components/ContactSection.tsx |   8 +-
+ app/components/FeaturedTrucks.tsx |   4 +-
+ app/components/Footer.tsx         | 240 ++++++++++++------------
+ app/components/Header.tsx         | 300 +++++++++++++++---------------
+ app/components/Hero.tsx           |  97 +++++-----
+ app/components/LocationMap.tsx    |   6 +-
+ app/components/Services.tsx       |  10 +-
+ app/components/TruckCard.tsx      |   8 +-
+ app/contact/page.tsx              | 241 ++++++++++++------------
+ app/globals.css                   |  30 +--
+ app/layout.tsx                    |  30 +--
+ app/trucks/[id]/page.tsx          |   2 +-
+ 17 files changed, 543 insertions(+), 572 deletions(-)
+
+diff --git a/app/about/page.tsx b/app/about/page.tsx
+index e398030..a807d0e 100644
+--- a/app/about/page.tsx
++++ b/app/about/page.tsx
+@@ -1,59 +1,59 @@
+ import type { Metadata } from "next";
+ import Image from "next/image";
+-import { ShieldCheck, TruckIcon, Users, Wrench, Award, Globe } from "lucide-react";
++import { ShieldCheck, TruckIcon, Users, Wrench, DollarSign, MapPin } from "lucide-react";
+ import Header from "../components/Header";
+ import Footer from "../components/Footer";
+ import Brands from "../components/Brands";
+ 
+ export const metadata: Metadata = {
+-  title: "About Us — Rush Truck Center",
++  title: "About Us — Hega Truck Sales",
+   description:
+-    "Learn about Rush Truck Center — connecting buyers with quality used trucks. Our story, mission, and the brands we work with.",
++    "Learn about Hega Truck Sales — quality pre-owned trucks at honest prices in El Paso, TX. Our story, mission, and commitment to every customer.",
+ };
+ 
+ const stats = [
+-  { value: "500+", label: "Trucks Sold" },
+-  { value: "10+", label: "Years in Business" },
+-  { value: "5", label: "Brand Partners" },
+-  { value: "98%", label: "Happy Clients" },
++  { value: "300+", label: "Trucks Sold" },
++  { value: "8+", label: "Years in Business" },
++  { value: "4", label: "Truck Categories" },
++  { value: "95%", label: "Happy Clients" },
+ ];
+ 
+ const features = [
+   {
+     icon: <ShieldCheck size={28} />,
+-    title: "Certified Quality",
++    title: "Inspected Inventory",
+     description:
+-      "Every truck passes a 120-point inspection before listing. We guarantee mechanical reliability and transparent vehicle history.",
++      "Every truck on our lot goes through a detailed multi-point inspection before it's ever listed. What you see is what you get.",
+   },
+   {
+-    icon: <Globe size={28} />,
+-    title: "European Imports",
++    icon: <DollarSign size={28} />,
++    title: "Transparent Pricing",
+     description:
+-      "We source trucks directly from European fleets — well-maintained vehicles with complete service records and low-wear engines.",
++      "No hidden fees, no last-minute surprises. Our prices are clear upfront so you can make confident decisions.",
+   },
+   {
+-    icon: <Wrench size={28} />,
+-    title: "Full-Service Workshop",
++    icon: <MapPin size={28} />,
++    title: "Local & Trusted",
+     description:
+-      "Our on-site workshop handles everything from oil changes to engine overhauls. Factory-trained mechanics with OEM parts.",
++      "Proudly based in El Paso, Texas. We know this market and we're committed to serving our community with integrity.",
+   },
+   {
+     icon: <TruckIcon size={28} />,
+     title: "Wide Selection",
+     description:
+-      "Tractors, dump trucks, flatbeds, box trucks — we stock all categories from Scania, Volvo, MAN, DAF, and Renault.",
++      "Tractors, dump trucks, flatbeds, box trucks — we stock the categories owner-operators and fleet managers need most.",
+   },
+   {
+-    icon: <Award size={28} />,
+-    title: "10+ Years Experience",
++    icon: <Wrench size={28} />,
++    title: "Experienced Team",
+     description:
+-      "A decade of connecting owner-operators and fleet managers with the right trucks at competitive prices.",
++      "With 8+ years in the business, our team has the knowledge to match you with the right truck at the right price.",
+   },
+   {
+     icon: <Users size={28} />,
+-    title: "Dedicated Support",
++    title: "Fast Financing",
+     description:
+-      "Our sales and service team guides you from first inquiry through delivery and beyond with ongoing maintenance support.",
++      "Get on the road faster. We work with financing partners to help you find flexible payment options that fit your budget.",
+   },
+ ];
+ 
+@@ -63,21 +63,23 @@ export default function AboutPage() {
+       <Header />
+       <main className="min-h-screen">
+         {/* ── Hero banner ── */}
+-        <section className="bg-foreground py-20 text-center text-white">
+-          <h1 className="text-4xl font-extrabold sm:text-5xl">About Us</h1>
+-          <p className="mx-auto mt-4 max-w-xl text-slate-400">
+-            Your trusted partner for quality European trucks since 2015
++        <section className="bg-accent border-b border-border py-20 text-center">
++          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
++            About Hega Truck Sales
++          </h1>
++          <p className="mx-auto mt-4 max-w-xl text-muted">
++            Quality trucks. Honest deals. El Paso, Texas.
+           </p>
+         </section>
+ 
+         {/* ── Our Story ── */}
+-        <section className="bg-white section-padding">
++        <section className="bg-background section-padding">
+           <div className="mx-auto flex max-w-7xl flex-col items-center gap-12 px-6 md:flex-row">
+             {/* Image */}
+             <div className="flex-1" data-aos="fade-right" data-aos-once="true">
+               <Image
+-                src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80"
+-                alt="Our team at the truck yard"
++                src="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=1200&q=80"
++                alt="Hega Truck Sales lot"
+                 width={600}
+                 height={400}
+                 className="w-full h-auto rounded-xl"
+@@ -88,28 +90,28 @@ export default function AboutPage() {
+             <div className="flex-1" data-aos="fade-left" data-aos-once="true">
+               <h2 className="text-3xl font-bold text-foreground">Our Story</h2>
+               <p className="mt-4 leading-relaxed text-muted">
+-                Rush Truck Center was founded with a simple
+-                mission: make buying a quality used truck easy, transparent, and
+-                affordable. We started with a small yard and a handful of trucks — today we
+-                move hundreds of vehicles a year across the country.
++                Hega Truck Sales was founded on a simple belief: buying a commercial
++                truck should be straightforward, transparent, and fair. Based in El Paso,
++                Texas, we specialize in quality pre-owned semi trucks, dump trucks,
++                flatbeds, and trailers sourced from trusted fleet operators across the
++                country.
+               </p>
+               <p className="mt-3 leading-relaxed text-muted">
+-                We work directly with fleet operators and manufacturers to source
+-                the best vehicles at competitive prices. Every truck in our
+-                inventory is thoroughly inspected by our in-house mechanics before
+-                it reaches the showroom floor.
++                Every vehicle on our lot goes through a rigorous multi-point inspection
++                before it&apos;s ever listed — because we know your business depends on
++                reliability. We don&apos;t sell trucks we wouldn&apos;t put our own name behind.
+               </p>
+               <p className="mt-3 leading-relaxed text-muted">
+-                Our commitment goes beyond the sale. With a full-service workshop,
+-                parts store, and a dedicated support team, we&apos;re here for
+-                every kilometre of the journey.
++                Whether you&apos;re an owner-operator looking for your first rig or a fleet
++                manager adding capacity, our team is here to make the process smooth
++                and stress-free — from first inquiry to the moment you drive off the lot.
+               </p>
+             </div>
+           </div>
+         </section>
+ 
+         {/* ── Stats ── */}
+-        <section className="bg-primary py-14">
++        <section className="bg-accent border-y border-border py-14">
+           <div className="mx-auto grid max-w-5xl grid-cols-2 gap-8 px-6 text-center sm:grid-cols-4">
+             {stats.map((stat, idx) => (
+               <div
+@@ -118,15 +120,15 @@ export default function AboutPage() {
+                 data-aos-once="true"
+                 data-aos-delay={idx * 100}
+               >
+-                <p className="text-4xl font-extrabold text-white">{stat.value}</p>
+-                <p className="mt-1 text-sm text-blue-200">{stat.label}</p>
++                <p className="text-4xl font-bold text-foreground">{stat.value}</p>
++                <p className="mt-1 text-sm text-muted">{stat.label}</p>
+               </div>
+             ))}
+           </div>
+         </section>
+ 
+         {/* ── Why Choose Us ── */}
+-        <section className="bg-accent section-padding">
++        <section className="bg-background section-padding">
+           <div className="mx-auto max-w-7xl px-6">
+             <h2
+               className="mb-12 text-center text-3xl font-bold text-foreground sm:text-4xl"
+@@ -143,9 +145,9 @@ export default function AboutPage() {
+                   data-aos="fade-up"
+                   data-aos-once="true"
+                   data-aos-delay={idx * 100}
+-                  className="rounded-xl bg-white border border-border p-6 shadow-sm hover:shadow-md transition-shadow"
++                  className="rounded-xl bg-accent border border-border p-6 hover:border-foreground/20 transition-colors"
+                 >
+-                  <span className="inline-flex items-center justify-center rounded-lg bg-primary/10 p-3 text-primary">
++                  <span className="inline-flex items-center justify-center rounded-lg bg-foreground/10 p-3 text-foreground">
+                     {feat.icon}
+                   </span>
+                   <h3 className="mt-4 text-lg font-semibold text-foreground">
+@@ -160,7 +162,7 @@ export default function AboutPage() {
+           </div>
+         </section>
+ 
+-        {/* ── Brand partners (reused component) ── */}
++        {/* ── Brand partners ── */}
+         <Brands />
+       </main>
+       <Footer />
+diff --git a/app/api/contact/route.ts b/app/api/contact/route.ts
+index bdc6be0..15f163b 100644
+--- a/app/api/contact/route.ts
++++ b/app/api/contact/route.ts
+@@ -97,7 +97,7 @@ export async function POST(request: NextRequest) {
+     const replyTo = data.email?.trim() || undefined;
+ 
+     await transporter.sendMail({
+-      from: `"Rush Truck Center" <${process.env.SMTP_USER}>`,
++      from: `"Hega Truck Sales" <${process.env.SMTP_USER}>`,
+       to: businessEmail,
+       ...(replyTo ? { replyTo } : {}),
+       subject: `Website contact: ${data.name.trim()}`,
+diff --git a/app/api/truck-inquiry/route.ts b/app/api/truck-inquiry/route.ts
+index abae0f6..742cea5 100644
+--- a/app/api/truck-inquiry/route.ts
++++ b/app/api/truck-inquiry/route.ts
+@@ -148,17 +148,17 @@ function getCustomerEmailHTML(data: InquiryData): string {
+             <p>If you have any urgent questions, please feel free to call us directly:</p>
+             <ul>
+               
+-              <li>+1 (915) 253-3976</li>
++              <li>(915) 253-3976</li>
+             </ul>
+ 
+             <p>We look forward to helping you find the perfect truck for your needs!</p>
+ 
+             <p>Best regards,<br>
+-            <strong>Rush Truck Center Team</strong></p>
++            <strong>Hega Truck Sales Team</strong></p>
+ 
+             <div class="footer">
+-              <p>Rush Truck Center — Affordable Truck Sales & Service</p>
+-              <p>contact@rushtruckcentersales.com</p>
++              <p>Hega Truck Sales — Quality Trucks. Honest Deals.</p>
++              <p>contact@hegatrucksales.com</p>
+             </div>
+           </div>
+         </div>
+@@ -214,7 +214,7 @@ export async function POST(request: NextRequest) {
+     // Business email (to your sales team)
+     const businessEmail = process.env.BUSINESS_EMAIL || process.env.SMTP_USER;
+     await transporter.sendMail({
+-      from: `"Rush Truck Center" <${process.env.SMTP_USER}>`,
++      from: `"Hega Truck Sales" <${process.env.SMTP_USER}>`,
+       to: businessEmail,
+       replyTo: data.email,
+       subject: `New Truck Inquiry: ${data.truckBrand} ${data.truckName} (${data.truckYear})`,
+@@ -238,7 +238,7 @@ ${data.message ? `\nMessage:\n${data.message}` : ""}
+ 
+     // Customer confirmation email
+     await transporter.sendMail({
+-      from: `"Rush Truck Center" <${process.env.SMTP_USER}>`,
++      from: `"Hega Truck Sales" <${process.env.SMTP_USER}>`,
+       to: data.email,
+       subject: `Thank you for your interest in ${data.truckBrand} ${data.truckName}`,
+       html: getCustomerEmailHTML(data),
+@@ -262,10 +262,10 @@ If you have any urgent questions, please call us:
+ 
+ 
+ Best regards,
+-Rush Truck Center Team
++Hega Truck Sales Team
+ 
+-Rush Truck Center — Affordable Truck Sales & Service
+-contact@rushtruckcenterllc.com
++Hega Truck Sales — Quality Trucks. Honest Deals.
++contact@hegatrucksales.com
+       `.trim(),
+     });
+ 
+diff --git a/app/components/Brands.tsx b/app/components/Brands.tsx
+index b310449..69f42e2 100644
+--- a/app/components/Brands.tsx
++++ b/app/components/Brands.tsx
+@@ -10,7 +10,7 @@ const brands = [
+ 
+ export default function Brands() {
+   return (
+-    <section id="brands" className="bg-white section-padding">
++    <section id="brands" className="bg-background border-t border-border section-padding">
+       <div className="mx-auto max-w-7xl px-6">
+         {/* Heading + description */}
+         <div className="mb-12 flex flex-col items-center gap-8 md:justify-center md:gap-16">
+@@ -23,14 +23,13 @@ export default function Brands() {
+               Who We Are
+             </h2>
+             <p className="mt-4 text-muted leading-relaxed max-w-2xl">
+-              We are an authorized dealer and service partner for Europe&apos;s
+-              leading truck manufacturers. With over 10 years of experience, we
+-              connect buyers with premium commercial vehicles they can trust.
++              At Hega Truck Sales, we source quality pre-owned trucks from trusted
++              fleet operators across the country. Freightliner, Volvo, Kenworth —
++              top brands at prices that make sense for your business.
+             </p>
+             <p className="mt-3 text-muted leading-relaxed max-w-2xl">
+-              Every truck in our inventory is inspected, certified, and backed by
+-              our commitment to quality. We work directly with manufacturers to
+-              ensure authentic parts and professional servicing.
++              Every truck in our inventory is inspected and backed by our commitment
++              to transparency. No surprises — just reliable trucks and honest deals.
+             </p>
+           </div>
+ 
+diff --git a/app/components/ContactForm.tsx b/app/components/ContactForm.tsx
+index 54f15f0..8d3bd75 100644
+--- a/app/components/ContactForm.tsx
++++ b/app/components/ContactForm.tsx
+@@ -93,7 +93,7 @@ export default function ContactForm({ expanded = false }: ContactFormProps) {
+         onChange={handleChange}
+         placeholder="Name"
+         required
+-        className="w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-foreground placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
++        className="w-full rounded-lg border border-border bg-accent px-4 py-3 text-sm text-foreground placeholder:text-muted focus:outline-none focus:ring-1 focus:ring-foreground/30 transition"
+       />
+ 
+       {/* Email — only in expanded mode */}
+@@ -104,7 +104,7 @@ export default function ContactForm({ expanded = false }: ContactFormProps) {
+           value={formData.email}
+           onChange={handleChange}
+           placeholder="Email"
+-          className="w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-foreground placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
++          className="w-full rounded-lg border border-border bg-accent px-4 py-3 text-sm text-foreground placeholder:text-muted focus:outline-none focus:ring-1 focus:ring-foreground/30 transition"
+         />
+       )}
+ 
+@@ -116,7 +116,7 @@ export default function ContactForm({ expanded = false }: ContactFormProps) {
+         onChange={handleChange}
+         placeholder="Phone number"
+         required
+-        className="w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-foreground placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
++        className="w-full rounded-lg border border-border bg-accent px-4 py-3 text-sm text-foreground placeholder:text-muted focus:outline-none focus:ring-1 focus:ring-foreground/30 transition"
+       />
+ 
+       {/* Location */}
+@@ -127,7 +127,7 @@ export default function ContactForm({ expanded = false }: ContactFormProps) {
+         onChange={handleChange}
+         placeholder="City, state / region, or ZIP"
+         required
+-        className="w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-foreground placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
++        className="w-full rounded-lg border border-border bg-accent px-4 py-3 text-sm text-foreground placeholder:text-muted focus:outline-none focus:ring-1 focus:ring-foreground/30 transition"
+       />
+ 
+       {/* Message — only in expanded mode */}
+@@ -138,7 +138,7 @@ export default function ContactForm({ expanded = false }: ContactFormProps) {
+           onChange={handleChange}
+           placeholder="Your message..."
+           rows={4}
+-          className="w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-foreground placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition resize-none"
++          className="w-full rounded-lg border border-border bg-accent px-4 py-3 text-sm text-foreground placeholder:text-muted focus:outline-none focus:ring-1 focus:ring-foreground/30 transition resize-none"
+         />
+       )}
+ 
+@@ -150,7 +150,7 @@ export default function ContactForm({ expanded = false }: ContactFormProps) {
+       <button
+         type="submit"
+         disabled={isSubmitting || submitted}
+-        className="w-full rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white hover:bg-primary-dark disabled:opacity-60 transition-colors flex items-center justify-center gap-2"
++        className="w-full rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-black hover:bg-primary-dark disabled:opacity-60 transition-colors flex items-center justify-center gap-2"
+       >
+         {isSubmitting ? (
+           <>
+diff --git a/app/components/ContactSection.tsx b/app/components/ContactSection.tsx
+index ce484b3..df7c6ac 100644
+--- a/app/components/ContactSection.tsx
++++ b/app/components/ContactSection.tsx
+@@ -6,7 +6,7 @@ import ContactForm from "./ContactForm";
+  */
+ export default function ContactSection() {
+   return (
+-    <section id="contact" className="relative bg-foreground section-padding">
++    <section id="contact" className="relative bg-accent border-t border-border section-padding">
+       <div className="mx-auto max-w-7xl px-6 flex flex-col items-center md:flex-row md:items-start md:gap-16">
+         {/* Left text */}
+         <div
+@@ -14,10 +14,10 @@ export default function ContactSection() {
+           data-aos="fade-right"
+           data-aos-once="true"
+         >
+-          <h2 className="text-3xl font-bold text-white sm:text-4xl">
++          <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
+             Have Questions?
+           </h2>
+-          <p className="mt-4 max-w-md text-slate-400 leading-relaxed">
++          <p className="mt-4 max-w-md text-muted leading-relaxed">
+             Leave your details and your general location — we&apos;ll call you
+             back. We are happy to discuss pricing, delivery, or any custom
+             requirements.
+@@ -26,7 +26,7 @@ export default function ContactSection() {
+ 
+         {/* Form card */}
+         <div
+-          className="w-full max-w-md rounded-xl bg-white p-8 shadow-xl"
++          className="w-full max-w-md rounded-xl bg-background border border-border p-8"
+           data-aos="fade-left"
+           data-aos-once="true"
+         >
+diff --git a/app/components/FeaturedTrucks.tsx b/app/components/FeaturedTrucks.tsx
+index 619aab4..f3ad7c7 100644
+--- a/app/components/FeaturedTrucks.tsx
++++ b/app/components/FeaturedTrucks.tsx
+@@ -8,7 +8,7 @@ export default function FeaturedTrucks() {
+   const featured = trucks.slice(0, 6);
+ 
+   return (
+-    <section id="featured" className="bg-white section-padding">
++    <section id="featured" className="bg-background section-padding">
+       <div className="mx-auto max-w-7xl px-6">
+         {/* Section heading */}
+         <div className="text-center mb-12" data-aos="fade-up" data-aos-once="true">
+@@ -39,7 +39,7 @@ export default function FeaturedTrucks() {
+         <div className="mt-10 text-center" data-aos="fade-up" data-aos-once="true">
+           <Link
+             href="/trucks"
+-            className="inline-flex items-center gap-2 rounded-lg bg-primary px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 hover:bg-primary-dark transition-colors"
++            className="inline-flex items-center gap-2 rounded-lg bg-primary px-7 py-3.5 text-sm font-semibold text-black hover:bg-primary-dark transition-colors"
+           >
+             View All Trucks
+             <ArrowRight size={16} />
+diff --git a/app/components/Footer.tsx b/app/components/Footer.tsx
+index 7eac683..b160cab 100644
+--- a/app/components/Footer.tsx
++++ b/app/components/Footer.tsx
+@@ -1,123 +1,117 @@
+-import Link from "next/link";
+-import {
+-  Phone,
+-  MapPin,
+-  Mail,
+-  Facebook,
+-  Instagram,
+-} from "lucide-react";
+-
+-const quickLinks = [
+-  { label: "Home", href: "/" },
+-  { label: "About Us", href: "/about" },
+-  { label: "Trucks", href: "/trucks" },
+-  { label: "Contact", href: "/contact" },
+-];
+-
+-export default function Footer() {
+-  return (
+-    <footer className="bg-foreground text-white">
+-      <div className="mx-auto max-w-7xl px-6 py-14">
+-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+-          {/* Column 1 — Logo & tagline */}
+-          <div>
+-            <Link href="/" className="inline-block">
+-              <span className="text-2xl font-extrabold tracking-tight">
+-                RUSH<span className="text-blue-400">TRUCK</span>
+-              </span>
+-              <span className="ml-2 text-xs leading-tight text-slate-400">
+-                CENTER
+-              </span>
+-            </Link>
+-            <p className="mt-4 text-sm leading-relaxed text-slate-400">
+-              Your trusted partner for quality used trucks. Freightliner, Volvo,
+-              and more — all in one place.
+-            </p>
+-          </div>
+-
+-          {/* Column 2 — Quick links */}
+-          <div>
+-            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-300">
+-              Quick Links
+-            </h4>
+-            <ul className="space-y-2">
+-              {quickLinks.map((link) => (
+-                <li key={link.href}>
+-                  <Link
+-                    href={link.href}
+-                    className="text-sm text-slate-400 hover:text-white transition-colors"
+-                  >
+-                    {link.label}
+-                  </Link>
+-                </li>
+-              ))}
+-            </ul>
+-          </div>
+-
+-          {/* Column 3 — Contact info */}
+-          <div>
+-            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-300">
+-              Contacts
+-            </h4>
+-            <ul className="space-y-3 text-sm text-slate-400">
+-              <li className="flex items-start gap-2">
+-                <Phone size={16} className="mt-0.5 shrink-0" />
+-                <span>
+-                  <a href="tel:+19152533976" className="hover:text-white transition-colors">
+-                    +1 (915) 253-3976
+-                  </a>
+-                </span> 
+-              </li>
+-              <li className="flex items-start gap-2">
+-                <Mail size={16} className="mt-0.5 shrink-0" />
+-                <a href="mailto:contact@rushtruckcenterllc.com" className="hover:text-white transition-colors">
+-                  contact@rushtruckcenterllc.com
+-                </a>
+-              </li>
+-              <li className="flex items-start gap-2">
+-                <MapPin size={16} className="mt-0.5 shrink-0" />
+-                12253 Gateway Blvd W, El Paso, TX 79936
+-              </li>
+-            </ul>
+-          </div>
+-
+-          {/* Column 4 — Socials */}
+-          <div>
+-            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-300">
+-              Follow Us
+-            </h4>
+-            <div className="flex items-center gap-4">
+-              <a
+-                href="https://facebook.com"
+-                target="_blank"
+-                rel="noopener noreferrer"
+-                className="rounded-lg bg-slate-800 p-2.5 text-slate-400 hover:bg-primary hover:text-white transition-colors"
+-                aria-label="Facebook"
+-              >
+-                <Facebook size={18} />
+-              </a>
+-              <a
+-                href="https://instagram.com"
+-                target="_blank"
+-                rel="noopener noreferrer"
+-                className="rounded-lg bg-slate-800 p-2.5 text-slate-400 hover:bg-primary hover:text-white transition-colors"
+-                aria-label="Instagram"
+-              >
+-                <Instagram size={18} />
+-              </a>
+-            </div>
+-          </div>
+-        </div>
+-      </div>
+-
+-      {/* Bottom bar */}
+-      <div className="border-t border-slate-700">
+-        <div className="mx-auto max-w-7xl px-6 py-4">
+-          <p className="text-center text-xs text-slate-500">
+-            &copy; {new Date().getFullYear()} Rush Truck Center. All rights reserved.
+-          </p>
+-        </div>
+-      </div>
+-    </footer>
+-  );
+-}
++import Link from "next/link";
++import {
++  Phone,
++  MapPin,
++  Mail,
++  Facebook,
++  Instagram,
++} from "lucide-react";
++
++const quickLinks = [
++  { label: "Home", href: "/" },
++  { label: "About Us", href: "/about" },
++  { label: "Trucks", href: "/trucks" },
++  { label: "Contact", href: "/contact" },
++];
++
++export default function Footer() {
++  return (
++    <footer className="bg-accent border-t border-border text-foreground">
++      <div className="mx-auto max-w-7xl px-6 py-14">
++        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
++          {/* Column 1 — Logo & tagline */}
++          <div>
++            <Link href="/" className="inline-block">
++              <span className="text-xl font-bold tracking-tight text-foreground">
++                HEGA<span className="text-muted font-normal"> TRUCK SALES</span>
++              </span>
++            </Link>
++            <p className="mt-4 text-sm leading-relaxed text-muted">
++              Quality pre-owned trucks at honest prices. Serving El Paso and the Southwest since day one.
++            </p>
++          </div>
++
++          {/* Column 2 — Quick links */}
++          <div>
++            <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-muted">
++              Quick Links
++            </h4>
++            <ul className="space-y-2">
++              {quickLinks.map((link) => (
++                <li key={link.href}>
++                  <Link
++                    href={link.href}
++                    className="text-sm text-muted hover:text-foreground transition-colors"
++                  >
++                    {link.label}
++                  </Link>
++                </li>
++              ))}
++            </ul>
++          </div>
++
++          {/* Column 3 — Contact info */}
++          <div>
++            <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-muted">
++              Contact
++            </h4>
++            <ul className="space-y-3 text-sm text-muted">
++              <li className="flex items-start gap-2">
++                <Phone size={16} className="mt-0.5 shrink-0" />
++                <a href="tel:+19152533976" className="hover:text-foreground transition-colors">
++                  (915) 253-3976
++                </a>
++              </li>
++              <li className="flex items-start gap-2">
++                <Mail size={16} className="mt-0.5 shrink-0" />
++                <a href="mailto:contact@hegatrucksales.com" className="hover:text-foreground transition-colors">
++                  contact@hegatrucksales.com
++                </a>
++              </li>
++              <li className="flex items-start gap-2">
++                <MapPin size={16} className="mt-0.5 shrink-0" />
++                5200 Suwannee St, El Paso, TX 79938
++              </li>
++            </ul>
++          </div>
++
++          {/* Column 4 — Socials */}
++          <div>
++            <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-muted">
++              Follow Us
++            </h4>
++            <div className="flex items-center gap-4">
++              <a
++                href="https://facebook.com"
++                target="_blank"
++                rel="noopener noreferrer"
++                className="rounded-lg border border-border p-2.5 text-muted hover:text-foreground hover:border-foreground/30 transition-colors"
++                aria-label="Facebook"
++              >
++                <Facebook size={18} />
++              </a>
++              <a
++                href="https://instagram.com"
++                target="_blank"
++                rel="noopener noreferrer"
++                className="rounded-lg border border-border p-2.5 text-muted hover:text-foreground hover:border-foreground/30 transition-colors"
++                aria-label="Instagram"
++              >
++                <Instagram size={18} />
++              </a>
++            </div>
++          </div>
++        </div>
++      </div>
++
++      {/* Bottom bar */}
++      <div className="border-t border-border">
++        <div className="mx-auto max-w-7xl px-6 py-4">
++          <p className="text-center text-xs text-muted">
++            &copy; {new Date().getFullYear()} Hega Truck Sales. All rights reserved.
++          </p>
++        </div>
++      </div>
++    </footer>
++  );
++}
+diff --git a/app/components/Header.tsx b/app/components/Header.tsx
+index d4af28c..baa116b 100644
+--- a/app/components/Header.tsx
++++ b/app/components/Header.tsx
+@@ -1,153 +1,147 @@
+-"use client";
+-
+-import Link from "next/link";
+-import { usePathname } from "next/navigation";
+-import { useState } from "react";
+-import {
+-  MapPin,
+-  Clock,
+-  Phone,
+-  Menu,
+-  X,
+-} from "lucide-react";
+-
+-const navLinks = [
+-  { label: "Home", href: "/" },
+-  { label: "About", href: "/about" },
+-  { label: "Trucks", href: "/trucks" },
+-  { label: "Contact", href: "/contact" },
+-];
+-
+-export default function Header() {
+-  const [mobileOpen, setMobileOpen] = useState(false);
+-  const pathname = usePathname();
+-
+-  /** Check whether a nav link matches the current route */
+-  const isActive = (href: string) => {
+-    if (href === "/") return pathname === "/";
+-    return pathname.startsWith(href);
+-  };
+-
+-  return (
+-    <>
+-      {/* ── Top info bar (scrolls away normally) ── */}
+-      <div className="hidden md:block bg-foreground text-white text-sm">
+-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2">
+-          <div className="flex items-center gap-6">
+-            <span className="flex items-center gap-1.5">
+-              <MapPin size={14} />
+-              12253 Gateway Blvd W, El Paso, TX 79936
+-            </span>
+-            <span className="flex items-center gap-1.5">
+-              <Clock size={14} />
+-              Mon–Sat 8:00–18:00
+-            </span>
+-          </div>
+-          <div className="flex items-center gap-4">
+-           
+-            <a href="tel:+19152533976" className="flex items-center gap-1.5 hover:text-blue-300 transition-colors">
+-              <Phone size={14} />
+-              +1 (915) 253-3976
+-            </a>
+-          </div>
+-        </div>
+-      </div>
+-
+-      {/* ── Main navigation bar (sticks to the top on scroll) ── */}
+-      <nav className="sticky top-0 z-50 bg-white border-b border-border shadow-sm">
+-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+-          {/* Logo */}
+-          <Link href="/" className="flex items-center gap-2">
+-            <span className="text-2xl font-extrabold tracking-tight text-foreground">
+-              RUSH<span className="text-primary">TRUCK</span>
+-            </span>
+-            <span className="hidden sm:block text-xs text-muted leading-tight">
+-              CENTER
+-            </span>
+-          </Link>
+-
+-          {/* Desktop nav links */}
+-          <ul className="hidden md:flex items-center gap-8">
+-            {navLinks.map((link) => (
+-              <li key={link.href}>
+-                <Link
+-                  href={link.href}
+-                  className={`text-sm font-medium transition-colors ${
+-                    isActive(link.href)
+-                      ? "text-primary border-b-2 border-primary pb-1"
+-                      : "text-foreground hover:text-primary"
+-                  }`}
+-                >
+-                  {link.label}
+-                </Link>
+-              </li>
+-            ))}
+-          </ul>
+-
+-          {/* CTA + mobile toggle */}
+-          <div className="flex items-center gap-3">
+-            <Link
+-              href="/contact"
+-              className="hidden md:inline-flex items-center rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white hover:bg-primary-dark transition-colors"
+-            >
+-              Request a Call
+-            </Link>
+-
+-            <button
+-              onClick={() => setMobileOpen(!mobileOpen)}
+-              className="md:hidden p-2 text-foreground"
+-              aria-label="Toggle menu"
+-            >
+-              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+-            </button>
+-          </div>
+-        </div>
+-
+-        {/* Mobile menu */}
+-        {mobileOpen && (
+-          <div className="md:hidden border-t border-border bg-white px-6 pb-4">
+-            <ul className="flex flex-col gap-3 pt-3">
+-              {navLinks.map((link) => (
+-                <li key={link.href}>
+-                  <Link
+-                    href={link.href}
+-                    onClick={() => setMobileOpen(false)}
+-                    className={`block text-sm font-medium transition-colors py-1 ${
+-                      isActive(link.href)
+-                        ? "text-primary font-bold"
+-                        : "text-foreground hover:text-primary"
+-                    }`}
+-                  >
+-                    {link.label}
+-                  </Link>
+-                </li>
+-              ))}
+-              <li>
+-                <Link
+-                  href="/contact"
+-                  onClick={() => setMobileOpen(false)}
+-                  className="mt-2 block w-full rounded-lg bg-primary px-5 py-2.5 text-center text-sm font-semibold text-white hover:bg-primary-dark transition-colors"
+-                >
+-                  Request a Call
+-                </Link>
+-              </li>
+-            </ul>
+-
+-            {/* Mobile contact info */}
+-            <div className="mt-4 flex flex-col gap-2 text-sm text-muted border-t border-border pt-4">
+-              <span className="flex items-center gap-1.5">
+-                <MapPin size={14} />
+-                12253 Gateway Blvd W, El Paso, TX 79936
+-              </span>
+-              <span className="flex items-center gap-1.5">
+-                <Clock size={14} />
+-                Mon–Sat 8:00–18:00
+-              </span>
+-             
+-            </div>
+-          </div>
+-        )}
+-      </nav>
+-    </>
+-  );
+-}
++"use client";
++
++import Link from "next/link";
++import { usePathname } from "next/navigation";
++import { useState } from "react";
++import {
++  MapPin,
++  Clock,
++  Phone,
++  Menu,
++  X,
++} from "lucide-react";
++
++const navLinks = [
++  { label: "Home", href: "/" },
++  { label: "About", href: "/about" },
++  { label: "Trucks", href: "/trucks" },
++  { label: "Contact", href: "/contact" },
++];
++
++export default function Header() {
++  const [mobileOpen, setMobileOpen] = useState(false);
++  const pathname = usePathname();
++
++  const isActive = (href: string) => {
++    if (href === "/") return pathname === "/";
++    return pathname.startsWith(href);
++  };
++
++  return (
++    <>
++      {/* ── Top info bar ── */}
++      <div className="hidden md:block bg-accent border-b border-border text-foreground text-sm">
++        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2">
++          <div className="flex items-center gap-6">
++            <span className="flex items-center gap-1.5 text-muted">
++              <MapPin size={14} />
++              5200 Suwannee St, El Paso, TX 79938
++            </span>
++            <span className="flex items-center gap-1.5 text-muted">
++              <Clock size={14} />
++              Mon–Sat 8:00–18:00
++            </span>
++          </div>
++          <div className="flex items-center gap-4">
++            <a href="tel:+19152533976" className="flex items-center gap-1.5 text-muted hover:text-foreground transition-colors">
++              <Phone size={14} />
++              (915) 253-3976
++            </a>
++          </div>
++        </div>
++      </div>
++
++      {/* ── Main navigation bar ── */}
++      <nav className="sticky top-0 z-50 bg-background border-b border-border">
++        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
++          {/* Logo */}
++          <Link href="/" className="flex items-center gap-2">
++            <span className="text-xl font-bold tracking-tight text-foreground">
++              HEGA<span className="text-muted font-normal"> TRUCK SALES</span>
++            </span>
++          </Link>
++
++          {/* Desktop nav links */}
++          <ul className="hidden md:flex items-center gap-8">
++            {navLinks.map((link) => (
++              <li key={link.href}>
++                <Link
++                  href={link.href}
++                  className={`text-sm font-medium transition-colors ${
++                    isActive(link.href)
++                      ? "text-foreground border-b border-foreground pb-1"
++                      : "text-muted hover:text-foreground"
++                  }`}
++                >
++                  {link.label}
++                </Link>
++              </li>
++            ))}
++          </ul>
++
++          {/* CTA + mobile toggle */}
++          <div className="flex items-center gap-3">
++            <Link
++              href="/contact"
++              className="hidden md:inline-flex items-center rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-black hover:bg-primary-dark transition-colors"
++            >
++              Request a Call
++            </Link>
++
++            <button
++              onClick={() => setMobileOpen(!mobileOpen)}
++              className="md:hidden p-2 text-foreground"
++              aria-label="Toggle menu"
++            >
++              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
++            </button>
++          </div>
++        </div>
++
++        {/* Mobile menu */}
++        {mobileOpen && (
++          <div className="md:hidden border-t border-border bg-accent px-6 pb-4">
++            <ul className="flex flex-col gap-3 pt-3">
++              {navLinks.map((link) => (
++                <li key={link.href}>
++                  <Link
++                    href={link.href}
++                    onClick={() => setMobileOpen(false)}
++                    className={`block text-sm font-medium transition-colors py-1 ${
++                      isActive(link.href)
++                        ? "text-foreground font-bold"
++                        : "text-muted hover:text-foreground"
++                    }`}
++                  >
++                    {link.label}
++                  </Link>
++                </li>
++              ))}
++              <li>
++                <Link
++                  href="/contact"
++                  onClick={() => setMobileOpen(false)}
++                  className="mt-2 block w-full rounded-lg bg-primary px-5 py-2.5 text-center text-sm font-semibold text-black hover:bg-primary-dark transition-colors"
++                >
++                  Request a Call
++                </Link>
++              </li>
++            </ul>
++
++            {/* Mobile contact info */}
++            <div className="mt-4 flex flex-col gap-2 text-sm text-muted border-t border-border pt-4">
++              <span className="flex items-center gap-1.5">
++                <MapPin size={14} />
++                5200 Suwannee St, El Paso, TX 79938
++              </span>
++              <span className="flex items-center gap-1.5">
++                <Clock size={14} />
++                Mon–Sat 8:00–18:00
++              </span>
++            </div>
++          </div>
++        )}
++      </nav>
++    </>
++  );
++}
+diff --git a/app/components/Hero.tsx b/app/components/Hero.tsx
+index 6189d2f..5215868 100644
+--- a/app/components/Hero.tsx
++++ b/app/components/Hero.tsx
+@@ -1,49 +1,48 @@
+-import Link from "next/link";
+-
+-export default function Hero() {
+-  return (
+-    <section
+-      className="relative min-h-[80vh] flex items-center justify-center bg-cover bg-center bg-no-repeat"
+-      style={{ backgroundImage: "url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1920&q=80')" }}
+-    >
+-      {/* Dark overlay for text readability */}
+-      <div className="absolute inset-0 bg-black/60" />
+-
+-      {/* Content — centered over the background */}
+-      <div className="relative z-10 mx-auto max-w-4xl px-6 py-20 text-center">
+-        <h1
+-          data-aos="fade-down"
+-          data-aos-once="true"
+-          className="text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
+-        >
+-          Rush Trucks
+-          <br />
+-          <span className="text-primary">Sales &amp; Service</span>
+-        </h1>
+-
+-        <div data-aos="fade-up" data-aos-once="true" data-aos-delay="200">
+-          <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-slate-300">
+-            Quality used trucks from Europe&apos;s top manufacturers. Reliable
+-            vehicles, transparent pricing, and full service support — all in one
+-            place.
+-          </p>
+-
+-          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+-            <Link
+-              href="/trucks"
+-              className="inline-flex items-center justify-center rounded-lg bg-primary px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 hover:bg-primary-dark transition-colors"
+-            >
+-              Browse Trucks
+-            </Link>
+-            <Link
+-              href="/contact"
+-              className="inline-flex items-center justify-center rounded-lg border border-white/40 px-7 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
+-            >
+-              Contact Us
+-            </Link>
+-          </div>
+-        </div>
+-      </div>
+-    </section>
+-  );
+-}
++import Link from "next/link";
++
++export default function Hero() {
++  return (
++    <section
++      className="relative min-h-[80vh] flex items-center justify-center bg-cover bg-center bg-no-repeat"
++      style={{ backgroundImage: "url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1920&q=80')" }}
++    >
++      {/* Dark overlay */}
++      <div className="absolute inset-0 bg-black/70" />
++
++      {/* Content */}
++      <div className="relative z-10 mx-auto max-w-4xl px-6 py-20 text-center">
++        <h1
++          data-aos="fade-down"
++          data-aos-once="true"
++          className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
++        >
++          Quality Trucks.
++          <br />
++          <span className="text-white/70">Honest Deals.</span>
++        </h1>
++
++        <div data-aos="fade-up" data-aos-once="true" data-aos-delay="200">
++          <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/60">
++            Hega Truck Sales — inspected pre-owned trucks at transparent prices.
++            Serving El Paso and the Southwest.
++          </p>
++
++          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
++            <Link
++              href="/trucks"
++              className="inline-flex items-center justify-center rounded-lg bg-white px-7 py-3.5 text-sm font-semibold text-black hover:bg-white/90 transition-colors"
++            >
++              Browse Trucks
++            </Link>
++            <Link
++              href="/contact"
++              className="inline-flex items-center justify-center rounded-lg border border-white/30 px-7 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
++            >
++              Contact Us
++            </Link>
++          </div>
++        </div>
++      </div>
++    </section>
++  );
++}
+diff --git a/app/components/LocationMap.tsx b/app/components/LocationMap.tsx
+index fb5774f..6ca293c 100644
+--- a/app/components/LocationMap.tsx
++++ b/app/components/LocationMap.tsx
+@@ -9,7 +9,7 @@ export default function LocationMap() {
+             </h2>
+             <p className="mt-4 text-muted leading-relaxed max-w-2xl">
+               Visit our showroom and service center in El Paso, TX. We&apos;re conveniently
+-              located off Gateway Blvd with easy highway access for truck
++              located off Suwannee St with easy highway access for truck
+               deliveries.
+             </p>
+             <p className="mt-3 text-muted leading-relaxed max-w-2xl">
+@@ -26,8 +26,8 @@ export default function LocationMap() {
+           data-aos-once="true"
+         >
+           <iframe
+-            title="Rush Truck Center Location"
+-            src="https://maps.google.com/maps?q=12253+Gateway+Blvd+W,+El+Paso,+TX+79936&output=embed"
++            title="Hega Truck Sales Location"
++            src="https://maps.google.com/maps?q=5200+Suwannee+St,+El+Paso,+TX+79938&output=embed"
+             width="100%"
+             height="400"
+             style={{ border: 0 }}
+diff --git a/app/components/Services.tsx b/app/components/Services.tsx
+index 231ca6a..9bdfe6a 100644
+--- a/app/components/Services.tsx
++++ b/app/components/Services.tsx
+@@ -6,28 +6,28 @@ const services = [
+     description:
+       "High-quality spare parts sourced directly from top suppliers. Affordable, reliable, and ready to ship.",
+     icon: Package,
+-    color: "bg-blue-100 text-blue-600",
++    color: "bg-foreground/10 text-foreground",
+   },
+   {
+     title: "Truck & Vehicle Wash",
+     description:
+       "Professional cleaning for heavy-duty trucks and light commercial vehicles. Interior and exterior packages available.",
+     icon: Sparkles,
+-    color: "bg-cyan-100 text-cyan-600",
++    color: "bg-foreground/10 text-foreground",
+   },
+   {
+     title: "Rims & Tires",
+     description:
+       "Durable truck rims and high-performance tires for long-haul, regional, and off-road operations.",
+     icon: CircleDot,
+-    color: "bg-orange-100 text-orange-600",
++    color: "bg-foreground/10 text-foreground",
+   },
+   {
+     title: "Oil Change & Fluid Service",
+     description:
+       "Quick and thorough oil changes and fluid top-ups for trucks and commercial vehicles of all sizes.",
+     icon: Droplets,
+-    color: "bg-green-100 text-green-600",
++    color: "bg-foreground/10 text-foreground",
+   },
+ ];
+ 
+@@ -56,7 +56,7 @@ export default function Services() {
+                 data-aos="fade-up"
+                 data-aos-once="true"
+                 data-aos-delay={idx * 100}
+-                className="group flex flex-col gap-5 rounded-xl bg-white border border-border shadow-sm hover:shadow-md transition-shadow p-8"
++                className="group flex flex-col gap-5 rounded-xl bg-accent border border-border hover:border-foreground/20 transition-colors p-8"
+               >
+                 {/* Icon badge */}
+                 <div
+diff --git a/app/components/TruckCard.tsx b/app/components/TruckCard.tsx
+index 3077f98..62fa9ad 100644
+--- a/app/components/TruckCard.tsx
++++ b/app/components/TruckCard.tsx
+@@ -15,7 +15,7 @@ export default function TruckCard({ truck }: TruckCardProps) {
+   return (
+     <Link
+       href={`/trucks/${truck.id}`}
+-      className="group flex flex-col overflow-hidden rounded-xl border border-border bg-white shadow-sm hover:shadow-lg transition-shadow"
++      className="group flex flex-col overflow-hidden rounded-xl border border-border bg-accent hover:border-foreground/20 transition-colors"
+     >
+       {/* Image */}
+       <div className="relative h-48 w-full overflow-hidden bg-accent">
+@@ -31,7 +31,7 @@ export default function TruckCard({ truck }: TruckCardProps) {
+         </span>
+         {/* Condition badge (shown only when available) */}
+         {truck.condition && (
+-          <span className="absolute top-3 right-3 rounded-md bg-primary px-2.5 py-1 text-xs font-medium text-white">
++          <span className="absolute top-3 right-3 rounded-md bg-foreground px-2.5 py-1 text-xs font-medium text-background">
+             {truck.condition}
+           </span>
+         )}
+@@ -40,10 +40,10 @@ export default function TruckCard({ truck }: TruckCardProps) {
+       {/* Details */}
+       <div className="flex flex-1 flex-col p-5">
+         {/* Brand + name */}
+-        <p className="text-xs font-semibold uppercase tracking-wider text-primary">
++        <p className="text-xs font-semibold uppercase tracking-widest text-muted">
+           {truck.brand}
+         </p>
+-        <h3 className="mt-1 text-lg font-bold text-foreground group-hover:text-primary transition-colors">
++        <h3 className="mt-1 text-lg font-bold text-foreground group-hover:text-primary-dark transition-colors">
+           {truck.name}
+         </h3>
+ 
+diff --git a/app/contact/page.tsx b/app/contact/page.tsx
+index d329b35..0a0dead 100644
+--- a/app/contact/page.tsx
++++ b/app/contact/page.tsx
+@@ -1,120 +1,121 @@
+-import type { Metadata } from "next";
+-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+-import Header from "../components/Header";
+-import Footer from "../components/Footer";
+-import ContactForm from "../components/ContactForm";
+-import LocationMap from "../components/LocationMap";
+-
+-export const metadata: Metadata = {
+-  title: "Contact Us — Rush Truck Center",
+-  description:
+-    "Get in touch with Rush Truck Center. Call us or send us a message. We're here to help with all your truck needs.",
+-};
+-
+-const contactDetails = [
+-  {
+-    icon: <Phone size={20} />,
+-    label: "Phone",
+-    lines: [ "+1 (915) 253-3976"],
+-    hrefs: [ "tel:+19152533976"],
+-  },
+-  {
+-    icon: <Mail size={20} />,
+-    label: "Email",
+-    lines: ["contact@rushtruckcenterllc.com"],
+-    hrefs: ["mailto:contact@rushtruckcenterllc.com"],
+-  },
+-  {
+-    icon: <MapPin size={20} />,
+-    label: "Address",
+-    lines: ["12253 Gateway Blvd W", "El Paso, TX 79936"],
+-    hrefs: [],
+-  },
+-  {
+-    icon: <Clock size={20} />,
+-    label: "Working Hours",
+-    lines: ["Mon – Fri: 8:00 – 18:00", "Saturday: 9:00 – 15:00", "Sunday: Closed"],
+-    hrefs: [],
+-  },
+-];
+-
+-export default function ContactPage() {
+-  return (
+-    <>
+-      <Header />
+-      <main className="min-h-screen">
+-        {/* ── Hero banner ── */}
+-        <section className="bg-foreground py-20 text-center text-white">
+-          <h1 className="text-4xl font-extrabold sm:text-5xl">Contact Us</h1>
+-          <p className="mx-auto mt-4 max-w-xl text-slate-400">
+-            Have a question or ready to buy? Reach out — we&apos;d love to hear
+-            from you.
+-          </p>
+-        </section>
+-
+-        {/* ── Two-column: Form + Info ── */}
+-        <section className="bg-white section-padding">
+-          <div className="mx-auto max-w-7xl px-6">
+-            <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+-              {/* Left — Form */}
+-              <div data-aos="fade-right" data-aos-once="true">
+-                <h2 className="text-2xl font-bold text-foreground">
+-                  Send Us a Message
+-                </h2>
+-                <p className="mt-2 mb-8 text-muted">
+-                  Fill out the form below — include your location so we can route
+-                  your request — and we&apos;ll get back to you within 24 hours.
+-                </p>
+-                <ContactForm expanded />
+-              </div>
+-
+-              {/* Right — Contact details */}
+-              <div data-aos="fade-left" data-aos-once="true">
+-                <h2 className="text-2xl font-bold text-foreground">
+-                  Contact Information
+-                </h2>
+-                <p className="mt-2 mb-8 text-muted">
+-                  You can also reach us directly using the details below.
+-                </p>
+-
+-                <div className="space-y-6">
+-                  {contactDetails.map((item) => (
+-                    <div key={item.label} className="flex items-start gap-4">
+-                      <span className="inline-flex items-center justify-center rounded-lg bg-primary/10 p-3 text-primary shrink-0">
+-                        {item.icon}
+-                      </span>
+-                      <div>
+-                        <p className="text-sm font-semibold text-foreground">
+-                          {item.label}
+-                        </p>
+-                        {item.lines.map((line, idx) =>
+-                          item.hrefs[idx] ? (
+-                            <a
+-                              key={line}
+-                              href={item.hrefs[idx]}
+-                              className="block text-sm text-muted hover:text-primary transition-colors"
+-                            >
+-                              {line}
+-                            </a>
+-                          ) : (
+-                            <p key={line} className="text-sm text-muted">
+-                              {line}
+-                            </p>
+-                          )
+-                        )}
+-                      </div>
+-                    </div>
+-                  ))}
+-                </div>
+-              </div>
+-            </div>
+-          </div>
+-        </section>
+-
+-        {/* ── Full-width map ── */}
+-        <LocationMap />
+-      </main>
+-      <Footer />
+-    </>
+-  );
+-}
++import type { Metadata } from "next";
++import { Phone, Mail, MapPin, Clock } from "lucide-react";
++import Header from "../components/Header";
++import Footer from "../components/Footer";
++import ContactForm from "../components/ContactForm";
++import LocationMap from "../components/LocationMap";
++
++export const metadata: Metadata = {
++  title: "Contact Us — Hega Truck Sales",
++  description:
++    "Get in touch with Hega Truck Sales. Call us or send us a message — we're here to help with all your truck needs.",
++};
++
++const contactDetails = [
++  {
++    icon: <Phone size={20} />,
++    label: "Phone",
++    lines: ["(915) 253-3976"],
++    hrefs: ["tel:+19152533976"],
++  },
++  {
++    icon: <Mail size={20} />,
++    label: "Email",
++    lines: ["contact@hegatrucksales.com"],
++    hrefs: ["mailto:contact@hegatrucksales.com"],
++  },
++  {
++    icon: <MapPin size={20} />,
++    label: "Address",
++    lines: ["5200 Suwannee St", "El Paso, TX 79938"],
++    hrefs: [],
++  },
++  {
++    icon: <Clock size={20} />,
++    label: "Working Hours",
++    lines: ["Mon – Fri: 8:00 – 18:00", "Saturday: 9:00 – 15:00", "Sunday: Closed"],
++    hrefs: [],
++  },
++];
++
++export default function ContactPage() {
++  return (
++    <>
++      <Header />
++      <main className="min-h-screen">
++        {/* ── Hero banner ── */}
++        <section className="bg-accent border-b border-border py-20 text-center">
++          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
++            Contact Us
++          </h1>
++          <p className="mx-auto mt-4 max-w-xl text-muted">
++            Have a question or ready to buy? Reach out — we&apos;d love to hear
++            from you.
++          </p>
++        </section>
++
++        {/* ── Two-column: Form + Info ── */}
++        <section className="bg-background section-padding">
++          <div className="mx-auto max-w-7xl px-6">
++            <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
++              {/* Left — Form */}
++              <div data-aos="fade-right" data-aos-once="true">
++                <h2 className="text-2xl font-bold text-foreground">
++                  Send Us a Message
++                </h2>
++                <p className="mt-2 mb-8 text-muted">
++                  Fill out the form below and we&apos;ll get back to you within 24 hours.
++                </p>
++                <ContactForm expanded />
++              </div>
++
++              {/* Right — Contact details */}
++              <div data-aos="fade-left" data-aos-once="true">
++                <h2 className="text-2xl font-bold text-foreground">
++                  Contact Information
++                </h2>
++                <p className="mt-2 mb-8 text-muted">
++                  You can also reach us directly using the details below.
++                </p>
++
++                <div className="space-y-6">
++                  {contactDetails.map((item) => (
++                    <div key={item.label} className="flex items-start gap-4">
++                      <span className="inline-flex items-center justify-center rounded-lg bg-accent border border-border p-3 text-muted shrink-0">
++                        {item.icon}
++                      </span>
++                      <div>
++                        <p className="text-sm font-semibold text-foreground">
++                          {item.label}
++                        </p>
++                        {item.lines.map((line, idx) =>
++                          item.hrefs[idx] ? (
++                            <a
++                              key={line}
++                              href={item.hrefs[idx]}
++                              className="block text-sm text-muted hover:text-foreground transition-colors"
++                            >
++                              {line}
++                            </a>
++                          ) : (
++                            <p key={line} className="text-sm text-muted">
++                              {line}
++                            </p>
++                          )
++                        )}
++                      </div>
++                    </div>
++                  ))}
++                </div>
++              </div>
++            </div>
++          </div>
++        </section>
++
++        {/* ── Full-width map ── */}
++        <LocationMap />
++      </main>
++      <Footer />
++    </>
++  );
++}
+diff --git a/app/globals.css b/app/globals.css
+index 899fad2..30ea940 100644
+--- a/app/globals.css
++++ b/app/globals.css
+@@ -1,13 +1,13 @@
+ @import "tailwindcss";
+ 
+ :root {
+-  --background: #ffffff;
+-  --foreground: #1a1a2e;
+-  --primary: #2563eb;
+-  --primary-dark: #1d4ed8;
+-  --accent: #f1f5f9;
+-  --muted: #64748b;
+-  --border: #e2e8f0;
++  --background: #0f0f0f;
++  --foreground: #f5f5f5;
++  --primary: #ffffff;
++  --primary-dark: #d4d4d4;
++  --accent: #1a1a1a;
++  --muted: #9a9a9a;
++  --border: #2a2a2a;
+ }
+ 
+ @theme inline {
+@@ -18,8 +18,8 @@
+   --color-accent: var(--accent);
+   --color-muted: var(--muted);
+   --color-border: var(--border);
+-  --font-sans: var(--font-slabo);
+-  --font-mono: var(--font-slabo);
++  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
++  --font-mono: "Inter", system-ui, -apple-system, sans-serif;
+ }
+ 
+ /* Reset & base */
+@@ -30,13 +30,13 @@
+ body {
+   background: var(--background);
+   color: var(--foreground);
+-  font-family: var(--font-slabo), Georgia, serif;
++  font-family: "Inter", system-ui, -apple-system, sans-serif;
+ }
+ 
+-/* Ultra for all headings */
+ h1, h2, h3, h4, h5, h6 {
+-  font-family: var(--font-ultra), Georgia, serif;
+-  letter-spacing: 0.01em;
++  font-family: "Inter", system-ui, -apple-system, sans-serif;
++  letter-spacing: -0.02em;
++  font-weight: 700;
+ }
+ 
+ /* Smooth scrolling for anchor links */
+@@ -57,10 +57,10 @@ html {
+ 
+ /* Placeholder image backgrounds */
+ .placeholder-img {
+-  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
++  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+-  color: #94a3b8;
++  color: #9a9a9a;
+   font-size: 0.875rem;
+ }
+diff --git a/app/layout.tsx b/app/layout.tsx
+index 016dfcf..a8a8445 100644
+--- a/app/layout.tsx
++++ b/app/layout.tsx
+@@ -1,36 +1,20 @@
+ import type { Metadata } from "next";
+-import { Ultra, Slabo_13px } from "next/font/google";
+ import "./globals.css";
+ import AosInit from "./components/AosInit";
+ 
+-const ultra = Ultra({
+-  weight: "400",
+-  subsets: ["latin"],
+-  variable: "--font-ultra",
+-  display: "swap",
+-});
+-
+-const slabo = Slabo_13px({
+-  weight: "400",
+-  subsets: ["latin"],
+-  variable: "--font-slabo",
+-  display: "swap",
+-});
+-
+ export const metadata: Metadata = {
+-  title: "Rush Truck Center — Affordable Truck Sales & Service",
++  title: "Hega Truck Sales — Quality Used Trucks in El Paso",
+   description:
+-    "Rush Truck Center — your trusted source for quality used trucks. Browse Freightliner, Volvo, and more. Parts, service, and accessories.",
++    "Hega Truck Sales — your trusted source for quality used trucks in El Paso, TX. Browse Freightliner, Volvo, Kenworth and more. Transparent pricing, inspected inventory.",
+   keywords: [
+     "truck sales",
+     "used trucks",
+     "Freightliner",
+     "Volvo",
+-    "Cascadia",
++    "Kenworth",
+     "semi truck",
+-    "truck service",
+-    "truck parts",
+-    "Rush Truck Center",
++    "El Paso trucks",
++    "Hega Truck Sales",
+   ],
+ };
+ 
+@@ -41,9 +25,7 @@ export default function RootLayout({
+ }>) {
+   return (
+     <html lang="en">
+-      <body
+-        className={`${ultra.variable} ${slabo.variable} antialiased`}
+-      >
++      <body className="antialiased">
+         <AosInit />
+         {children}
+       </body>
+diff --git a/app/trucks/[id]/page.tsx b/app/trucks/[id]/page.tsx
+index 43469ed..670ee16 100644
+--- a/app/trucks/[id]/page.tsx
++++ b/app/trucks/[id]/page.tsx
+@@ -38,7 +38,7 @@ export async function generateMetadata({
+   const truck = getTruckById(id);
+   if (!truck) return { title: "Truck Not Found" };
+   return {
+-    title: `${truck.name} — Rush Truck Center`,
++    title: `${truck.name} — Hega Truck Sales`,
+     description: truck.description,
+   };
+ }
+-- 
+2.43.0
+

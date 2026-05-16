@@ -38,7 +38,7 @@ export async function generateMetadata({
   const truck = getTruckById(id);
   if (!truck) return { title: "Truck Not Found" };
   return {
-    title: `${truck.name} — Rush Truck Center`,
+    title: `${truck.name} — Hega Truck Sales`,
     description: truck.description,
   };
 }

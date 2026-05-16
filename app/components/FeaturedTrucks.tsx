@@ -8,7 +8,7 @@ export default function FeaturedTrucks() {
   const featured = trucks.slice(0, 6);
 
   return (
-    <section id="featured" className="bg-white section-padding">
+    <section id="featured" className="bg-background section-padding">
       <div className="mx-auto max-w-7xl px-6">
         {/* Section heading */}
         <div className="text-center mb-12" data-aos="fade-up" data-aos-once="true">
@@ -39,7 +39,7 @@ export default function FeaturedTrucks() {
         <div className="mt-10 text-center" data-aos="fade-up" data-aos-once="true">
           <Link
             href="/trucks"
-            className="inline-flex items-center gap-2 rounded-lg bg-primary px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 hover:bg-primary-dark transition-colors"
+            className="inline-flex items-center gap-2 rounded-lg bg-primary px-7 py-3.5 text-sm font-semibold text-black hover:bg-primary-dark transition-colors"
           >
             View All Trucks
             <ArrowRight size={16} />

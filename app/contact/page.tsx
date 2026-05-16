@@ -6,28 +6,28 @@ import ContactForm from "../components/ContactForm";
 import LocationMap from "../components/LocationMap";
 
 export const metadata: Metadata = {
-  title: "Contact Us — Rush Truck Center",
+  title: "Contact Us — Hega Truck Sales",
   description:
-    "Get in touch with Rush Truck Center. Call us or send us a message. We're here to help with all your truck needs.",
+    "Get in touch with Hega Truck Sales. Call us or send us a message — we're here to help with all your truck needs.",
 };
 
 const contactDetails = [
   {
     icon: <Phone size={20} />,
     label: "Phone",
-    lines: [ "+1 (915) 253-3976"],
-    hrefs: [ "tel:+19152533976"],
+    lines: ["(915) 253-3976"],
+    hrefs: ["tel:+19152533976"],
   },
   {
     icon: <Mail size={20} />,
     label: "Email",
-    lines: ["contact@rushtruckcenterllc.com"],
-    hrefs: ["mailto:contact@rushtruckcenterllc.com"],
+    lines: ["contact@hegatrucksales.com"],
+    hrefs: ["mailto:contact@hegatrucksales.com"],
   },
   {
     icon: <MapPin size={20} />,
     label: "Address",
-    lines: ["12253 Gateway Blvd W", "El Paso, TX 79936"],
+    lines: ["5200 Suwannee St", "El Paso, TX 79938"],
     hrefs: [],
   },
   {
@@ -44,16 +44,18 @@ export default function ContactPage() {
       <Header />
       <main className="min-h-screen">
         {/* ── Hero banner ── */}
-        <section className="bg-foreground py-20 text-center text-white">
-          <h1 className="text-4xl font-extrabold sm:text-5xl">Contact Us</h1>
-          <p className="mx-auto mt-4 max-w-xl text-slate-400">
+        <section className="bg-accent border-b border-border py-20 text-center">
+          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+            Contact Us
+          </h1>
+          <p className="mx-auto mt-4 max-w-xl text-muted">
             Have a question or ready to buy? Reach out — we&apos;d love to hear
             from you.
           </p>
         </section>
 
         {/* ── Two-column: Form + Info ── */}
-        <section className="bg-white section-padding">
+        <section className="bg-background section-padding">
           <div className="mx-auto max-w-7xl px-6">
             <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
               {/* Left — Form */}
@@ -62,8 +64,7 @@ export default function ContactPage() {
                   Send Us a Message
                 </h2>
                 <p className="mt-2 mb-8 text-muted">
-                  Fill out the form below — include your location so we can route
-                  your request — and we&apos;ll get back to you within 24 hours.
+                  Fill out the form below and we&apos;ll get back to you within 24 hours.
                 </p>
                 <ContactForm expanded />
               </div>
@@ -80,7 +81,7 @@ export default function ContactPage() {
                 <div className="space-y-6">
                   {contactDetails.map((item) => (
                     <div key={item.label} className="flex items-start gap-4">
-                      <span className="inline-flex items-center justify-center rounded-lg bg-primary/10 p-3 text-primary shrink-0">
+                      <span className="inline-flex items-center justify-center rounded-lg bg-accent border border-border p-3 text-muted shrink-0">
                         {item.icon}
                       </span>
                       <div>
@@ -92,7 +93,7 @@ export default function ContactPage() {
                             <a
                               key={line}
                               href={item.hrefs[idx]}
-                              className="block text-sm text-muted hover:text-primary transition-colors"
+                              className="block text-sm text-muted hover:text-foreground transition-colors"
                             >
                               {line}
                             </a>

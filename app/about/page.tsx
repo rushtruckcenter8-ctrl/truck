@@ -1,59 +1,59 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { ShieldCheck, TruckIcon, Users, Wrench, Award, Globe } from "lucide-react";
+import { ShieldCheck, TruckIcon, Users, Wrench, DollarSign, MapPin } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Brands from "../components/Brands";
 
 export const metadata: Metadata = {
-  title: "About Us — Rush Truck Center",
+  title: "About Us — Hega Truck Sales",
   description:
-    "Learn about Rush Truck Center — connecting buyers with quality used trucks. Our story, mission, and the brands we work with.",
+    "Learn about Hega Truck Sales — quality pre-owned trucks at honest prices in El Paso, TX. Our story, mission, and commitment to every customer.",
 };
 
 const stats = [
-  { value: "500+", label: "Trucks Sold" },
-  { value: "10+", label: "Years in Business" },
-  { value: "5", label: "Brand Partners" },
-  { value: "98%", label: "Happy Clients" },
+  { value: "300+", label: "Trucks Sold" },
+  { value: "8+", label: "Years in Business" },
+  { value: "4", label: "Truck Categories" },
+  { value: "95%", label: "Happy Clients" },
 ];
 
 const features = [
   {
     icon: <ShieldCheck size={28} />,
-    title: "Certified Quality",
+    title: "Inspected Inventory",
     description:
-      "Every truck passes a 120-point inspection before listing. We guarantee mechanical reliability and transparent vehicle history.",
+      "Every truck on our lot goes through a detailed multi-point inspection before it's ever listed. What you see is what you get.",
   },
   {
-    icon: <Globe size={28} />,
-    title: "European Imports",
+    icon: <DollarSign size={28} />,
+    title: "Transparent Pricing",
     description:
-      "We source trucks directly from European fleets — well-maintained vehicles with complete service records and low-wear engines.",
+      "No hidden fees, no last-minute surprises. Our prices are clear upfront so you can make confident decisions.",
   },
   {
-    icon: <Wrench size={28} />,
-    title: "Full-Service Workshop",
+    icon: <MapPin size={28} />,
+    title: "Local & Trusted",
     description:
-      "Our on-site workshop handles everything from oil changes to engine overhauls. Factory-trained mechanics with OEM parts.",
+      "Proudly based in El Paso, Texas. We know this market and we're committed to serving our community with integrity.",
   },
   {
     icon: <TruckIcon size={28} />,
     title: "Wide Selection",
     description:
-      "Tractors, dump trucks, flatbeds, box trucks — we stock all categories from Scania, Volvo, MAN, DAF, and Renault.",
+      "Tractors, dump trucks, flatbeds, box trucks — we stock the categories owner-operators and fleet managers need most.",
   },
   {
-    icon: <Award size={28} />,
-    title: "10+ Years Experience",
+    icon: <Wrench size={28} />,
+    title: "Experienced Team",
     description:
-      "A decade of connecting owner-operators and fleet managers with the right trucks at competitive prices.",
+      "With 8+ years in the business, our team has the knowledge to match you with the right truck at the right price.",
   },
   {
     icon: <Users size={28} />,
-    title: "Dedicated Support",
+    title: "Fast Financing",
     description:
-      "Our sales and service team guides you from first inquiry through delivery and beyond with ongoing maintenance support.",
+      "Get on the road faster. We work with financing partners to help you find flexible payment options that fit your budget.",
   },
 ];
 
@@ -63,21 +63,23 @@ export default function AboutPage() {
       <Header />
       <main className="min-h-screen">
         {/* ── Hero banner ── */}
-        <section className="bg-foreground py-20 text-center text-white">
-          <h1 className="text-4xl font-extrabold sm:text-5xl">About Us</h1>
-          <p className="mx-auto mt-4 max-w-xl text-slate-400">
-            Your trusted partner for quality European trucks since 2015
+        <section className="bg-accent border-b border-border py-20 text-center">
+          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+            About Hega Truck Sales
+          </h1>
+          <p className="mx-auto mt-4 max-w-xl text-muted">
+            Quality trucks. Honest deals. El Paso, Texas.
           </p>
         </section>
 
         {/* ── Our Story ── */}
-        <section className="bg-white section-padding">
+        <section className="bg-background section-padding">
           <div className="mx-auto flex max-w-7xl flex-col items-center gap-12 px-6 md:flex-row">
             {/* Image */}
             <div className="flex-1" data-aos="fade-right" data-aos-once="true">
               <Image
-                src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80"
-                alt="Our team at the truck yard"
+                src="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=1200&q=80"
+                alt="Hega Truck Sales lot"
                 width={600}
                 height={400}
                 className="w-full h-auto rounded-xl"
@@ -88,28 +90,28 @@ export default function AboutPage() {
             <div className="flex-1" data-aos="fade-left" data-aos-once="true">
               <h2 className="text-3xl font-bold text-foreground">Our Story</h2>
               <p className="mt-4 leading-relaxed text-muted">
-                Rush Truck Center was founded with a simple
-                mission: make buying a quality used truck easy, transparent, and
-                affordable. We started with a small yard and a handful of trucks — today we
-                move hundreds of vehicles a year across the country.
+                Hega Truck Sales was founded on a simple belief: buying a commercial
+                truck should be straightforward, transparent, and fair. Based in El Paso,
+                Texas, we specialize in quality pre-owned semi trucks, dump trucks,
+                flatbeds, and trailers sourced from trusted fleet operators across the
+                country.
               </p>
               <p className="mt-3 leading-relaxed text-muted">
-                We work directly with fleet operators and manufacturers to source
-                the best vehicles at competitive prices. Every truck in our
-                inventory is thoroughly inspected by our in-house mechanics before
-                it reaches the showroom floor.
+                Every vehicle on our lot goes through a rigorous multi-point inspection
+                before it&apos;s ever listed — because we know your business depends on
+                reliability. We don&apos;t sell trucks we wouldn&apos;t put our own name behind.
               </p>
               <p className="mt-3 leading-relaxed text-muted">
-                Our commitment goes beyond the sale. With a full-service workshop,
-                parts store, and a dedicated support team, we&apos;re here for
-                every kilometre of the journey.
+                Whether you&apos;re an owner-operator looking for your first rig or a fleet
+                manager adding capacity, our team is here to make the process smooth
+                and stress-free — from first inquiry to the moment you drive off the lot.
               </p>
             </div>
           </div>
         </section>
 
         {/* ── Stats ── */}
-        <section className="bg-primary py-14">
+        <section className="bg-accent border-y border-border py-14">
           <div className="mx-auto grid max-w-5xl grid-cols-2 gap-8 px-6 text-center sm:grid-cols-4">
             {stats.map((stat, idx) => (
               <div
@@ -118,15 +120,15 @@ export default function AboutPage() {
                 data-aos-once="true"
                 data-aos-delay={idx * 100}
               >
-                <p className="text-4xl font-extrabold text-white">{stat.value}</p>
-                <p className="mt-1 text-sm text-blue-200">{stat.label}</p>
+                <p className="text-4xl font-bold text-foreground">{stat.value}</p>
+                <p className="mt-1 text-sm text-muted">{stat.label}</p>
               </div>
             ))}
           </div>
         </section>
 
         {/* ── Why Choose Us ── */}
-        <section className="bg-accent section-padding">
+        <section className="bg-background section-padding">
           <div className="mx-auto max-w-7xl px-6">
             <h2
               className="mb-12 text-center text-3xl font-bold text-foreground sm:text-4xl"
@@ -143,9 +145,9 @@ export default function AboutPage() {
                   data-aos="fade-up"
                   data-aos-once="true"
                   data-aos-delay={idx * 100}
-                  className="rounded-xl bg-white border border-border p-6 shadow-sm hover:shadow-md transition-shadow"
+                  className="rounded-xl bg-accent border border-border p-6 hover:border-foreground/20 transition-colors"
                 >
-                  <span className="inline-flex items-center justify-center rounded-lg bg-primary/10 p-3 text-primary">
+                  <span className="inline-flex items-center justify-center rounded-lg bg-foreground/10 p-3 text-foreground">
                     {feat.icon}
                   </span>
                   <h3 className="mt-4 text-lg font-semibold text-foreground">
@@ -160,7 +162,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ── Brand partners (reused component) ── */}
+        {/* ── Brand partners ── */}
         <Brands />
       </main>
       <Footer />

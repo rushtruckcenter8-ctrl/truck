@@ -10,7 +10,7 @@ const brands = [
 
 export default function Brands() {
   return (
-    <section id="brands" className="bg-white section-padding">
+    <section id="brands" className="bg-background border-t border-border section-padding">
       <div className="mx-auto max-w-7xl px-6">
         {/* Heading + description */}
         <div className="mb-12 flex flex-col items-center gap-8 md:justify-center md:gap-16">
@@ -23,14 +23,13 @@ export default function Brands() {
               Who We Are
             </h2>
             <p className="mt-4 text-muted leading-relaxed max-w-2xl">
-              We are an authorized dealer and service partner for Europe&apos;s
-              leading truck manufacturers. With over 10 years of experience, we
-              connect buyers with premium commercial vehicles they can trust.
+              At Hega Truck Sales, we source quality pre-owned trucks from trusted
+              fleet operators across the country. Freightliner, Volvo, Kenworth —
+              top brands at prices that make sense for your business.
             </p>
             <p className="mt-3 text-muted leading-relaxed max-w-2xl">
-              Every truck in our inventory is inspected, certified, and backed by
-              our commitment to quality. We work directly with manufacturers to
-              ensure authentic parts and professional servicing.
+              Every truck in our inventory is inspected and backed by our commitment
+              to transparency. No surprises — just reliable trucks and honest deals.
             </p>
           </div>
 

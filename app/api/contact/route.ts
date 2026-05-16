@@ -97,7 +97,7 @@ export async function POST(request: NextRequest) {
     const replyTo = data.email?.trim() || undefined;
 
     await transporter.sendMail({
-      from: `"Rush Truck Center" <${process.env.SMTP_USER}>`,
+      from: `"Hega Truck Sales" <${process.env.SMTP_USER}>`,
       to: businessEmail,
       ...(replyTo ? { replyTo } : {}),
       subject: `Website contact: ${data.name.trim()}`,

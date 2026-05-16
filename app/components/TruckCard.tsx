@@ -15,7 +15,7 @@ export default function TruckCard({ truck }: TruckCardProps) {
   return (
     <Link
       href={`/trucks/${truck.id}`}
-      className="group flex flex-col overflow-hidden rounded-xl border border-border bg-white shadow-sm hover:shadow-lg transition-shadow"
+      className="group flex flex-col overflow-hidden rounded-xl border border-border bg-accent hover:border-foreground/20 transition-colors"
     >
       {/* Image */}
       <div className="relative h-48 w-full overflow-hidden bg-accent">
@@ -31,7 +31,7 @@ export default function TruckCard({ truck }: TruckCardProps) {
         </span>
         {/* Condition badge (shown only when available) */}
         {truck.condition && (
-          <span className="absolute top-3 right-3 rounded-md bg-primary px-2.5 py-1 text-xs font-medium text-white">
+          <span className="absolute top-3 right-3 rounded-md bg-foreground px-2.5 py-1 text-xs font-medium text-background">
             {truck.condition}
           </span>
         )}
@@ -40,10 +40,10 @@ export default function TruckCard({ truck }: TruckCardProps) {
       {/* Details */}
       <div className="flex flex-1 flex-col p-5">
         {/* Brand + name */}
-        <p className="text-xs font-semibold uppercase tracking-wider text-primary">
+        <p className="text-xs font-semibold uppercase tracking-widest text-muted">
           {truck.brand}
         </p>
-        <h3 className="mt-1 text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+        <h3 className="mt-1 text-lg font-bold text-foreground group-hover:text-primary-dark transition-colors">
           {truck.name}
         </h3>
 

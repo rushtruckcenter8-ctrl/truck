@@ -6,28 +6,28 @@ const services = [
     description:
       "High-quality spare parts sourced directly from top suppliers. Affordable, reliable, and ready to ship.",
     icon: Package,
-    color: "bg-blue-100 text-blue-600",
+    color: "bg-foreground/10 text-foreground",
   },
   {
     title: "Truck & Vehicle Wash",
     description:
       "Professional cleaning for heavy-duty trucks and light commercial vehicles. Interior and exterior packages available.",
     icon: Sparkles,
-    color: "bg-cyan-100 text-cyan-600",
+    color: "bg-foreground/10 text-foreground",
   },
   {
     title: "Rims & Tires",
     description:
       "Durable truck rims and high-performance tires for long-haul, regional, and off-road operations.",
     icon: CircleDot,
-    color: "bg-orange-100 text-orange-600",
+    color: "bg-foreground/10 text-foreground",
   },
   {
     title: "Oil Change & Fluid Service",
     description:
       "Quick and thorough oil changes and fluid top-ups for trucks and commercial vehicles of all sizes.",
     icon: Droplets,
-    color: "bg-green-100 text-green-600",
+    color: "bg-foreground/10 text-foreground",
   },
 ];
 
@@ -56,7 +56,7 @@ export default function Services() {
                 data-aos="fade-up"
                 data-aos-once="true"
                 data-aos-delay={idx * 100}
-                className="group flex flex-col gap-5 rounded-xl bg-white border border-border shadow-sm hover:shadow-md transition-shadow p-8"
+                className="group flex flex-col gap-5 rounded-xl bg-accent border border-border hover:border-foreground/20 transition-colors p-8"
               >
                 {/* Icon badge */}
                 <div

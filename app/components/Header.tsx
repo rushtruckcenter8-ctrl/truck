@@ -22,7 +22,6 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
-  /** Check whether a nav link matches the current route */
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
     return pathname.startsWith(href);
@@ -30,39 +29,35 @@ export default function Header() {
 
   return (
     <>
-      {/* ── Top info bar (scrolls away normally) ── */}
-      <div className="hidden md:block bg-foreground text-white text-sm">
+      {/* ── Top info bar ── */}
+      <div className="hidden md:block bg-accent border-b border-border text-foreground text-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2">
           <div className="flex items-center gap-6">
-            <span className="flex items-center gap-1.5">
+            <span className="flex items-center gap-1.5 text-muted">
               <MapPin size={14} />
-              12253 Gateway Blvd W, El Paso, TX 79936
+              5200 Suwannee St, El Paso, TX 79938
             </span>
-            <span className="flex items-center gap-1.5">
+            <span className="flex items-center gap-1.5 text-muted">
               <Clock size={14} />
               Mon–Sat 8:00–18:00
             </span>
           </div>
           <div className="flex items-center gap-4">
-           
-            <a href="tel:+19152533976" className="flex items-center gap-1.5 hover:text-blue-300 transition-colors">
+            <a href="tel:+19152533976" className="flex items-center gap-1.5 text-muted hover:text-foreground transition-colors">
               <Phone size={14} />
-              +1 (915) 253-3976
+              (915) 253-3976
             </a>
           </div>
         </div>
       </div>
 
-      {/* ── Main navigation bar (sticks to the top on scroll) ── */}
-      <nav className="sticky top-0 z-50 bg-white border-b border-border shadow-sm">
+      {/* ── Main navigation bar ── */}
+      <nav className="sticky top-0 z-50 bg-background border-b border-border">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl font-extrabold tracking-tight text-foreground">
-              RUSH<span className="text-primary">TRUCK</span>
-            </span>
-            <span className="hidden sm:block text-xs text-muted leading-tight">
-              CENTER
+            <span className="text-xl font-bold tracking-tight text-foreground">
+              HEGA<span className="text-muted font-normal"> TRUCK SALES</span>
             </span>
           </Link>
 
@@ -74,8 +69,8 @@ export default function Header() {
                   href={link.href}
                   className={`text-sm font-medium transition-colors ${
                     isActive(link.href)
-                      ? "text-primary border-b-2 border-primary pb-1"
-                      : "text-foreground hover:text-primary"
+                      ? "text-foreground border-b border-foreground pb-1"
+                      : "text-muted hover:text-foreground"
                   }`}
                 >
                   {link.label}
@@ -88,7 +83,7 @@ export default function Header() {
           <div className="flex items-center gap-3">
             <Link
               href="/contact"
-              className="hidden md:inline-flex items-center rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white hover:bg-primary-dark transition-colors"
+              className="hidden md:inline-flex items-center rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-black hover:bg-primary-dark transition-colors"
             >
               Request a Call
             </Link>
@@ -105,7 +100,7 @@ export default function Header() {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="md:hidden border-t border-border bg-white px-6 pb-4">
+          <div className="md:hidden border-t border-border bg-accent px-6 pb-4">
             <ul className="flex flex-col gap-3 pt-3">
               {navLinks.map((link) => (
                 <li key={link.href}>
@@ -114,8 +109,8 @@ export default function Header() {
                     onClick={() => setMobileOpen(false)}
                     className={`block text-sm font-medium transition-colors py-1 ${
                       isActive(link.href)
-                        ? "text-primary font-bold"
-                        : "text-foreground hover:text-primary"
+                        ? "text-foreground font-bold"
+                        : "text-muted hover:text-foreground"
                     }`}
                   >
                     {link.label}
@@ -126,7 +121,7 @@ export default function Header() {
                 <Link
                   href="/contact"
                   onClick={() => setMobileOpen(false)}
-                  className="mt-2 block w-full rounded-lg bg-primary px-5 py-2.5 text-center text-sm font-semibold text-white hover:bg-primary-dark transition-colors"
+                  className="mt-2 block w-full rounded-lg bg-primary px-5 py-2.5 text-center text-sm font-semibold text-black hover:bg-primary-dark transition-colors"
                 >
                   Request a Call
                 </Link>
@@ -137,13 +132,12 @@ export default function Header() {
             <div className="mt-4 flex flex-col gap-2 text-sm text-muted border-t border-border pt-4">
               <span className="flex items-center gap-1.5">
                 <MapPin size={14} />
-                12253 Gateway Blvd W, El Paso, TX 79936
+                5200 Suwannee St, El Paso, TX 79938
               </span>
               <span className="flex items-center gap-1.5">
                 <Clock size={14} />
                 Mon–Sat 8:00–18:00
               </span>
-             
             </div>
           </div>
         )}

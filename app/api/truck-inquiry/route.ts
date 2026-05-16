@@ -148,17 +148,17 @@ function getCustomerEmailHTML(data: InquiryData): string {
             <p>If you have any urgent questions, please feel free to call us directly:</p>
             <ul>
               
-              <li>+1 (915) 253-3976</li>
+              <li>(915) 253-3976</li>
             </ul>
 
             <p>We look forward to helping you find the perfect truck for your needs!</p>
 
             <p>Best regards,<br>
-            <strong>Rush Truck Center Team</strong></p>
+            <strong>Hega Truck Sales Team</strong></p>
 
             <div class="footer">
-              <p>Rush Truck Center — Affordable Truck Sales & Service</p>
-              <p>contact@rushtruckcentersales.com</p>
+              <p>Hega Truck Sales — Quality Trucks. Honest Deals.</p>
+              <p>contact@hegatrucksales.com</p>
             </div>
           </div>
         </div>
@@ -214,7 +214,7 @@ export async function POST(request: NextRequest) {
     // Business email (to your sales team)
     const businessEmail = process.env.BUSINESS_EMAIL || process.env.SMTP_USER;
     await transporter.sendMail({
-      from: `"Rush Truck Center" <${process.env.SMTP_USER}>`,
+      from: `"Hega Truck Sales" <${process.env.SMTP_USER}>`,
       to: businessEmail,
       replyTo: data.email,
       subject: `New Truck Inquiry: ${data.truckBrand} ${data.truckName} (${data.truckYear})`,
@@ -238,7 +238,7 @@ ${data.message ? `\nMessage:\n${data.message}` : ""}
 
     // Customer confirmation email
     await transporter.sendMail({
-      from: `"Rush Truck Center" <${process.env.SMTP_USER}>`,
+      from: `"Hega Truck Sales" <${process.env.SMTP_USER}>`,
       to: data.email,
       subject: `Thank you for your interest in ${data.truckBrand} ${data.truckName}`,
       html: getCustomerEmailHTML(data),
@@ -262,10 +262,10 @@ If you have any urgent questions, please call us:
 
 
 Best regards,
-Rush Truck Center Team
+Hega Truck Sales Team
 
-Rush Truck Center — Affordable Truck Sales & Service
-contact@rushtruckcenterllc.com
+Hega Truck Sales — Quality Trucks. Honest Deals.
+contact@hegatrucksales.com
       `.trim(),
     });
 
