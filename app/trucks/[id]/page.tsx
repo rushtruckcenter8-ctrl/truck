@@ -179,7 +179,7 @@ export default async function TruckDetailPage({
               )}
 
               {/* Price block */}
-              <div className="mt-6 rounded-xl bg-white border border-border p-5">
+              <div className="mt-6 rounded-xl bg-black border border-border p-5">
                 <div className="flex items-end gap-4 flex-wrap">
                   <div>
                     <p className="text-xs text-muted uppercase tracking-wider">
@@ -213,7 +213,7 @@ export default async function TruckDetailPage({
                     data-aos="fade-up"
                     data-aos-once="true"
                     data-aos-delay={idx * 80}
-                    className="flex items-start gap-3 rounded-lg bg-white border border-border p-3"
+                    className="flex items-start gap-3 rounded-lg bg-black text-white border border-border p-3"
                   >
                     <span className="mt-0.5 text-primary flex-shrink-0">{s.icon}</span>
                     <div className="min-w-0">
@@ -235,7 +235,7 @@ export default async function TruckDetailPage({
 
           {/* ── Description ── */}
           <div
-            className="mt-12 rounded-xl bg-white border border-border p-8 shadow-sm"
+            className="mt-12 rounded-xl bg-black text-white border border-border p-8 shadow-sm"
             data-aos="fade-up"
             data-aos-once="true"
           >
@@ -246,7 +246,7 @@ export default async function TruckDetailPage({
           {/* ── Extended Specs Table (shown when extra data exists) ── */}
           {extendedSpecs.length > 0 && (
             <div
-              className="mt-8 rounded-xl bg-white border border-border p-8 shadow-sm"
+              className="mt-8 rounded-xl bg-black text-white border border-border p-8 shadow-sm"
               data-aos="fade-up"
               data-aos-once="true"
             >

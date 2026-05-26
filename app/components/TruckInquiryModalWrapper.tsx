@@ -18,7 +18,7 @@ export default function TruckInquiryModalWrapper({
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 hover:bg-primary-dark transition-colors"
+        className="inline-flex items-center justify-center gap-2 rounded-lg bg-black text-white border border-border px-7 py-3.5 text-sm font-semibold shadow-lg shadow-primary/25 hover:bg-primary-dark transition-colors"
       >
         <Phone size={16} />
         Contact Us About This Truck

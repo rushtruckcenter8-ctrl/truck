@@ -113,7 +113,7 @@ export default function TruckInquiryModal({
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-2xl bg-white rounded-xl shadow-2xl max-h-[90vh] overflow-y-auto"
+        className="relative w-full max-w-2xl bg-black text-white rounded-xl shadow-2xl max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
@@ -126,7 +126,7 @@ export default function TruckInquiryModal({
         </button>
 
         {/* Header */}
-        <div className="sticky top-0 bg-white border-b border-border px-6 py-5 rounded-t-xl">
+        <div className="sticky top-0 bg-black text-white border-b border-border px-6 py-5 rounded-t-xl">
           <h2 className="text-2xl font-bold text-foreground">
             Inquire About This Truck
           </h2>
@@ -165,7 +165,7 @@ export default function TruckInquiryModal({
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-border bg-white text-foreground placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-border bg-black text-foreground placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
                   placeholder="John Doe"
                 />
               </div>
@@ -191,7 +191,7 @@ export default function TruckInquiryModal({
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-border bg-white text-foreground placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-border bg-black text-foreground placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
                   placeholder="john@example.com"
                 />
               </div>
@@ -217,7 +217,7 @@ export default function TruckInquiryModal({
                   value={formData.phone}
                   onChange={handleChange}
                   required
-                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-border bg-white text-foreground placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-border bg-black text-foreground placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
                   placeholder="+1 234 567 8900"
                 />
               </div>
@@ -243,7 +243,7 @@ export default function TruckInquiryModal({
                   value={formData.location}
                   onChange={handleChange}
                   required
-                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-border bg-white text-foreground placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-border bg-black text-foreground placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
                   placeholder="City, state / region, or ZIP"
                 />
               </div>
@@ -268,7 +268,7 @@ export default function TruckInquiryModal({
                   value={formData.message}
                   onChange={handleChange}
                   rows={4}
-                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-border bg-white text-foreground placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition resize-none"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-border bg-black text-foreground placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition resize-none"
                   placeholder="Tell us about your interest, financing needs, or any questions..."
                 />
               </div>
@@ -306,7 +306,7 @@ export default function TruckInquiryModal({
             <button
               type="submit"
               disabled={isSubmitting}
-              className="flex-1 px-6 py-3 rounded-lg bg-primary text-sm font-semibold text-white hover:bg-primary-dark disabled:opacity-60 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+              className="flex-1 px-6 py-3 rounded-lg  text-sm font-semibold text-white bg-black hover:bg-primary-dark disabled:opacity-60 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2 border-white border-2"
             >
               {isSubmitting ? (
                 <>

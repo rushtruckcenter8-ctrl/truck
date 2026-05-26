@@ -78,7 +78,7 @@ export default function AboutPage() {
             {/* Image */}
             <div className="flex-1" data-aos="fade-right" data-aos-once="true">
               <Image
-                src="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=1200&q=80"
+                src="/about.jpg"
                 alt="Hega Truck Sales lot"
                 width={600}
                 height={400}

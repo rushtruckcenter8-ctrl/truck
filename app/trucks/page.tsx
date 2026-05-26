@@ -45,7 +45,7 @@ export default function TrucksPage() {
       <Header />
       <main className="min-h-screen bg-accent">
         {/* Page header */}
-        <div className="bg-foreground py-14 text-center text-white">
+        <div className="bg-black py-14 text-center text-white">
           <h1 className="text-4xl font-extrabold sm:text-5xl">Our Trucks</h1>
           <p className="mt-3 text-slate-400">
             Browse our selection of quality used trucks from Europe&apos;s top brands
@@ -54,7 +54,7 @@ export default function TrucksPage() {
 
         <div className="mx-auto max-w-7xl px-6 py-10">
           {/* Filter bar */}
-          <div className="mb-8 flex flex-col gap-4 rounded-xl bg-white border border-border p-5 shadow-sm sm:flex-row sm:items-center sm:gap-6">
+          <div className="mb-8 flex flex-col gap-4 rounded-xl bg-black border border-border p-5 shadow-sm sm:flex-row sm:items-center sm:gap-6">
             <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
               <SlidersHorizontal size={18} />
               Filters
@@ -64,7 +64,7 @@ export default function TrucksPage() {
             <select
               value={brandFilter}
               onChange={(e) => setBrandFilter(e.target.value)}
-              className="rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40"
+              className="rounded-lg border border-border bg-black px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40"
             >
               <option value="all">All Brands</option>
               {allBrands.map((b) => (
@@ -78,7 +78,7 @@ export default function TrucksPage() {
             <select
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
-              className="rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground capitalize focus:outline-none focus:ring-2 focus:ring-primary/40"
+              className="rounded-lg border border-border bg-black px-3 py-2 text-sm text-foreground capitalize focus:outline-none focus:ring-2 focus:ring-primary/40"
             >
               <option value="all">All Categories</option>
               {allCategories.map((c) => (
@@ -92,7 +92,7 @@ export default function TrucksPage() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-              className="rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40"
+              className="rounded-lg border border-border bg-black px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40"
             >
               <option value="price-asc">Price: Low → High</option>
               <option value="price-desc">Price: High → Low</option>
