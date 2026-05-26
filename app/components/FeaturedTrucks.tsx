@@ -3,9 +3,15 @@ import { ArrowRight } from "lucide-react";
 import TruckCard from "./TruckCard";
 import { trucks } from "../data/trucks";
 
-/** Show the first 6 trucks on the homepage with a "View All" CTA. */
+/** Show one truck per category on the homepage with a "View All" CTA. */
 export default function FeaturedTrucks() {
-  const featured = trucks.slice(0, 6);
+  const counts = new Map<string, number>();
+  const featured = trucks.filter((t) => {
+    const n = counts.get(t.category) ?? 0;
+    if (n >= 2) return false;
+    counts.set(t.category, n + 1);
+    return true;
+  });
 
   return (
     <section id="featured" className="bg-background section-padding">

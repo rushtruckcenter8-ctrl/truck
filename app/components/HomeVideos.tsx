@@ -77,7 +77,7 @@ export default function HomeVideos() {
 
               <Link
                 href="/contact"
-                className="mt-5 inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
+                className="mt-5 inline-flex items-center justify-center rounded-lg bg-black px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
               >
                 Order Now
               </Link>
