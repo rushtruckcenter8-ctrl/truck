@@ -1391,6 +1391,353 @@ export const trucks: Truck[] = [
     cabStyle: "Conventional",
   },
   {
+    id: "peterbilt-579-md742911",
+    name: "Peterbilt 579",
+    brand: "Peterbilt",
+    year: 2021,
+    condition: "Used",
+    vin: "1XPBDP9X8MD742911",
+
+    price: 18000,
+    downPayment: 2000,
+    currency: "USD",
+
+    mileage: 375462,
+    mileageUnit: "mi",
+
+    image: "/images/truck29%20(1).jpeg",
+    images: galleryImages("truck29", 14),
+
+    description:
+      "2021 Peterbilt 579 conventional sleeper with remaining OEM Peterbilt extended warranty — 6-year/600,000-mile engine & aftertreatment coverage and 5-year/600,000-mile basic vehicle & towing coverage (DIS: July 1, 2021). PACCAR MX-13 engine with 12-speed automatic transmission, Low Air Leaf suspension, tandem rear axles, and 2.64 axle ratio. 80-inch Ultraloft sleeper, aero molded bumper, Premier Interior in Sterling Gray, Mordura driver and passenger seats, dual 26-inch aluminum 100-gallon fuel tanks (200-gallon total), and 228-inch wheelbase. White exterior.",
+    category: "tractor",
+
+    engine: "PACCAR MX-13",
+    engineManufacturer: "PACCAR",
+    engineModel: "MX-13",
+    horsepower: 510,
+    fuelType: "Diesel",
+
+    transmission: "12-Speed Automatic",
+    transmissionSpeeds: 12,
+    axleRatio: "2.64",
+
+    drive: "6x4",
+    suspension: "Low Air Leaf",
+    rearAxles: "Tandem",
+    gvwr: "Class 8: 33,001 pounds or greater",
+    wheelType: "Aluminum",
+    wheelbase: "228 in",
+    driveSide: "Left Hand Drive",
+    sleeperType: "Ultraloft Sleeper",
+    sleeperSize: "80 in",
+    fuelCapacity: "200 gal",
+    color: "White",
+    cabStyle: "Conventional",
+  },
+
+  {
+    id: "peterbilt-579-truck28",
+    name: "Peterbilt 579",
+    brand: "Peterbilt",
+    year: 2026,
+    condition: "New",
+
+    price: 30000,
+    downPayment: 2000,
+    currency: "USD",
+
+    mileage: 0,
+    mileageUnit: "mi",
+
+    image: "/images/truck28%20(1).jpeg",
+    images: galleryImages("truck28", 16),
+
+    description:
+      "Brand-new 2026 Peterbilt 579 Prestige trim in Sterling Grey/White. PACCAR MX-13 engine producing 510 HP and 1,850 lb-ft of torque, paired with the PACCAR TX-12 12-speed automated transmission. Meritor 12,500 lb front axle and Meritor 40,000 lb rear axle with 3.42 ratio. Peterbilt Low Air Leaf rear suspension and 244-inch wheelbase. 80-inch Ultraloft cab configuration. 295/75R22.5 tires front and rear. A flagship spec ready to work from day one.",
+    category: "tractor",
+
+    engine: "PACCAR MX-13",
+    engineManufacturer: "PACCAR",
+    engineModel: "MX-13",
+    horsepower: 510,
+    fuelType: "Diesel",
+
+    transmission: "PACCAR TX-12 12-Speed Automated",
+    transmissionSpeeds: 12,
+    axleRatio: "3.42",
+
+    drive: "6x4",
+    suspension: "Peterbilt Low Air Leaf",
+    rearAxles: "Tandem (40,000 lb)",
+    gvwr: "Class 8: 33,001 pounds or greater",
+    wheelbase: "244 in",
+    driveSide: "Left Hand Drive",
+    sleeperType: "Ultraloft Sleeper",
+    sleeperSize: "80 in",
+    color: "White",
+    cabStyle: "Conventional",
+  },
+
+  {
+    id: "freightliner-cascadia-rsva8454",
+    name: "Freightliner Cascadia 126",
+    brand: "Freightliner",
+    year: 2024,
+    condition: "Used",
+    vin: "3AKJHHDR1RSVA8454",
+
+    price: 25000,
+    downPayment: 3000,
+    currency: "USD",
+
+    mileage: 225000,
+    mileageUnit: "mi",
+
+    image: "/images/truck27%20(1).jpeg",
+    images: galleryImages("truck27", 22),
+
+    description:
+      "2024 Freightliner Cascadia 126 with only 225,000 miles and active warranty through August 28, 2028 (up to 550,000 miles). Detroit DD15 engine producing 505 HP with engine brake, turbo, and Detroit DT12 12-speed automated transmission. 6x4 drivetrain, 4-bag Air Ride suspension, tandem rear axles with 3.08 gear ratio, and 239-inch wheelbase. 72-inch raised roof sleeper, aluminum wheels, 300-gallon total fuel capacity (dual 150-gallon tanks), APU, collision mitigation system, power locks, and A/C. Gray exterior. A clean, low-mileage late-model Cascadia ready to earn.",
+    category: "tractor",
+
+    engine: "Detroit DD15 — 14.81L Inline-6",
+    engineManufacturer: "Detroit",
+    engineModel: "DD15",
+    engineDisplacement: 14.81,
+    horsepower: 505,
+    fuelType: "Diesel",
+
+    transmission: "Detroit DT12 12-Speed Automated",
+    transmissionSpeeds: 12,
+    axleRatio: "3.08",
+
+    drive: "6x4",
+    suspension: "4 Bag Air Ride",
+    rearAxles: "Tandem",
+    gvwr: "Class 8: 33,001 pounds or greater (80,000 lbs GVW)",
+    wheelType: "Aluminum",
+    wheelbase: "239 in",
+    driveSide: "Left Hand Drive",
+    sleeperType: "Raised Roof Sleeper",
+    sleeperSize: "72 in",
+    beds: 1,
+    hasApu: true,
+    fuelCapacity: "300 gal",
+    color: "Gray",
+    cabStyle: "Conventional",
+  },
+
+  // ────────────────────────────────────────────────
+  //  TRAILERS
+  // ────────────────────────────────────────────────
+  {
+    id: "vanguard-vxp-trailer1",
+    name: "Vanguard VXP 53' Dry Van",
+    brand: "Vanguard",
+    year: 2017,
+    condition: "Used",
+
+    price: 6000,
+    downPayment: 1500,
+    currency: "USD",
+
+    mileage: 0,
+    mileageUnit: "mi",
+
+    image: "/images/trailer1%20(1).jpeg",
+    images: galleryImages("trailer1", 6),
+
+    description:
+      "2017 Vanguard VXP 53'×102\" dry van trailer. Air Ride suspension, aluminum roof, 48-inch logistic centers, side skirts, front and rear vents, galvanized rear frame, swing doors, wood floor, and 22.5 LP tires on all-steel wheels. Tandem rear axles. Plate/composite construction with logistic posts.",
+    category: "trailer",
+
+    engine: "N/A",
+    horsepower: 0,
+    fuelType: "N/A",
+    transmission: "N/A",
+
+    suspension: "Air Ride",
+    rearAxles: "Tandem",
+    wheelType: "All Steel",
+    color: "White",
+  },
+
+  {
+    id: "utility-reefer-trailer7",
+    name: "Utility 53' Reefer Trailer",
+    brand: "Utility",
+    year: 2021,
+    condition: "Used",
+
+    price: 7000,
+    downPayment: 1500,
+    currency: "USD",
+
+    mileage: 0,
+    mileageUnit: "mi",
+
+    image: "/images/trailer7%20(1).jpeg",
+    images: galleryImages("trailer7", 9),
+
+    description:
+      "2021 Utility reefer trailer with Thermo King S600 unit — owner-operator spec. Chrome unit, 3 lights, side skirts, 13,000 hours. Tires and drum brakes in good condition.",
+    category: "trailer",
+
+    engine: "Thermo King S600",
+    horsepower: 0,
+    fuelType: "Diesel",
+    transmission: "N/A",
+
+    hours: 13000,
+  },
+
+  {
+    id: "utility-reefer-trailer6",
+    name: "Utility 53' Reefer Trailer",
+    brand: "Utility",
+    year: 2019,
+    condition: "Used",
+
+    price: 6000,
+    downPayment: 1500,
+    currency: "USD",
+
+    mileage: 0,
+    mileageUnit: "mi",
+
+    image: "/images/trailer6%20(1).jpeg",
+    images: galleryImages("trailer6", 6),
+
+    description:
+      "2019 Utility 53' reefer trailer — multiple units available. Carrier 7300X4 refrigeration with engine hours from 9,552. Tire inflation system, disc brakes. All units are well-maintained and fully inspected.",
+    category: "trailer",
+
+    engine: "Carrier 7300X4",
+    horsepower: 0,
+    fuelType: "Diesel",
+    transmission: "N/A",
+
+    hours: 9552,
+  },
+
+  {
+    id: "utility-reefer-trailer5",
+    name: "Utility 53' Reefer Trailer",
+    brand: "Utility",
+    year: 2020,
+    condition: "Used",
+
+    price: 7000,
+    downPayment: 1500,
+    currency: "USD",
+
+    mileage: 0,
+    mileageUnit: "mi",
+
+    image: "/images/trailer5%20(1).jpeg",
+    images: galleryImages("trailer5", 12),
+
+    description:
+      "2020 Utility reefer trailer in very good condition. Carrier X4 7500 reefer unit with only 4,100 engine hours. 8 new tires, new brakes, and 150-gallon fuel tank. Road ready.",
+    category: "trailer",
+
+    engine: "Carrier X4 7500",
+    horsepower: 0,
+    fuelType: "Diesel",
+    transmission: "N/A",
+
+    hours: 4100,
+    fuelCapacity: "150 gal",
+  },
+
+  {
+    id: "thermoking-reefer-trailer4",
+    name: "Thermo King 53' Reefer Trailer",
+    brand: "Thermo King",
+    year: 2022,
+    condition: "Used",
+
+    price: 7500,
+    downPayment: 1500,
+    currency: "USD",
+
+    mileage: 0,
+    mileageUnit: "mi",
+
+    image: "/images/trailer4%20(1).jpeg",
+    images: galleryImages("trailer4", 10),
+
+    description:
+      "2022 Thermo King 53' reefer trailer with Thermo King C-600 unit at 11,800 hours. Equipped with PSI tire inflation system, side skirts, swing doors, rub rails, and galvanized cross members. New brake shoes, newer deep rubber tires, and new battery. No rust, clean title, road ready.",
+    category: "trailer",
+
+    engine: "Thermo King C-600",
+    horsepower: 0,
+    fuelType: "Diesel",
+    transmission: "N/A",
+
+    hours: 11800,
+  },
+
+  {
+    id: "wabash-53ft-trailer3",
+    name: "Wabash 53' Dry Van",
+    brand: "Wabash",
+    year: 2022,
+    condition: "Used",
+
+    price: 7500,
+    downPayment: 1500,
+    currency: "USD",
+
+    mileage: 0,
+    mileageUnit: "mi",
+
+    image: "/images/trailer3%20(1).jpeg",
+    images: galleryImages("trailer3", 6),
+
+    description:
+      "2022 Wabash 53ft dry van trailer in like-new condition. Clean title, excellent brakes all around, good tires, and annual inspection valid through 2025. Road ready and available now.",
+    category: "trailer",
+
+    engine: "N/A",
+    horsepower: 0,
+    fuelType: "N/A",
+    transmission: "N/A",
+  },
+
+  {
+    id: "vanguard-vxp-trailer2",
+    name: "Vanguard VXP 53' Dry Van",
+    brand: "Vanguard",
+    year: 2024,
+    condition: "Used",
+
+    price: 7500,
+    downPayment: 1500,
+    currency: "USD",
+
+    mileage: 0,
+    mileageUnit: "mi",
+
+    image: "/images/trailer2%20(1).jpeg",
+    images: galleryImages("trailer2", 8),
+
+    description:
+      "2024 Vanguard VXP 53'×102\"×13'6\" dry van trailer. Sliding Air Ride suspension, tire inflation system, aluminum roof, logistic seams on 48-inch centers, swing doors, front and rear vents, and LP 22.5 tires.",
+    category: "trailer",
+
+    engine: "N/A",
+    horsepower: 0,
+    fuelType: "N/A",
+    transmission: "N/A",
+
+    suspension: "Air Ride",
+    wheelType: "Steel",
+  },
+
+  {
     id: "kenworth-w900-truck26",
     name: "Kenworth W900 Extended Day Cab",
     brand: "Kenworth",
