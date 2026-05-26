@@ -253,47 +253,7 @@ export const trucks: Truck[] = [
   // ────────────────────────────────────────────────
   //  REAL TRUCKS
   // ────────────────────────────────────────────────
-  {
-    id: "freightliner-cascadia-177536",
-    name: "Freightliner Cascadia 126",
-    brand: "Freightliner",
-    year: 2019,
-    condition: "Used",
-    stockNumber: "177536",
-    vin: "3AKJHLDV5KSKF2003",
 
-    price: 11500,
-    downPayment: 1500,
-    currency: "USD",
-
-    mileage: 283528,
-    mileageUnit: "mi",
-
-    image: "/images/truck1%20(1).jpeg",
-    images: galleryImages("truck1", 10),
-
-    description:
-      "2019 Freightliner Cascadia 126 tractor unit with a Detroit DD13 engine producing 435 HP. Equipped with the Detroit DT12 12-speed automated transmission and 6×4 drive. Air Ride suspension, All Steel wheels, and a Left Hand Drive setup make this an outstanding long-haul workhorse at an exceptional price.",
-    category: "tractor",
-
-    engine: "Detroit DD13 — 12.81L Inline-6",
-    engineManufacturer: "Detroit",
-    engineModel: "DD13",
-    engineDisplacement: 12.81,
-    horsepower: 435,
-    fuelType: "Diesel",
-
-    transmission: "Detroit DT12 12-Speed Automated",
-    transmissionSpeeds: 12,
-
-    drive: "6x4",
-    suspension: "Air Ride",
-    rearAxles: "Tandem",
-    gvwr: "Class 8 (33,001 lbs or greater)",
-    wheelType: "All Steel",
-    wheelbase: "178 in",
-    driveSide: "Left Hand Drive",
-  },
 
   {
     id: "freightliner-cascadia-100666",
