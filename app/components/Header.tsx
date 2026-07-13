@@ -43,9 +43,9 @@ export default function Header() {
             </span>
           </div>
           <div className="flex items-center gap-4">
-            <a href="tel:+19152533976" className="flex items-center gap-1.5 text-muted hover:text-foreground transition-colors">
+            <a href="tel:+19152407806" className="flex items-center gap-1.5 text-muted hover:text-foreground transition-colors">
               <Phone size={14} />
-              (915) 253-3976
+              (915) 240-7806
             </a>
           </div>
         </div>
