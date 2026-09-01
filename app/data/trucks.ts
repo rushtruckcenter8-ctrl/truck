@@ -1711,6 +1711,45 @@ export const trucks: Truck[] = [
     cabStyle: "Extended Cab",
   },
 
+  {
+    id: "freightliner-m2-106-plus-vdxd6255",
+    name: "Freightliner Business Class M2 106 Plus",
+    brand: "Freightliner",
+    year: 2027,
+    condition: "New",
+    stockNumber: "972811",
+    vin: "3ALACWFC9VDXD6255",
+
+    price: 11500,
+    downPayment: 2000,
+    currency: "USD",
+
+    mileage: 1950,
+    mileageUnit: "mi",
+
+    image: "/images/truck34%20(3).jpeg",
+    images: galleryImages("truck34", 4),
+
+    description:
+      "2027 Freightliner Business Class M2 106 Plus extended cab box truck. 4x2 axle configuration with 255/70R22.5 tires front and rear, air brakes, engine brake, cruise control, heated mirrors, tilt/telescope steering, power locks, and A/C.",
+    category: "box truck",
+
+    engine: "Cummins B6.7 — 6.7L Inline-6",
+    engineManufacturer: "Cummins",
+    engineModel: "B6.7",
+    horsepower: 240,
+    fuelType: "Diesel",
+
+    transmission: "Allison HS Automatic",
+    axleRatio: "5.56",
+
+    drive: "4x2",
+    rearAxles: "Single",
+    driveSide: "Left Hand Drive",
+    color: "White",
+    cabStyle: "Extended Cab",
+  },
+
 ];
 
 /** Utility: get all unique brands from the data */
