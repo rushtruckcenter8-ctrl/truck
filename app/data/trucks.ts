@@ -67,189 +67,6 @@ function galleryImages(prefix: string, count: number): string[] {
 }
 
 export const trucks: Truck[] = [
-  {
-    id: "north-star-rims-22-5x8-5-rim1",
-    name: "North Star Aluminum Rims",
-    brand: "North Star",
-    year: 2026,
-    condition: "Used",
-
-    price: 150,
-    currency: "USD",
-
-    mileage: 0,
-    mileageUnit: "mi",
-
-    image: "/images/rim1%20(1).jpeg",
-    images: galleryImages("rim1", 4),
-
-    description:
-      "North Star aluminum rims, size 22.5x8.5. Priced at $150 each. Clean set, ready for install.",
-    category: "parts",
-
-    engine: "Size 22.5x8.5",
-    horsepower: 0,
-    fuelType: "N/A",
-    transmission: "N/A",
-    wheelType: "Aluminum",
-  },
-  {
-    id: "tire1-295-75r22-5-full-set",
-    name: "295/75R22.5 Tires on Hub Pilot Rims",
-    brand: "Generic",
-    year: 2026,
-    condition: "New",
-
-    price: 1500,
-    currency: "USD",
-
-    mileage: 0,
-    mileageUnit: "mi",
-
-    image: "/images/tire1.jpeg",
-    images: ["/images/tire1.jpeg"],
-
-    description:
-      "Full set of 295/75R22.5 tires mounted on hub pilot rims. 14-ply, brand-new virgin open-shoulder tires. Shipping is available.",
-    category: "parts",
-
-    engine: "295/75R22.5 (14 Ply)",
-    horsepower: 0,
-    fuelType: "N/A",
-    transmission: "Mounted on Hub Pilot Rims",
-    wheelType: "Hub Pilot Rims",
-  },
-  {
-    id: "alcoa-aluminum-rims-rim2",
-    name: "Alcoa Aluminum Rims",
-    brand: "Alcoa",
-    year: 2026,
-    condition: "New",
-
-    price: 100,
-    currency: "USD",
-
-    mileage: 0,
-    mileageUnit: "mi",
-
-    image: "/images/rim2%20(1).jpeg",
-    images: galleryImages("rim2", 3),
-
-    description:
-      "Upgrade your ride with premium Alcoa Aluminum Rims. Sizes available: 22.5 import ($100), 22.5 Alcoa ($150), 24.5 Alcoa ($180), car carrier rim ($250), and dump truck rim ($300). FREE nationwide delivery. Don't wait - stock is limited!",
-    category: "parts",
-
-    engine: "Multiple Sizes Available",
-    horsepower: 0,
-    fuelType: "N/A",
-    transmission: "N/A",
-    wheelType: "Aluminum (Import and Alcoa options)",
-  },
-  {
-    id: "heavy-duty-295-75r22-5-drive-tires-tire2",
-    name: "HEAVY-DUTY 295/75R22.5 DRIVE TIRES",
-    brand: "Multi-Brand",
-    year: 2026,
-    condition: "New",
-
-    price: 0,
-    currency: "USD",
-
-    mileage: 0,
-    mileageUnit: "mi",
-
-    image: "/images/tire2%20(1).jpeg",
-    images: galleryImages("tire2", 7),
-
-    description:
-      "READY FOR THE ROAD! Looking for strong, reliable drive tires for your semi-truck? We've got you covered with top budget-friendly brands that deliver serious performance and durability. KORYO 295/75R22.5 - built tough for long hauls with excellent traction and solid tread life. ROADX 295/75R22.5 - smooth ride, strong grip, and designed for long-distance trucking. V Drive Force 295/75R22.5 - heavy-duty construction made for power, stability, and reliability under heavy loads. V Land Golden 295/75R22.5 - durable drive tires with aggressive tread patterns that handle tough roads and keep your truck moving.",
-    category: "parts",
-
-    engine: "295/75R22.5 Drive Tires",
-    horsepower: 0,
-    fuelType: "N/A",
-    transmission: "KORYO, ROADX, V Drive Force, V Land Golden",
-    wheelType: "Heavy-Duty Drive Tire",
-  },
-  {
-    id: "tire3-255-70r22-5-koryo-virgin",
-    name: "255/70 R22.5 KORYO VIRGIN",
-    brand: "Koryo",
-    year: 2026,
-    condition: "New",
-
-    price: 115,
-    currency: "USD",
-
-    mileage: 0,
-    mileageUnit: "mi",
-
-    image: "/images/tire3%20(1).jpeg",
-    images: galleryImages("tire3", 6),
-
-    description:
-      "Brand drive tires, heavy duty 16 ply. New stock just arrived. Only $115 each (tax included). Built tough for semi-trucks, 18 wheelers, dump trucks, and heavy-duty rigs. Long-lasting tread for maximum traction and durability. Perfect fit for Freightliner, Peterbilt, Kenworth, Volvo, International, Mack, and more. Ideal for highway and off-road hauling.",
-    category: "parts",
-
-    engine: "255/70 R22.5 (16 Ply)",
-    horsepower: 0,
-    fuelType: "N/A",
-    transmission: "Koryo Virgin Drive Tires",
-    wheelType: "Heavy-Duty Drive Tire",
-  },
-  {
-    id: "alcoa-level-1-polish-rim3",
-    name: "Alcoa Wheels - Level 1 Polish",
-    brand: "Alcoa",
-    year: 2026,
-    condition: "New",
-
-    price: 250,
-    currency: "USD",
-
-    mileage: 0,
-    mileageUnit: "mi",
-
-    image: "/images/rim3.jpeg",
-    images: ["/images/rim3.jpeg"],
-
-    description:
-      "22.5 and 24.5 Alcoa wheels with Level 1 polish. In stock now. Pricing: 22.5 ($250) and 24.5 ($300). We can pallet and ship.",
-    category: "parts",
-
-    engine: "22.5 and 24.5",
-    horsepower: 0,
-    fuelType: "N/A",
-    transmission: "Can pallet and ship",
-    wheelType: "Alcoa Aluminum Wheels (Level 1 Polish)",
-  },
-  {
-    id: "alcoa-22-5-drive-rims-285-pcd-rim4",
-    name: "22.5 Drive Rims Alcoa 285 PCD",
-    brand: "Alcoa",
-    year: 2026,
-    condition: "Used",
-
-    price: 250,
-    currency: "USD",
-
-    mileage: 0,
-    mileageUnit: "mi",
-
-    image: "/images/rim4%20(1).jpeg",
-    images: galleryImages("rim4", 5),
-
-    description:
-      "22.5 drive rims, Alcoa 285 PCD. All in good condition. $250 each.",
-    category: "parts",
-
-    engine: "22.5 Drive Rims (285 PCD)",
-    horsepower: 0,
-    fuelType: "N/A",
-    transmission: "N/A",
-    wheelType: "Alcoa Aluminum Drive Rims",
-  },
-
   // ────────────────────────────────────────────────
   //  REAL TRUCKS
   // ────────────────────────────────────────────────
@@ -1743,6 +1560,155 @@ export const trucks: Truck[] = [
     fuelCapacity: "135 gal",
     color: "Red",
     cabStyle: "Conventional",
+  },
+
+  {
+    id: "international-mv607-536513",
+    name: "International MV607",
+    brand: "International",
+    year: 2022,
+    condition: "Used",
+    vin: "3H4EUMML6NL536513",
+
+    price: 10500,
+    downPayment: 2000,
+    currency: "USD",
+
+    mileage: 168341,
+    mileageUnit: "mi",
+
+    image: "/images/truck27%20(10).jpeg",
+    images: galleryImages("truck27", 16),
+
+    description:
+      "2022 International MV607 with a Smyrna Truck & Cargo 26-foot van body offers a versatile solution for a variety of commercial transportation needs. Powered by a reliable Cummins B6.7 diesel engine.",
+    category: "box truck",
+
+    engine: "Cummins B6.7 — 6.7L Inline-6",
+    engineManufacturer: "Cummins",
+    engineModel: "B6.7",
+    horsepower: 240,
+    fuelType: "Diesel",
+
+    transmission: "Allison HS Automatic",
+    axleRatio: "5.57",
+
+    suspension: "Spring",
+    rearAxles: "Single",
+    gvwr: "25,999 lb",
+    wheelbase: "254 in",
+    driveSide: "Left Hand Drive",
+    color: "White",
+    cabStyle: "Conventional",
+  },
+
+  {
+    id: "freightliner-m2-kdkx5781",
+    name: "Freightliner M2",
+    brand: "Freightliner",
+    year: 2019,
+    condition: "Used",
+    vin: "3ALACWFC3KDKX5781",
+
+    price: 10000,
+    downPayment: 2000,
+    currency: "USD",
+
+    mileage: 234000,
+    mileageUnit: "mi",
+
+    image: "/images/truck28%20(1).jpeg",
+    images: galleryImages("truck28", 12),
+
+    description:
+      "2019 Freightliner M2 26ft box truck with an aluminum lift gate. Powered by a 6.7 Cummins ISB engine paired with an Allison automatic transmission. Air suspension, upgraded dashboard, Bluetooth radio, and air seat. Fleet maintained, inspected, and road ready. Also available for $27,500 cash outright.",
+    category: "box truck",
+
+    engine: "Cummins ISB — 6.7L Inline-6",
+    engineManufacturer: "Cummins",
+    engineModel: "ISB 6.7",
+    engineDisplacement: 6.7,
+    horsepower: 220,
+    fuelType: "Diesel",
+
+    transmission: "Allison Automatic",
+
+    suspension: "Air Ride",
+    driveSide: "Left Hand Drive",
+    color: "White",
+    cabStyle: "Conventional",
+  },
+
+  {
+    id: "international-4300-kl328418",
+    name: "International 4300",
+    brand: "International",
+    year: 2019,
+    condition: "Used",
+    stockNumber: "A67",
+    vin: "3HAEUMML8KL328418",
+
+    price: 10000,
+    downPayment: 1500,
+    currency: "USD",
+
+    mileage: 266430,
+    mileageUnit: "mi",
+
+    image: "/images/truck29%20(6).jpeg",
+    images: galleryImages("truck29", 10),
+
+    description:
+      "The 2019 International 4300 is a versatile and dependable 26-foot box truck built to handle demanding commercial and delivery operations. Powered by a proven Cummins diesel engine and paired with an automatic transmission, this truck offers a strong combination of performance, efficiency, and easy operation. A practical solution for businesses looking for a reliable medium-duty truck.",
+    category: "box truck",
+
+    engine: "Cummins ISB — 6.7L Inline-6",
+    engineManufacturer: "Cummins",
+    engineModel: "ISB 6.7",
+    engineDisplacement: 6.7,
+    horsepower: 200,
+    fuelType: "Diesel",
+
+    transmission: "Automatic",
+
+    driveSide: "Left Hand Drive",
+    color: "White",
+    cabStyle: "Conventional",
+  },
+
+  {
+    id: "international-mv607-extended-cab-1501",
+    name: "International MV607 Extended Cab Edition",
+    brand: "International",
+    year: 2022,
+    condition: "Used",
+
+    price: 11000,
+    downPayment: 2000,
+    currency: "USD",
+
+    mileage: 23857,
+    mileageUnit: "mi",
+
+    image: "/images/truck30%20(2).jpeg",
+    images: galleryImages("truck30", 10),
+
+    description:
+      "2022 International MV607 Extended Cab Edition with an extended cab back seat to pull over and lay down on after a hard day of driving. Features a 26ft box with a heavy-duty 3,300 lb Dhollandia lift gate and 16ft ramp, 103\" interior height, and 26,000 lb GVWR (Non-CDL). Cummins 6.7L engine with Allison automatic transmission, Air Ride suspension and air ride seats, Bluetooth audio, and grey interior. One owner, financing available.",
+    category: "box truck",
+
+    engine: "Cummins 6.7L Inline-6",
+    engineManufacturer: "Cummins",
+    horsepower: 220,
+    fuelType: "Diesel",
+
+    transmission: "Allison Automatic",
+
+    suspension: "Air Ride",
+    gvwr: "26,000 lb (Non-CDL)",
+    driveSide: "Left Hand Drive",
+    color: "White",
+    cabStyle: "Extended Cab",
   },
 
 ];
