@@ -21,6 +21,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import TruckImageGallery from "../../components/TruckImageGallery";
 import TruckInquiryModalWrapper from "../../components/TruckInquiryModalWrapper";
+import PaymentMethods from "../../components/PaymentMethods";
 import { getTruckById, trucks, formatPrice, formatMileage } from "../../data/trucks";
 
 /* ── Static params so Next can pre-render all truck pages ── */
@@ -229,6 +230,16 @@ export default async function TruckDetailPage({
               {/* CTA */}
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <TruckInquiryModalWrapper truck={truck} />
+              </div>
+
+              {/* Payment options */}
+              <div className="mt-6 rounded-xl bg-black border border-border p-5">
+                <p className="text-xs text-muted uppercase tracking-wider">
+                  Payment Options
+                </p>
+                <div className="mt-3">
+                  <PaymentMethods />
+                </div>
               </div>
             </div>
           </div>

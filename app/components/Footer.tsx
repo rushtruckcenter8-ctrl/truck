@@ -6,6 +6,7 @@ import {
   Facebook,
   Instagram,
 } from "lucide-react";
+import PaymentMethods from "./PaymentMethods";
 
 const quickLinks = [
   { label: "Home", href: "/" },
@@ -101,6 +102,14 @@ export default function Footer() {
               </a>
             </div>
           </div>
+        </div>
+
+        {/* Payment options */}
+        <div className="mt-10 border-t border-border pt-10">
+          <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-muted">
+            Payment Options
+          </h4>
+          <PaymentMethods className="sm:flex sm:flex-wrap sm:gap-x-10 sm:gap-y-3 sm:space-y-0" />
         </div>
       </div>
 
