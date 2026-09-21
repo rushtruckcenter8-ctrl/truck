@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ContactForm from "../components/ContactForm";
 import LocationMap from "../components/LocationMap";
+import PaymentMethods from "../components/PaymentMethods";
 
 export const metadata: Metadata = {
   title: "Contact Us — Hega Truck Sales",
@@ -107,6 +108,14 @@ export default function ContactPage() {
                     </div>
                   ))}
                 </div>
+
+                <h2 className="mt-10 text-2xl font-bold text-foreground">
+                  Payment Options
+                </h2>
+                <p className="mt-2 mb-6 text-muted">
+                  You can also send a deposit or payment directly.
+                </p>
+                <PaymentMethods />
               </div>
             </div>
           </div>
