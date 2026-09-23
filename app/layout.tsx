@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import AosInit from "./components/AosInit";
+import FeaturebaseRoot from "./components/FeaturebaseRoot";
 
 export const metadata: Metadata = {
   title: "Hega Truck Sales — Quality Used Trucks in El Paso",
@@ -27,7 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased">
         <AosInit />
-        {children}
+        <FeaturebaseRoot>{children}</FeaturebaseRoot>
       </body>
     </html>
   );
