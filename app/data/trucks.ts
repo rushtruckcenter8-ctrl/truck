@@ -1750,6 +1750,142 @@ export const trucks: Truck[] = [
     cabStyle: "Extended Cab",
   },
 
+  {
+    id: "freightliner-cascadia-suj1070",
+    name: "Freightliner Cascadia 126",
+    brand: "Freightliner",
+    year: 2024,
+    condition: "Used",
+    vin: "3AKJHHDR7RSUJ1070",
+
+    price: 25000,
+    downPayment: 3000,
+    currency: "USD",
+
+    mileage: 707681,
+    mileageUnit: "mi",
+
+    image: "/images/truck35%20(1).jpeg",
+    images: galleryImages("truck35", 9),
+
+    description:
+      "2024 Freightliner Cascadia 126 with Detroit DD15 engine rated at 455 HP and Detroit DT12 12-speed automated transmission. 6x4 drivetrain, tandem rear axles, Air Ride suspension, and 2.85 rear ratio. 235-inch wheelbase, air slide fifth wheel, full fairings, and 72-inch sleeper with auxiliary power unit (APU). Class 8 rated at 80,000 lbs GVWR, all aluminum wheels, and white exterior — a well-equipped long-haul tractor ready to work.",
+    category: "tractor",
+
+    engine: "Detroit DD15 — 14.81L Inline-6",
+    engineManufacturer: "Detroit",
+    engineModel: "DD15",
+    engineDisplacement: 14.81,
+    horsepower: 455,
+    fuelType: "Diesel",
+
+    transmission: "Detroit DT12 12-Speed Automated",
+    transmissionSpeeds: 12,
+    axleRatio: "2.85",
+
+    drive: "6x4",
+    suspension: "Air Ride",
+    rearAxles: "Tandem",
+    gvwr: "Class 8: 33,001 pounds or greater (80,000 lbs GVWR)",
+    wheelType: "All Aluminum",
+    wheelbase: "235 in",
+    fifthWheelType: "Air Slide",
+    driveSide: "Left Hand Drive",
+    sleeperSize: "72 in",
+    hasApu: true,
+    color: "White",
+    cabStyle: "Conventional",
+  },
+
+  {
+    id: "freightliner-cascadia-dut7435",
+    name: "Freightliner Cascadia 126",
+    brand: "Freightliner",
+    year: 2024,
+    condition: "Used",
+    vin: "3AKJHHDR2RDUT7435",
+
+    price: 25000,
+    downPayment: 3000,
+    currency: "USD",
+
+    mileage: 486005,
+    mileageUnit: "mi",
+
+    image: "/images/truck36%20(1).jpeg",
+    images: galleryImages("truck36", 19),
+
+    description:
+      "2024 Freightliner Cascadia 126 with Detroit engine rated at 455 HP and Detroit DT12-OA-1650 12-speed automated manual transmission. AirLiner suspension, 12,350 lb front axle and 40,000 lb rear axle, and 2.16 rear ratio. 227-inch wheelbase, air slide fifth wheel, and 72-inch raised roof sleeper. Class 8 rated at 52,350 lbs GVWR, engine brake equipped, and white exterior — a well-equipped long-haul tractor ready to work.",
+    category: "tractor",
+
+    engine: "Detroit — 14.81L Inline-6",
+    engineManufacturer: "Detroit",
+    horsepower: 455,
+    fuelType: "Diesel",
+
+    transmission: "Detroit DT12-OA-1650 12-Speed Automated Manual",
+    transmissionSpeeds: 12,
+    axleRatio: "2.16",
+
+    drive: "6x4",
+    suspension: "AirLiner",
+    rearAxles: "Tandem (40,000 lb)",
+    gvwr: "Class 8: 33,001 pounds or greater (52,350 lbs GVWR)",
+    wheelbase: "227 in",
+    fifthWheelType: "Air Slide",
+    driveSide: "Left Hand Drive",
+    sleeperType: "Raised Roof Sleeper",
+    sleeperSize: "72 in",
+    color: "White",
+    cabStyle: "Conventional",
+  },
+
+  {
+    id: "freightliner-cascadia-sus5616",
+    name: "Freightliner Cascadia 126",
+    brand: "Freightliner",
+    year: 2024,
+    condition: "Used",
+    vin: "3AKJHHDR7RSUS5616",
+
+    price: 25000,
+    downPayment: 3000,
+    currency: "USD",
+
+    mileage: 505144,
+    mileageUnit: "mi",
+
+    image: "/images/truck37%20(1).jpeg",
+    images: galleryImages("truck37", 20),
+
+    description:
+      "2024 Freightliner Cascadia 126 with Detroit DD15 TCO 50 State engine rated at 425 HP and Detroit DT12 automatic transmission. 6x4 tandem drivetrain with 2.15 rear ratio, sliding fifth wheel, and 221-inch wheelbase. 72-inch raised roof sleeper, dual 100-gallon fuel tanks (200-gallon total capacity), engine brake, and beige/tan exterior — a well-equipped long-haul tractor ready to work.",
+    category: "tractor",
+
+    engine: "Detroit DD15 TCO 50 State — 14.81L Inline-6",
+    engineManufacturer: "Detroit",
+    engineModel: "DD15 TCO 50 State",
+    engineDisplacement: 14.81,
+    horsepower: 425,
+    fuelType: "Diesel",
+
+    transmission: "Detroit DT12 Automatic",
+    transmissionSpeeds: 12,
+    axleRatio: "2.15",
+
+    drive: "6x4",
+    rearAxles: "Tandem",
+    wheelbase: "221 in",
+    fifthWheelType: "Sliding",
+    driveSide: "Left Hand Drive",
+    sleeperType: "Raised Roof Sleeper",
+    sleeperSize: "72 in",
+    fuelCapacity: "200 gal (Dual 100 gal Tanks)",
+    color: "Beige / Tan",
+    cabStyle: "Conventional",
+  },
+
 ];
 
 /** Utility: get all unique brands from the data */
