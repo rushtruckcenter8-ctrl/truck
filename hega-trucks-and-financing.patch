@@ -1,0 +1,3274 @@
+diff --git a/app/components/FinancingSection.tsx b/app/components/FinancingSection.tsx
+new file mode 100644
+index 0000000..73ee730
+--- /dev/null
++++ b/app/components/FinancingSection.tsx
+@@ -0,0 +1,41 @@
++export default function FinancingSection() {
++  return (
++    <section
++      style={{ background: "var(--accent)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}
++      className="py-24 px-6"
++    >
++      <div className="max-w-3xl mx-auto text-center">
++        <div
++          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase mb-6"
++          style={{ background: "var(--border)", color: "var(--muted)" }}
++        >
++          Financing
++        </div>
++        <h2
++          className="text-4xl font-bold mb-5 leading-tight"
++          style={{ color: "var(--primary)" }}
++        >
++          Ready to Finance Your Next Truck?
++        </h2>
++        <p className="text-lg mb-10 max-w-xl mx-auto" style={{ color: "var(--muted)" }}>
++          We work with buyers at all credit levels. Fill out our quick application and a member of our team will reach out to discuss your options.
++        </p>
++        <a
++          href="https://docs.google.com/forms/d/e/1FAIpQLSe-Ol2lA1RIO-h28kjvkVy1B0yBGDCyPpaRP_syn9uctTt0Zw/viewform"
++          target="_blank"
++          rel="noopener noreferrer"
++          className="inline-flex items-center gap-3 px-8 py-4 font-semibold rounded-sm text-base transition-opacity hover:opacity-90"
++          style={{ background: "var(--primary)", color: "var(--background)" }}
++        >
++          Apply for Financing
++          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
++            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
++          </svg>
++        </a>
++        <p className="mt-5 text-sm" style={{ color: "var(--border)" }}>
++          Quick 2-minute form · No commitment required
++        </p>
++      </div>
++    </section>
++  );
++}
+diff --git a/app/data/trucks.ts b/app/data/trucks.ts
+index 14213d5..02d90ad 100644
+--- a/app/data/trucks.ts
++++ b/app/data/trucks.ts
+@@ -1,1911 +1,1251 @@
+-export interface Truck {
+-  // ── Identity ──────────────────────────────────────────────────
+-  id: string;
+-  name: string;
+-  brand: string;
+-  year: number;
+-  condition?: string;          // e.g. "Used" | "New"
+-  stockNumber?: string;
+-  vin?: string;
+-  hours?: number;
+-  dot?: boolean;
+-
+-  // ── Pricing ───────────────────────────────────────────────────
+-  price: number;
+-  downPayment?: number;
+-  currency?: "EUR" | "USD";   // defaults to "EUR"
+-
+-  // ── Mileage ───────────────────────────────────────────────────
+-  mileage: number;
+-  mileageUnit?: "km" | "mi";  // defaults to "km"
+-
+-  // ── Images ────────────────────────────────────────────────────
+-  image: string;              // primary / thumbnail image
+-  images?: string[];          // full gallery (used on detail page)
+-
+-  // ── Description ───────────────────────────────────────────────
+-  description: string;
+-  category: "tractor" | "dump truck" | "trailer" | "box truck" | "flatbed" | "parts";
+-
+-  // ── Engine ────────────────────────────────────────────────────
+-  engine: string;             // formatted display string
+-  engineManufacturer?: string;
+-  engineModel?: string;
+-  engineDisplacement?: number; // litres
+-  horsepower: number;
+-  fuelType: string;
+-
+-  // ── Transmission ──────────────────────────────────────────────
+-  transmission: string;
+-  transmissionSpeeds?: number;
+-
+-  // ── Chassis / Body ────────────────────────────────────────────
+-  color?: string;
+-  drive?: string;             // e.g. "6x4"
+-  suspension?: string;        // e.g. "Air Ride"
+-  rearAxles?: string;         // e.g. "Tandem"
+-  gvwr?: string;              // e.g. "Class 8 (33,001 lbs+)"
+-  wheelType?: string;         // e.g. "All Steel"
+-  wheelbase?: string;         // e.g. "178 in"
+-  driveSide?: string;         // e.g. "Left Hand Drive"
+-  fifthWheelType?: string;
+-  cabStyle?: string;
+-  sleeperType?: string;
+-  sleeperSize?: string;
+-  fuelCapacity?: string;
+-  axleRatio?: string;
+-  beds?: number;
+-  hasApu?: boolean;
+-}
+-
+-// ── Helper: build gallery paths for files named "prefix (n).jpeg" ──────────
+-function galleryImages(prefix: string, count: number): string[] {
+-  return Array.from(
+-    { length: count },
+-    (_, i) => `/images/${prefix}%20(${i + 1}).jpeg`
+-  );
+-}
+-
+-export const trucks: Truck[] = [
+-  // ────────────────────────────────────────────────
+-  //  REAL TRUCKS
+-  // ────────────────────────────────────────────────
+-
+-
+-  {
+-    id: "freightliner-cascadia-100666",
+-    name: "Freightliner Cascadia 126",
+-    brand: "Freightliner",
+-    year: 2023,
+-    condition: "Used",
+-    stockNumber: "100666",
+-    vin: "3AKJHHDR9PSUH3028",
+-    hours: 11811,
+-
+-    price: 13000,
+-    downPayment: 2000,
+-    currency: "USD",
+-
+-    mileage: 287402,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck2%20(1).jpeg",
+-    images: galleryImages("truck2", 26),
+-
+-    description:
+-      "2023 Freightliner Cascadia 126 with Detroit DD15 rated at 455 HP and Detroit DT12 12-speed automated transmission. 6x4 drivetrain, Air Ride suspension, sliding fifth wheel, and aluminum wheels with 295/75 R22.5 tires. Raised roof sleeper, dual 100-gallon fuel tanks (200-gallon capacity), and well-equipped cab make this an ideal late-model long-haul tractor.",
+-    category: "tractor",
+-
+-    engine: "Detroit DD15 — 14.81L Inline-6",
+-    engineManufacturer: "Detroit",
+-    engineModel: "DD15",
+-    engineDisplacement: 14.81,
+-    horsepower: 455,
+-    fuelType: "Diesel",
+-
+-    transmission: "Detroit DT12 12-Speed Automated",
+-    transmissionSpeeds: 12,
+-
+-    drive: "6x4",
+-    suspension: "Air Ride",
+-    rearAxles: "Tandem",
+-    gvwr: "Class 8: 33,001 lbs or greater (52,350 lbs GVW)",
+-    wheelType: "All Aluminum",
+-    wheelbase: "262 in",
+-    fifthWheelType: "Sliding",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Raised Roof Sleeper",
+-    sleeperSize: "70 in",
+-    fuelCapacity: "200 gal",
+-    color: "White",
+-    cabStyle: "Conventional",
+-  },
+-
+-  // {
+-  //   id: "freightliner-cascadia-268250",
+-  //   name: "Freightliner Cascadia 126",
+-  //   brand: "Freightliner",
+-  //   year: 2023,
+-  //   condition: "Used",
+-  //   stockNumber: "268250",
+-  //   vin: "3AKJHHDRXPSNN5516",
+-  //   dot: true,
+-
+-  //   price: 13000,
+-  //   downPayment: 2000,
+-  //   currency: "USD",
+-
+-  //   mileage: 380535,
+-  //   mileageUnit: "mi",
+-
+-  //   image: "/images/truck3%20(1).jpeg",
+-  //   images: galleryImages("truck3", 26),
+-
+-  //   description:
+-  //     "2023 Freightliner Cascadia 126 with Detroit DD15 (455 HP) and Detroit 12-speed automated transmission. 6x4 drivetrain, tandem rear axles, Class 8 rating, and aluminum wheels. Raised roof sleeper with two beds and 72-inch bunk, plus APU for comfortable rest periods. Ideal linehaul tractor with 80,000 lb GVW capability.",
+-  //   category: "tractor",
+-
+-  //   engine: "Detroit DD15 — 14.81L Inline-6",
+-  //   engineManufacturer: "Detroit",
+-  //   engineModel: "DD15",
+-  //   engineDisplacement: 14.81,
+-  //   horsepower: 455,
+-  //   fuelType: "Diesel",
+-
+-  //   transmission: "Detroit 12-Speed Automated",
+-  //   transmissionSpeeds: 12,
+-  //   axleRatio: "2.64",
+-
+-  //   drive: "6x4",
+-  //   rearAxles: "Tandem",
+-  //   gvwr: "Class 8: 33,001 lbs or greater (80,000 lbs GVW)",
+-  //   wheelType: "Aluminum",
+-  //   wheelbase: "241 in",
+-  //   driveSide: "Left Hand Drive",
+-  //   sleeperType: "Raised Roof Sleeper",
+-  //   sleeperSize: "72 in",
+-  //   beds: 2,
+-  //   hasApu: true,
+-  //   color: "Grey",
+-  //   cabStyle: "Conventional",
+-  // },
+-
+-  {
+-    id: "freightliner-cascadia-107644",
+-    name: "Freightliner Cascadia 126",
+-    brand: "Freightliner",
+-    year: 2023,
+-    condition: "Used",
+-    stockNumber: "107644",
+-    vin: "3AKJHHDR2PSNU8480",
+-
+-    price: 14000,
+-    downPayment: 2000,
+-    currency: "USD",
+-
+-    mileage: 632734,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck4%20(1).jpeg",
+-    images: galleryImages("truck4", 15),
+-
+-    description:
+-      "High-mileage 2023 Freightliner Cascadia 126 with Detroit DD15 Gen 5 engine (505 HP) and Detroit DT-12-1650-OHE 12-speed automated transmission. 6x4 drivetrain, tandem rear axles, Air Ride suspension, and 2.79 gear ratio. 72-inch sleeper, 200-gallon total fuel capacity, and mixed steel/aluminum wheel setup. Sold strictly as-is, where-is, with active and inactive fault codes and cosmetic wear noted.",
+-    category: "tractor",
+-
+-    engine: "Detroit DD15 Gen 5 — 14.81L Inline-6",
+-    engineManufacturer: "Detroit",
+-    engineModel: "DD15 Gen 5",
+-    engineDisplacement: 14.81,
+-    horsepower: 505,
+-    fuelType: "Diesel",
+-
+-    transmission: "Detroit DT-12-1650-OHE 12-Speed Automated",
+-    transmissionSpeeds: 12,
+-    axleRatio: "2.79",
+-
+-    drive: "6x4",
+-    rearAxles: "Tandem",
+-    gvwr: "Class 8: 33,001 lbs or greater (53,300 lbs GVW)",
+-    wheelType: "Steel front / Aluminum rear",
+-    wheelbase: "229 in",
+-    suspension: "Air Ride",
+-    fuelCapacity: "200 gal",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Raised Roof Sleeper",
+-    sleeperSize: "72 in",
+-    color: "Grey",
+-    cabStyle: "Conventional",
+-  },
+-
+-  {
+-    id: "freightliner-cascadia-2022-775k",
+-    name: "Freightliner Cascadia 126",
+-    brand: "Freightliner",
+-    year: 2022,
+-    condition: "Used",
+-
+-    price: 13000,
+-    downPayment: 1500,
+-    currency: "USD",
+-
+-    mileage: 775000,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck5%20(1).jpeg",
+-    images: galleryImages("truck5", 8),
+-
+-    description:
+-      "2022 Freightliner Cascadia 126 with Detroit DD15 engine producing 505 HP. Equipped with Detroit DT12 12-speed automated transmission, 6x4 drive, Air Ride suspension, and tandem rear axles. Aluminum wheels and 230-inch wheelbase. Raised roof sleeper configuration for long-haul comfort.",
+-    category: "tractor",
+-
+-    engine: "Detroit DD15 — 14.8L Inline-6",
+-    engineManufacturer: "Detroit",
+-    engineModel: "DD15",
+-    horsepower: 505,
+-    fuelType: "Diesel",
+-
+-    transmission: "Detroit DT12 12-Speed Automated",
+-    transmissionSpeeds: 12,
+-
+-    drive: "6x4",
+-    suspension: "Air Ride",
+-    rearAxles: "Tandem",
+-    gvwr: "Class 8: 33,001 pounds or greater",
+-    wheelType: "Aluminum",
+-    wheelbase: "230 in",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Raised Roof Sleeper",
+-  },
+-
+-  // {
+-  //   id: "freightliner-cascadia-uc5646",
+-  //   name: "Freightliner Cascadia 126",
+-  //   brand: "Freightliner",
+-  //   year: 2022,
+-  //   condition: "Used",
+-  //   stockNumber: "UC5646",
+-  //   vin: "3AKJHHDR5NSNC7132",
+-
+-  //   price: 12500,
+-  //   downPayment: 2000,
+-  //   currency: "USD",
+-
+-  //   mileage: 431254,
+-  //   mileageUnit: "mi",
+-
+-  //   image: "/images/truck6%20(1).jpeg",
+-  //   images: galleryImages("truck6", 16),
+-
+-  //   description:
+-  //     "2022 Freightliner Cascadia 126 with Detroit DD15 engine producing 455 HP. Equipped with Detroit DT12 12-speed automated transmission, 6x4 drive, Air Ride suspension, and tandem rear axles. All aluminum wheels and 223-inch wheelbase. Raised roof sleeper configuration for long-haul comfort.",
+-  //   category: "tractor",
+-
+-  //   engine: "Detroit DD15 — 14.81L Inline-6",
+-  //   engineManufacturer: "Detroit",
+-  //   engineModel: "DD15",
+-  //   engineDisplacement: 14.81,
+-  //   horsepower: 455,
+-  //   fuelType: "Diesel",
+-
+-  //   transmission: "Detroit DT12 12-Speed Automated",
+-  //   transmissionSpeeds: 12,
+-
+-  //   drive: "6x4",
+-  //   suspension: "Air Ride",
+-  //   rearAxles: "Tandem",
+-  //   gvwr: "Class 8: 33,001 pounds or greater",
+-  //   wheelType: "All Aluminum",
+-  //   wheelbase: "223 in",
+-  //   driveSide: "Left Hand Drive",
+-  //   sleeperType: "Raised Roof Sleeper",
+-  // },
+-
+-  {
+-    id: "freightliner-cascadia-2339",
+-    name: "Freightliner Cascadia 126",
+-    brand: "Freightliner",
+-    year: 2020,
+-    condition: "Used",
+-    stockNumber: "2339",
+-    vin: "3AKJHHDR8LSLW2940",
+-
+-    price: 12000,
+-    downPayment: 1500,
+-    currency: "USD",
+-
+-    mileage: 577275,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck7%20(1).jpeg",
+-    images: galleryImages("truck7", 16),
+-
+-    description:
+-      "2020 Freightliner Cascadia 126 with Detroit DD15 14.8L engine rated at 505 HP and Detroit DT12 12-speed automated transmission. 6x4 drive, tandem axles, Air Ride suspension, and 3.08 rear ratio. All aluminum wheels, 227-inch wheelbase, 72-inch raised roof sleeper with single bunk and bunk heater. 200-gallon fuel capacity and conventional cab make this a solid long-haul tractor, sold ready to work.",
+-    category: "tractor",
+-
+-    engine: "Detroit DD15 — 14.81L Inline-6",
+-    engineManufacturer: "Detroit",
+-    engineModel: "DD15",
+-    engineDisplacement: 14.81,
+-    horsepower: 505,
+-    fuelType: "Diesel",
+-
+-    transmission: "Detroit DT12 12-Speed Automated",
+-    transmissionSpeeds: 12,
+-    axleRatio: "3.08",
+-
+-    drive: "6x4",
+-    suspension: "Air Ride",
+-    rearAxles: "Tandem",
+-    gvwr: "Class 8: 33,001 pounds or greater (52,350 lbs GVW)",
+-    wheelType: "All Aluminum",
+-    wheelbase: "227 in",
+-    fifthWheelType: "Sliding",
+-    fuelCapacity: "200 gal",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Raised Roof Sleeper",
+-    sleeperSize: "72 in",
+-    beds: 1,
+-    hasApu: true,
+-    color: "White",
+-    cabStyle: "Conventional",
+-  },
+-
+-  {
+-    id: "freightliner-cascadia-21-frht-350",
+-    name: "Freightliner Cascadia 126",
+-    brand: "Freightliner",
+-    year: 2021,
+-    condition: "Used",
+-    stockNumber: "21 FRHT#350",
+-    vin: "3AKJHHDR7MSMK1350",
+-
+-    price: 11000,
+-    downPayment: 1500,
+-    currency: "USD",
+-
+-    mileage: 571418,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck8%20(1).jpeg",
+-    images: galleryImages("truck8", 17),
+-
+-    description:
+-      "2021 Freightliner Cascadia 126 with Detroit DD15 14.8L engine rated at 505 HP and Detroit DT12 12-speed automated transmission. 6x4 drivetrain with 2.94 rear ratio, Air Ride suspension, tandem axles, and all aluminum wheels. 231-inch wheelbase, 70-inch raised roof sleeper with two beds, sliding fifth wheel, and collision mitigation system for added safety.",
+-    category: "tractor",
+-
+-    engine: "Detroit DD15 — 14.8L Inline-6",
+-    engineManufacturer: "Detroit",
+-    engineModel: "DD15",
+-    engineDisplacement: 14.8,
+-    horsepower: 505,
+-    fuelType: "Diesel",
+-
+-    transmission: "Detroit DT12 12-Speed Automated",
+-    transmissionSpeeds: 12,
+-    axleRatio: "2.94",
+-
+-    drive: "6x4",
+-    suspension: "Air Ride",
+-    rearAxles: "Tandem",
+-    gvwr: "Class 8: 33,001 pounds or greater (52,000 lbs GVW)",
+-    wheelType: "All Aluminum",
+-    wheelbase: "231 in",
+-    fifthWheelType: "Sliding",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Raised Roof Sleeper",
+-    sleeperSize: "70 in",
+-    beds: 2,
+-    color: "Maroon",
+-    cabStyle: "Conventional",
+-  },
+-
+-  {
+-    id: "freightliner-cascadia-lllc1833",
+-    name: "Freightliner Cascadia 126 Mid Roof",
+-    brand: "Freightliner",
+-    year: 2020,
+-    condition: "Used",
+-    vin: "1FUJHHDV5LLLC1833",
+-
+-    price: 11500,
+-    downPayment: 1500,
+-    currency: "USD",
+-
+-    mileage: 548469,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck9%20(1).jpeg",
+-    images: galleryImages("truck9", 23),
+-
+-    description:
+-      "2020 Freightliner Cascadia 126 Mid Roof powered by a Detroit DD13 12.81L engine rated at 450 HP, paired with a Detroit DT12 12-speed automated transmission. Equipped with PTO and 2-line wet kit for walking floor trailer, Thermo King APU, engine brake, Air Ride suspension with dump, and double locking differentials. Strong, clean truck regularly serviced with no reported oil or coolant leaks and active DEF system, ready to work.",
+-    category: "tractor",
+-
+-    engine: "Detroit DD13 — 12.81L Inline-6",
+-    engineManufacturer: "Detroit",
+-    engineModel: "DD13",
+-    engineDisplacement: 12.81,
+-    horsepower: 450,
+-    fuelType: "Diesel",
+-
+-    transmission: "Detroit DT12 12-Speed Automated",
+-    transmissionSpeeds: 12,
+-    axleRatio: "3.25",
+-
+-    drive: "6x4",
+-    suspension: "Air Ride",
+-    rearAxles: "Tandem",
+-    gvwr: "Class 8: 33,001 pounds or greater",
+-    wheelbase: "235 in",
+-    fifthWheelType: "Sliding",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Mid Roof Sleeper",
+-    hasApu: true,
+-  },
+-
+-  {
+-    id: "freightliner-cascadia-dml8828",
+-    name: "Freightliner Cascadia 126",
+-    brand: "Freightliner",
+-    year: 2021,
+-    condition: "Used",
+-    stockNumber: "DML8828",
+-    vin: "3AKJHHDR9MSML8828",
+-
+-    price: 11500,
+-    downPayment: 1500,
+-    currency: "USD",
+-
+-    mileage: 538828,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck10%20(1).jpeg",
+-    images: galleryImages("truck10", 14),
+-
+-    description:
+-      "2021 Freightliner Cascadia PT126SLP heavy duty conventional sleeper with Detroit DD15 14.81L engine rated at 505 HP and Detroit DT12 12-speed automated transmission. 6x4 drivetrain with 3.08 rear ratio, Air Ride suspension, tandem axles, and all aluminum wheels. Class 8 GVWR, 223-inch wheelbase, and 72-inch mid roof sleeper with single bunk make this an efficient long-haul truck backed by OEM support.",
+-    category: "tractor",
+-
+-    engine: "Detroit DD15 — 14.81L Inline-6",
+-    engineManufacturer: "Detroit",
+-    engineModel: "DD15",
+-    engineDisplacement: 14.81,
+-    horsepower: 505,
+-    fuelType: "Diesel",
+-
+-    transmission: "Detroit DT12 12-Speed Automated",
+-    transmissionSpeeds: 12,
+-    axleRatio: "3.08",
+-
+-    drive: "6x4",
+-    suspension: "Air Ride",
+-    rearAxles: "Tandem",
+-    gvwr: "Class 8: 33,001 pounds or greater (52,000 lbs GVW)",
+-    wheelType: "All Aluminum",
+-    wheelbase: "223 in",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Mid Roof Sleeper",
+-    sleeperSize: "72 in",
+-    beds: 1,
+-    color: "Blue",
+-  },
+-
+-  {
+-    id: "freightliner-cascadia-smj3191",
+-    name: "Freightliner Cascadia 126",
+-    brand: "Freightliner",
+-    year: 2021,
+-    condition: "Used",
+-    stockNumber: "SMJ3191",
+-    vin: "3AKJHHDR6MSMJ3191",
+-
+-    price: 11500,
+-    downPayment: 1500,
+-    currency: "USD",
+-
+-    mileage: 797002,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck11%20(1).jpeg",
+-    images: galleryImages("truck11", 17),
+-
+-    description:
+-      "2021 Freightliner Cascadia PT126SLP heavy duty sleeper with Detroit DD15 14.8L engine rated at 400 HP and Detroit DT12 12-speed automated transmission. 6x4 drivetrain with 2.28 rear ratio, Air Ride suspension, tandem axles, and all aluminum wheels. 233-inch wheelbase and 72-inch raised roof sleeper with double bunks make this red Cascadia a high-mileage but capable long-haul truck backed by OEM support.",
+-    category: "tractor",
+-
+-    engine: "Detroit DD15 — 14.8L Inline-6",
+-    engineManufacturer: "Detroit",
+-    engineModel: "DD15",
+-    engineDisplacement: 14.8,
+-    horsepower: 400,
+-    fuelType: "Diesel",
+-
+-    transmission: "Detroit DT12 12-Speed Automated",
+-    transmissionSpeeds: 12,
+-    axleRatio: "2.28",
+-
+-    drive: "6x4",
+-    suspension: "Air Ride",
+-    rearAxles: "Tandem",
+-    gvwr: "Class 8: 33,001 pounds or greater",
+-    wheelType: "All Aluminum",
+-    wheelbase: "233 in",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Raised Roof Sleeper",
+-    sleeperSize: "72 in",
+-    beds: 2,
+-    color: "Red",
+-  },
+-
+-  {
+-    id: "volvo-vnl64t760-95948",
+-    name: "Volvo VNL64T760",
+-    brand: "Volvo",
+-    year: 2024,
+-    condition: "Used",
+-    stockNumber: "95948",
+-    vin: "4V4C9EH1RN643459",
+-
+-    price: 15000,
+-    downPayment: 2000,
+-    currency: "USD",
+-
+-    mileage: 382465,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck12%20(1).jpeg",
+-    images: galleryImages("truck12", 17),
+-
+-    description:
+-      "2024 Volvo VNL64T760 heavy duty conventional sleeper truck with Volvo D13 engine producing 455 HP and automatic transmission. 6x4 drivetrain, Air Ride suspension, tandem rear axles, and aluminum wheels. 252-inch wheelbase and 96-inch raised roof sleeper. Sold as-is, where-is without warranty. Started on site, full operations not tested. Pre-purchase inspections encouraged.",
+-    category: "tractor",
+-
+-    engine: "Volvo D13 — 12.81L Inline-6",
+-    engineManufacturer: "Volvo",
+-    engineModel: "D13",
+-    engineDisplacement: 12.81,
+-    horsepower: 455,
+-    fuelType: "Diesel",
+-
+-    transmission: "Automatic",
+-    transmissionSpeeds: 12,
+-
+-    drive: "6x4",
+-    suspension: "Air Ride",
+-    rearAxles: "Tandem",
+-    gvwr: "Class 8: 33,001 pounds or greater (50,678 lbs GVWR)",
+-    wheelType: "Aluminum",
+-    wheelbase: "252 in",
+-    fuelCapacity: "150 gal",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Raised Roof Sleeper",
+-    sleeperSize: "96 in",
+-    fifthWheelType: "Air Slide",
+-    cabStyle: "Conventional",
+-  },
+-
+-  {
+-    id: "volvo-vnl64t760-uc5543",
+-    name: "Volvo VNL64T760",
+-    brand: "Volvo",
+-    year: 2023,
+-    condition: "Used",
+-    stockNumber: "UC5543",
+-    vin: "4V4NC9EH1PN308439",
+-
+-    price: 13500,
+-    downPayment: 1500,
+-    currency: "USD",
+-
+-    mileage: 357079,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck13%20(1).jpeg",
+-    images: galleryImages("truck13", 24),
+-
+-    description:
+-      "2023 Volvo VNL64T760 heavy duty conventional sleeper truck with Volvo D13 engine producing 455 HP and I-Shift 12-speed automatic transmission. 6x4 drivetrain, Air Ride suspension, tandem rear axles, and aluminum wheels. 228-inch wheelbase and raised roof sleeper. Copper exterior color.",
+-    category: "tractor",
+-
+-    engine: "Volvo D13 — 12.81L Inline-6",
+-    engineManufacturer: "Volvo",
+-    engineModel: "D13",
+-    engineDisplacement: 12.81,
+-    horsepower: 455,
+-    fuelType: "Diesel",
+-
+-    transmission: "I-Shift 12-Speed Automatic",
+-    transmissionSpeeds: 12,
+-
+-    drive: "6x4",
+-    suspension: "Air Ride",
+-    rearAxles: "Tandem",
+-    gvwr: "Class 8: 33,001 pounds or greater",
+-    wheelType: "Aluminum",
+-    wheelbase: "228 in",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Raised Roof Sleeper",
+-    color: "Copper",
+-    cabStyle: "Conventional",
+-  },
+-
+-  {
+-    id: "volvo-vnl64t760-pn326201",
+-    name: "Volvo VNL64T760",
+-    brand: "Volvo",
+-    year: 2023,
+-    condition: "Used",
+-    vin: "4V4NC9EH3PN326201",
+-    hours: 14986,
+-
+-    price: 14000,
+-    downPayment: 1500,
+-    currency: "USD",
+-
+-    mileage: 558183,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck14%20(1).jpeg",
+-    images: galleryImages("truck14", 15),
+-
+-    description:
+-      "2023 Volvo VNL64T760 with Volvo D13N 455 HP engine (2022 US EPA Label) and 14,986 engine hours. Equipped with Volvo ATO2612F 12-speed automated transmission, 6x4 drivetrain, Air Ride suspension, tandem rear axles, and aluminum wheels. 70-inch high rise sleeper cab with bunk beds and bunk heater. 221-inch wheelbase, air sliding 5th wheel, and dual fuel tanks. Overall condition for age: Good. Remaining factory warranty may be applicable TBD.",
+-    category: "tractor",
+-
+-    engine: "Volvo D13N — 12.81L Inline-6",
+-    engineManufacturer: "Volvo",
+-    engineModel: "D13N",
+-    engineDisplacement: 12.81,
+-    horsepower: 455,
+-    fuelType: "Diesel",
+-
+-    transmission: "Volvo ATO2612F 12-Speed Automated (Autoshift)",
+-    transmissionSpeeds: 12,
+-
+-    drive: "6x4",
+-    suspension: "Air Ride",
+-    rearAxles: "Tandem",
+-    gvwr: "Class 8: 33,001 pounds or greater (53,200 lbs GVWR)",
+-    wheelType: "All Aluminum",
+-    wheelbase: "221 in",
+-    fuelCapacity: "Dual Fuel Tanks",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Raised Roof Sleeper",
+-    sleeperSize: "70 in",
+-    beds: 2,
+-    hasApu: true,
+-    cabStyle: "Conventional",
+-    fifthWheelType: "Air Sliding",
+-  },
+-
+-  {
+-    id: "volvo-vnl64t760-2531",
+-    name: "Volvo VNL64T760",
+-    brand: "Volvo",
+-    year: 2024,
+-    condition: "Used",
+-    stockNumber: "2531",
+-    vin: "4V4NC9EH1RN662531",
+-    dot: true,
+-
+-    price: 15000,
+-    downPayment: 2000,
+-    currency: "USD",
+-
+-    mileage: 168605,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck15%20(1).jpeg",
+-    images: galleryImages("truck15", 29),
+-
+-    description:
+-      "2024 Volvo VNL64T760 with only 168,605 original miles! Still under factory warranty! California truck with no rust. All virgin tires on polished aluminum wheels. Volvo D13 455 HP engine with I-Shift 12-speed automated transmission and 2.64 gear ratio. Features include refrigerator, microwave, TV, inverter, double bunk, and fully inspected, serviced, and detailed. Financing and extended warranty available!",
+-    category: "tractor",
+-
+-    engine: "Volvo D13 — 12.81L Inline-6",
+-    engineManufacturer: "Volvo",
+-    engineModel: "D13",
+-    engineDisplacement: 12.81,
+-    horsepower: 455,
+-    fuelType: "Diesel",
+-
+-    transmission: "I-Shift 12-Speed Automated",
+-    transmissionSpeeds: 12,
+-    axleRatio: "2.64",
+-
+-    drive: "6x4",
+-    suspension: "Air Ride",
+-    rearAxles: "Tandem",
+-    gvwr: "Class 8: 33,001 pounds or greater (80,000 lbs GVWR)",
+-    wheelType: "All Aluminum",
+-    wheelbase: "225 in",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Raised Roof Sleeper",
+-    sleeperSize: "70 in",
+-    beds: 2,
+-    color: "White",
+-    cabStyle: "Conventional",
+-    fifthWheelType: "Sliding",
+-  },
+-
+-  {
+-    id: "freightliner-cascadia-lj3604",
+-    name: "Freightliner Cascadia 126",
+-    brand: "Freightliner",
+-    year: 2020,
+-    condition: "Used",
+-    stockNumber: "LJ3604",
+-    vin: "1FUJHHDR6LLLJ3604",
+-
+-    price: 13000,
+-    downPayment: 2000,
+-    currency: "USD",
+-
+-    mileage: 572857,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck16%20(1).jpeg",
+-    images: galleryImages("truck16", 22),
+-
+-    description:
+-      "2020 Freightliner Cascadia 126 with 572,857 miles. Detroit DD15 engine producing 505 HP with engine brake, paired with Detroit DT12 12-speed automated transmission. 72-inch mid-roof XT sleeper, 40,000 lb rear ends with 3.08 ratio, TriPac auxiliary power unit, super singles, Air Ride suspension, hydraulic power steering, dual aluminum fuel tanks, stainless steel quarter fenders, bunk heater, tilt and telescoping steering wheel, cruise control, power windows, adjustable 5th wheel, 240-inch wheelbase, disc brakes, and aluminum disc wheels. Green Elite exterior.",
+-    category: "tractor",
+-
+-    engine: "Detroit DD15 — 14.81L Inline-6",
+-    engineManufacturer: "Detroit",
+-    engineModel: "DD15",
+-    engineDisplacement: 14.81,
+-    horsepower: 505,
+-    fuelType: "Diesel",
+-
+-    transmission: "Detroit DT12 12-Speed Automated",
+-    transmissionSpeeds: 12,
+-    axleRatio: "3.08",
+-
+-    drive: "6x4",
+-    suspension: "Air Ride",
+-    rearAxles: "Tandem",
+-    gvwr: "Class 8: 33,001 pounds or greater (53,300 lbs GVWR)",
+-    wheelType: "Aluminum",
+-    wheelbase: "240 in",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Mid Roof Sleeper",
+-    sleeperSize: "72 in",
+-    beds: 1,
+-    hasApu: true,
+-    color: "Green Elite",
+-    cabStyle: "Conventional",
+-    fifthWheelType: "Fixed",
+-    fuelCapacity: "Dual Aluminum Fuel Tanks",
+-  },
+-
+-  {
+-    id: "freightliner-cascadia-2022-775k-2",
+-    name: "Freightliner Cascadia 126",
+-    brand: "Freightliner",
+-    year: 2022,
+-    condition: "Used",
+-
+-    price: 12000,
+-    downPayment: 1500,
+-    currency: "USD",
+-
+-    mileage: 775000,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck17%20(1).jpeg",
+-    images: galleryImages("truck17", 6),
+-
+-    description:
+-      "2022 Freightliner Cascadia 126 with 775,000 miles. Detroit DD15 engine producing 505 HP paired with Detroit DT12 12-speed automated transmission. 6x4 drivetrain, Air Ride suspension, tandem rear axles, and aluminum wheels. 230-inch wheelbase and raised roof sleeper configuration for long-haul comfort.",
+-    category: "tractor",
+-
+-    engine: "Detroit DD15 — 14.8L Inline-6",
+-    engineManufacturer: "Detroit",
+-    engineModel: "DD15",
+-    horsepower: 505,
+-    fuelType: "Diesel",
+-
+-    transmission: "Detroit DT12 12-Speed Automated",
+-    transmissionSpeeds: 12,
+-
+-    drive: "6x4",
+-    suspension: "Air Ride",
+-    rearAxles: "Tandem",
+-    gvwr: "Class 8: 33,001 pounds or greater",
+-    wheelType: "Aluminum",
+-    wheelbase: "230 in",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Raised Roof Sleeper",
+-  },
+-
+-  {
+-    id: "freightliner-122sd-6834",
+-    name: "Freightliner 122SD",
+-    brand: "Freightliner",
+-    year: 2022,
+-    condition: "Used",
+-    stockNumber: "6834",
+-    vin: "3AKJGNDR4NDNP5196",
+-
+-    price: 14000,
+-    downPayment: 1500,
+-    currency: "USD",
+-
+-    mileage: 241587,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck18%20(1).jpeg",
+-    images: galleryImages("truck18", 13),
+-
+-    description:
+-      "2022 Freightliner 122SD with only 241,587 miles! Premium long and tall sleeper configuration. SelecTrucks certified with extended SelecTrucks warranties available. DOT inspection and full service included in price. Ready to go to work! Two in stock.",
+-    category: "tractor",
+-
+-    engine: "Detroit DD15 — 14.81L Inline-6",
+-    engineManufacturer: "Detroit",
+-    engineModel: "DD15",
+-    engineDisplacement: 14.81,
+-    horsepower: 455,
+-    fuelType: "Diesel",
+-
+-    transmission: "Automatic",
+-
+-    suspension: "Air Ride",
+-    rearAxles: "Tandem",
+-    gvwr: "Class 8: 33,001 pounds or greater",
+-    wheelType: "All Aluminum",
+-    wheelbase: "226 in",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Raised Roof Sleeper",
+-    cabStyle: "Conventional",
+-  },
+-
+-  {
+-    id: "freightliner-122sd-a357",
+-    name: "Freightliner 122SD",
+-    brand: "Freightliner",
+-    year: 2022,
+-    condition: "Used",
+-    stockNumber: "A357",
+-    vin: "3AKJGNDRONDNF7595",
+-
+-    price: 14000,
+-    downPayment: 1500,
+-    currency: "USD",
+-
+-    mileage: 399974,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck19%20(1).jpeg",
+-    images: galleryImages("truck19", 9),
+-
+-    description:
+-      "2022 Freightliner 122SD with 399,974 miles. 72-inch raised roof sleeper with double bunk. Just polished! California compliant. Detroit DD15 engine producing 455 HP paired with Eaton-Fuller 13-speed automatic transmission. 6x4 drivetrain, Air Ride suspension, tandem rear axles, and aluminum wheels. 226-inch wheelbase.",
+-    category: "tractor",
+-
+-    engine: "Detroit DD15 — 14.8L Inline-6",
+-    engineManufacturer: "Detroit",
+-    engineModel: "DD15",
+-    engineDisplacement: 14.8,
+-    horsepower: 455,
+-    fuelType: "Diesel",
+-
+-    transmission: "Eaton-Fuller 13-Speed Automatic",
+-    transmissionSpeeds: 13,
+-    axleRatio: "3.08",
+-
+-    drive: "6x4",
+-    suspension: "Air Ride",
+-    rearAxles: "Tandem",
+-    gvwr: "Class 8: 33,001 pounds or greater",
+-    wheelType: "Aluminum",
+-    wheelbase: "226 in",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Raised Roof Sleeper",
+-    sleeperSize: "72 in",
+-    beds: 2,
+-    cabStyle: "Conventional",
+-  },
+-
+-  {
+-    id: "freightliner-122sd-ndnn4022",
+-    name: "Freightliner 122SD",
+-    brand: "Freightliner",
+-    year: 2022,
+-    condition: "Used",
+-    stockNumber: "NDNN4022",
+-    vin: "3AKJGNDR9NDNN4022",
+-
+-    price: 14000,
+-    downPayment: 1500,
+-    currency: "USD",
+-
+-    mileage: 371749,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck20%20(1).jpeg",
+-    images: galleryImages("truck20", 11),
+-
+-    description:
+-      "2022 Freightliner 122SD (Coronado) with 371,749 miles. One owner truck! Detroit DD15 engine producing 505 HP paired with Eaton Ultra Shift 13-speed automated transmission. 6x4 drivetrain, Air Ride suspension, tandem rear axles, and all aluminum wheels. Flat top sleeper configuration. Call today!",
+-    category: "tractor",
+-
+-    engine: "Detroit DD15 — 14.8L Inline-6",
+-    engineManufacturer: "Detroit",
+-    engineModel: "DD15",
+-    engineDisplacement: 14.8,
+-    horsepower: 505,
+-    fuelType: "Diesel",
+-
+-    transmission: "Eaton Ultra Shift 13-Speed Automated",
+-    transmissionSpeeds: 13,
+-
+-    drive: "6x4",
+-    suspension: "Air Ride",
+-    rearAxles: "Tandem",
+-    gvwr: "Class 8: 33,001 pounds or greater",
+-    wheelType: "All Aluminum",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Flat Top Sleeper",
+-    cabStyle: "Conventional",
+-  },
+-  {
+-    id: "kenworth-w900l-truck21",
+-    name: "Kenworth W900L",
+-    brand: "Kenworth",
+-    year: 2018,
+-    condition: "Used",
+-
+-    price: 25000,
+-    downPayment: 2000,
+-    currency: "USD",
+-
+-    mileage: 395573,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck21%20(1).jpeg",
+-    images: galleryImages("truck21", 13),
+-
+-    description:
+-      "Excellent condition, work-ready 2018 Kenworth W900L with strong specs and low recent maintenance miles. Cummins X15 (565 HP), Fuller Super 18 manual transmission with about 25,000 miles on transmission, 8x4 drive, tri-axle setup with 46,000 lb rear ends, drop axle, and wet kit configured for side dump and belly dump. Dual fuel tanks (90 gal/100 gal), 11R22.5 tires, front tires around 1,000 miles, rear tires about 50% remaining, dual Legacy low-back seats, heated LED headlights, and full locking differentials. No downtime - get in and go to work.",
+-    category: "tractor",
+-
+-    engine: "Cummins X15",
+-    engineManufacturer: "Cummins",
+-    engineModel: "X15",
+-    horsepower: 565,
+-    fuelType: "Diesel",
+-
+-    transmission: "Fuller Super 18 Manual",
+-    transmissionSpeeds: 18,
+-
+-    drive: "8x4",
+-    suspension: "Air Ride",
+-    rearAxles: "Tri (46,000 lb)",
+-    gvwr: "Class 8: 33,001 pounds or greater",
+-    wheelType: "All Aluminum",
+-    wheelbase: "283 in",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Mid Roof Sleeper",
+-    sleeperSize: "38 in AeroCab",
+-    fuelCapacity: "90 gal / 100 gal",
+-    cabStyle: "Conventional",
+-  },
+-  {
+-    id: "kenworth-i680-truck22",
+-    name: "Kenworth I680",
+-    brand: "Kenworth",
+-    year: 2022,
+-    condition: "Used",
+-    vin: "1XKYP40X3NJ471200",
+-
+-    price: 30000,
+-    downPayment: 2000,
+-    currency: "USD",
+-
+-    mileage: 424550,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck22%20(1).jpeg",
+-    images: galleryImages("truck22", 17),
+-
+-    description:
+-      "Work-ready 2022 Kenworth I680 with Cummins power and lift axle setup. 500 HP Cummins engine paired with a 13-speed UltraShift automated transmission. 8x4 drive with AG 400 suspension, tri rear axles rated at 40,000 lb, all aluminum wheels, and 250-inch wheelbase.",
+-    category: "tractor",
+-
+-    engine: "Cummins X15",
+-    engineManufacturer: "Cummins",
+-    engineModel: "X15",
+-    engineDisplacement: 15.1,
+-    horsepower: 500,
+-    fuelType: "Diesel",
+-
+-    transmission: "UltraShift 13-Speed Automated",
+-    transmissionSpeeds: 13,
+-
+-    drive: "8x4",
+-    suspension: "AG 400",
+-    rearAxles: "Tri (40,000 lb)",
+-    gvwr: "Class 8: 33,001 pounds or greater",
+-    wheelType: "All Aluminum",
+-    wheelbase: "250 in",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Mid Roof Sleeper",
+-    cabStyle: "Conventional",
+-  },
+-  {
+-    id: "kenworth-t680-truck23",
+-    name: "Kenworth T680",
+-    brand: "Kenworth",
+-    year: 2022,
+-    condition: "Used",
+-    stockNumber: "NJ101217U",
+-    vin: "1XKYD49X7NJ101217",
+-
+-    price: 30000,
+-    downPayment: 2000,
+-    currency: "USD",
+-
+-    mileage: 399103,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck23%20(1).jpeg",
+-    images: galleryImages("truck23", 19),
+-
+-    description:
+-      "2022 Kenworth T680 in used condition. Cummins X15 rated at 450 HP with Endurant 12-speed automated transmission. 6x4 drive, AG 400L suspension, tandem rear axles with 40,000 lb rear axle rating, all aluminum wheels, and 244-inch wheelbase. Mid roof sleeper with 76-inch sleeper size and one bed. Power locks, A/C in good condition, vinyl/cloth seats, and APU equipped.",
+-    category: "tractor",
+-
+-    engine: "Cummins X15",
+-    engineManufacturer: "Cummins",
+-    engineModel: "X15",
+-    engineDisplacement: 15.1,
+-    horsepower: 450,
+-    fuelType: "Diesel",
+-
+-    transmission: "Endurant 12-Speed Automated",
+-    transmissionSpeeds: 12,
+-
+-    drive: "6x4",
+-    suspension: "AG 400L",
+-    rearAxles: "Tandem (40,000 lb)",
+-    gvwr: "Class 8: 33,001 pounds or greater",
+-    wheelType: "All Aluminum",
+-    wheelbase: "244 in",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Mid Roof Sleeper",
+-    sleeperSize: "76 in",
+-    beds: 1,
+-    hasApu: true,
+-    cabStyle: "Conventional",
+-  },
+-  {
+-    id: "kenworth-w900-truck24",
+-    name: "Kenworth W900",
+-    brand: "Kenworth",
+-    year: 2019,
+-    condition: "Used",
+-    stockNumber: "XTN1735A",
+-    vin: "1XKWDPOXXKJ255082",
+-
+-    price: 35000,
+-    downPayment: 2000,
+-    currency: "USD",
+-
+-    mileage: 403779,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck24%20(1).jpeg",
+-    images: galleryImages("truck24", 14),
+-
+-    description:
+-      "2019 Kenworth W900 in used condition. PACCAR MX-13 engine (12.9L) rated at 510 HP with an 18-speed manual transmission. 6x4 drive with Air Ride suspension, tandem rear axles, 59,200 lb gross vehicle weight, 13,200 lb front axle, and 46,000 lb rear axle rating. Runs 11R24.5 tires on aluminum wheels. Standard conventional cab in green.",
+-    category: "tractor",
+-
+-    engine: "PACCAR MX-13",
+-    engineManufacturer: "PACCAR",
+-    engineModel: "MX-13",
+-    engineDisplacement: 12.91,
+-    horsepower: 510,
+-    fuelType: "Diesel",
+-
+-    transmission: "18-Speed Manual",
+-    transmissionSpeeds: 18,
+-
+-    drive: "6x4",
+-    suspension: "Air Ride",
+-    rearAxles: "Tandem (46,000 lb)",
+-    gvwr: "Class 8: 33,001 pounds or greater (59,200 lb GVW)",
+-    wheelType: "Aluminum",
+-    driveSide: "Left Hand Drive",
+-    color: "Green",
+-    cabStyle: "Conventional",
+-  },
+-  {
+-    id: "kenworth-w900-truck25",
+-    name: "Kenworth W900",
+-    brand: "Kenworth",
+-    year: 2017,
+-    condition: "Used",
+-    stockNumber: "158433",
+-    vin: "1XKWD40X0HJ158433",
+-
+-    price: 30000,
+-    downPayment: 2000,
+-    currency: "USD",
+-
+-    mileage: 610537,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck25%20(1).jpeg",
+-    images: galleryImages("truck25", 10),
+-
+-    description:
+-      "2017 Kenworth W900 heavy spec day cab. Cummins ISX engine rated at 525 HP with Jake brake and Eaton-Fuller 18-speed manual transmission. 13,200 lb front axle, 46,000 lb rear axles, 8-bag air ride suspension, 11R24.5 tires, and all aluminum wheels. About 60,320 miles on overhaul. Well-equipped with dual exhaust, dual breathers, turbo, overdrive, differential lock, power steering, and A/C.",
+-    category: "tractor",
+-
+-    engine: "Cummins ISX — 15L",
+-    engineManufacturer: "Cummins",
+-    engineModel: "ISX",
+-    engineDisplacement: 15,
+-    horsepower: 525,
+-    fuelType: "Diesel",
+-
+-    transmission: "Eaton-Fuller 18-Speed Manual",
+-    transmissionSpeeds: 18,
+-    axleRatio: "3.73",
+-
+-    suspension: "8 Bag Air Ride",
+-    rearAxles: "Tandem (46,000 lb)",
+-    gvwr: "Class 8: 33,001 pounds or greater",
+-    wheelType: "All Aluminum",
+-    wheelbase: "227 in",
+-    driveSide: "Left Hand Drive",
+-    color: "Red",
+-    cabStyle: "Conventional",
+-  },
+-  {
+-    id: "peterbilt-579-md742911",
+-    name: "Peterbilt 579",
+-    brand: "Peterbilt",
+-    year: 2021,
+-    condition: "Used",
+-    vin: "1XPBDP9X8MD742911",
+-
+-    price: 18000,
+-    downPayment: 2000,
+-    currency: "USD",
+-
+-    mileage: 375462,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck29%20(1).jpeg",
+-    images: galleryImages("truck29", 14),
+-
+-    description:
+-      "2021 Peterbilt 579 conventional sleeper with remaining OEM Peterbilt extended warranty — 6-year/600,000-mile engine & aftertreatment coverage and 5-year/600,000-mile basic vehicle & towing coverage (DIS: July 1, 2021). PACCAR MX-13 engine with 12-speed automatic transmission, Low Air Leaf suspension, tandem rear axles, and 2.64 axle ratio. 80-inch Ultraloft sleeper, aero molded bumper, Premier Interior in Sterling Gray, Mordura driver and passenger seats, dual 26-inch aluminum 100-gallon fuel tanks (200-gallon total), and 228-inch wheelbase. White exterior.",
+-    category: "tractor",
+-
+-    engine: "PACCAR MX-13",
+-    engineManufacturer: "PACCAR",
+-    engineModel: "MX-13",
+-    horsepower: 510,
+-    fuelType: "Diesel",
+-
+-    transmission: "12-Speed Automatic",
+-    transmissionSpeeds: 12,
+-    axleRatio: "2.64",
+-
+-    drive: "6x4",
+-    suspension: "Low Air Leaf",
+-    rearAxles: "Tandem",
+-    gvwr: "Class 8: 33,001 pounds or greater",
+-    wheelType: "Aluminum",
+-    wheelbase: "228 in",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Ultraloft Sleeper",
+-    sleeperSize: "80 in",
+-    fuelCapacity: "200 gal",
+-    color: "White",
+-    cabStyle: "Conventional",
+-  },
+-
+-  {
+-    id: "peterbilt-579-truck28",
+-    name: "Peterbilt 579",
+-    brand: "Peterbilt",
+-    year: 2026,
+-    condition: "New",
+-
+-    price: 30000,
+-    downPayment: 2000,
+-    currency: "USD",
+-
+-    mileage: 0,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck28%20(1).jpeg",
+-    images: galleryImages("truck28", 16),
+-
+-    description:
+-      "Brand-new 2026 Peterbilt 579 Prestige trim in Sterling Grey/White. PACCAR MX-13 engine producing 510 HP and 1,850 lb-ft of torque, paired with the PACCAR TX-12 12-speed automated transmission. Meritor 12,500 lb front axle and Meritor 40,000 lb rear axle with 3.42 ratio. Peterbilt Low Air Leaf rear suspension and 244-inch wheelbase. 80-inch Ultraloft cab configuration. 295/75R22.5 tires front and rear. A flagship spec ready to work from day one.",
+-    category: "tractor",
+-
+-    engine: "PACCAR MX-13",
+-    engineManufacturer: "PACCAR",
+-    engineModel: "MX-13",
+-    horsepower: 510,
+-    fuelType: "Diesel",
+-
+-    transmission: "PACCAR TX-12 12-Speed Automated",
+-    transmissionSpeeds: 12,
+-    axleRatio: "3.42",
+-
+-    drive: "6x4",
+-    suspension: "Peterbilt Low Air Leaf",
+-    rearAxles: "Tandem (40,000 lb)",
+-    gvwr: "Class 8: 33,001 pounds or greater",
+-    wheelbase: "244 in",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Ultraloft Sleeper",
+-    sleeperSize: "80 in",
+-    color: "White",
+-    cabStyle: "Conventional",
+-  },
+-
+-  {
+-    id: "freightliner-cascadia-rsva8454",
+-    name: "Freightliner Cascadia 126",
+-    brand: "Freightliner",
+-    year: 2024,
+-    condition: "Used",
+-    vin: "3AKJHHDR1RSVA8454",
+-
+-    price: 25000,
+-    downPayment: 3000,
+-    currency: "USD",
+-
+-    mileage: 225000,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck27%20(1).jpeg",
+-    images: galleryImages("truck27", 22),
+-
+-    description:
+-      "2024 Freightliner Cascadia 126 with only 225,000 miles and active warranty through August 28, 2028 (up to 550,000 miles). Detroit DD15 engine producing 505 HP with engine brake, turbo, and Detroit DT12 12-speed automated transmission. 6x4 drivetrain, 4-bag Air Ride suspension, tandem rear axles with 3.08 gear ratio, and 239-inch wheelbase. 72-inch raised roof sleeper, aluminum wheels, 300-gallon total fuel capacity (dual 150-gallon tanks), APU, collision mitigation system, power locks, and A/C. Gray exterior. A clean, low-mileage late-model Cascadia ready to earn.",
+-    category: "tractor",
+-
+-    engine: "Detroit DD15 — 14.81L Inline-6",
+-    engineManufacturer: "Detroit",
+-    engineModel: "DD15",
+-    engineDisplacement: 14.81,
+-    horsepower: 505,
+-    fuelType: "Diesel",
+-
+-    transmission: "Detroit DT12 12-Speed Automated",
+-    transmissionSpeeds: 12,
+-    axleRatio: "3.08",
+-
+-    drive: "6x4",
+-    suspension: "4 Bag Air Ride",
+-    rearAxles: "Tandem",
+-    gvwr: "Class 8: 33,001 pounds or greater (80,000 lbs GVW)",
+-    wheelType: "Aluminum",
+-    wheelbase: "239 in",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Raised Roof Sleeper",
+-    sleeperSize: "72 in",
+-    beds: 1,
+-    hasApu: true,
+-    fuelCapacity: "300 gal",
+-    color: "Gray",
+-    cabStyle: "Conventional",
+-  },
+-
+-  // ────────────────────────────────────────────────
+-  //  TRAILERS
+-  // ────────────────────────────────────────────────
+-  {
+-    id: "vanguard-vxp-trailer1",
+-    name: "Vanguard VXP 53' Dry Van",
+-    brand: "Vanguard",
+-    year: 2017,
+-    condition: "Used",
+-
+-    price: 6000,
+-    downPayment: 1500,
+-    currency: "USD",
+-
+-    mileage: 0,
+-    mileageUnit: "mi",
+-
+-    image: "/images/trailer1%20(1).jpeg",
+-    images: galleryImages("trailer1", 6),
+-
+-    description:
+-      "2017 Vanguard VXP 53'×102\" dry van trailer. Air Ride suspension, aluminum roof, 48-inch logistic centers, side skirts, front and rear vents, galvanized rear frame, swing doors, wood floor, and 22.5 LP tires on all-steel wheels. Tandem rear axles. Plate/composite construction with logistic posts.",
+-    category: "trailer",
+-
+-    engine: "N/A",
+-    horsepower: 0,
+-    fuelType: "N/A",
+-    transmission: "N/A",
+-
+-    suspension: "Air Ride",
+-    rearAxles: "Tandem",
+-    wheelType: "All Steel",
+-    color: "White",
+-  },
+-
+-  {
+-    id: "utility-reefer-trailer7",
+-    name: "Utility 53' Reefer Trailer",
+-    brand: "Utility",
+-    year: 2021,
+-    condition: "Used",
+-
+-    price: 7000,
+-    downPayment: 1500,
+-    currency: "USD",
+-
+-    mileage: 0,
+-    mileageUnit: "mi",
+-
+-    image: "/images/trailer7%20(1).jpeg",
+-    images: galleryImages("trailer7", 9),
+-
+-    description:
+-      "2021 Utility reefer trailer with Thermo King S600 unit — owner-operator spec. Chrome unit, 3 lights, side skirts, 13,000 hours. Tires and drum brakes in good condition.",
+-    category: "trailer",
+-
+-    engine: "Thermo King S600",
+-    horsepower: 0,
+-    fuelType: "Diesel",
+-    transmission: "N/A",
+-
+-    hours: 13000,
+-  },
+-
+-  {
+-    id: "utility-reefer-trailer6",
+-    name: "Utility 53' Reefer Trailer",
+-    brand: "Utility",
+-    year: 2019,
+-    condition: "Used",
+-
+-    price: 6000,
+-    downPayment: 1500,
+-    currency: "USD",
+-
+-    mileage: 0,
+-    mileageUnit: "mi",
+-
+-    image: "/images/trailer6%20(1).jpeg",
+-    images: galleryImages("trailer6", 6),
+-
+-    description:
+-      "2019 Utility 53' reefer trailer — multiple units available. Carrier 7300X4 refrigeration with engine hours from 9,552. Tire inflation system, disc brakes. All units are well-maintained and fully inspected.",
+-    category: "trailer",
+-
+-    engine: "Carrier 7300X4",
+-    horsepower: 0,
+-    fuelType: "Diesel",
+-    transmission: "N/A",
+-
+-    hours: 9552,
+-  },
+-
+-  {
+-    id: "utility-reefer-trailer5",
+-    name: "Utility 53' Reefer Trailer",
+-    brand: "Utility",
+-    year: 2020,
+-    condition: "Used",
+-
+-    price: 7000,
+-    downPayment: 1500,
+-    currency: "USD",
+-
+-    mileage: 0,
+-    mileageUnit: "mi",
+-
+-    image: "/images/trailer5%20(1).jpeg",
+-    images: galleryImages("trailer5", 12),
+-
+-    description:
+-      "2020 Utility reefer trailer in very good condition. Carrier X4 7500 reefer unit with only 4,100 engine hours. 8 new tires, new brakes, and 150-gallon fuel tank. Road ready.",
+-    category: "trailer",
+-
+-    engine: "Carrier X4 7500",
+-    horsepower: 0,
+-    fuelType: "Diesel",
+-    transmission: "N/A",
+-
+-    hours: 4100,
+-    fuelCapacity: "150 gal",
+-  },
+-
+-  {
+-    id: "thermoking-reefer-trailer4",
+-    name: "Thermo King 53' Reefer Trailer",
+-    brand: "Thermo King",
+-    year: 2022,
+-    condition: "Used",
+-
+-    price: 7500,
+-    downPayment: 1500,
+-    currency: "USD",
+-
+-    mileage: 0,
+-    mileageUnit: "mi",
+-
+-    image: "/images/trailer4%20(1).jpeg",
+-    images: galleryImages("trailer4", 10),
+-
+-    description:
+-      "2022 Thermo King 53' reefer trailer with Thermo King C-600 unit at 11,800 hours. Equipped with PSI tire inflation system, side skirts, swing doors, rub rails, and galvanized cross members. New brake shoes, newer deep rubber tires, and new battery. No rust, clean title, road ready.",
+-    category: "trailer",
+-
+-    engine: "Thermo King C-600",
+-    horsepower: 0,
+-    fuelType: "Diesel",
+-    transmission: "N/A",
+-
+-    hours: 11800,
+-  },
+-
+-  {
+-    id: "wabash-53ft-trailer3",
+-    name: "Wabash 53' Dry Van",
+-    brand: "Wabash",
+-    year: 2022,
+-    condition: "Used",
+-
+-    price: 7500,
+-    downPayment: 1500,
+-    currency: "USD",
+-
+-    mileage: 0,
+-    mileageUnit: "mi",
+-
+-    image: "/images/trailer3%20(1).jpeg",
+-    images: galleryImages("trailer3", 6),
+-
+-    description:
+-      "2022 Wabash 53ft dry van trailer in like-new condition. Clean title, excellent brakes all around, good tires, and annual inspection valid through 2025. Road ready and available now.",
+-    category: "trailer",
+-
+-    engine: "N/A",
+-    horsepower: 0,
+-    fuelType: "N/A",
+-    transmission: "N/A",
+-  },
+-
+-  {
+-    id: "vanguard-vxp-trailer2",
+-    name: "Vanguard VXP 53' Dry Van",
+-    brand: "Vanguard",
+-    year: 2024,
+-    condition: "Used",
+-
+-    price: 7500,
+-    downPayment: 1500,
+-    currency: "USD",
+-
+-    mileage: 0,
+-    mileageUnit: "mi",
+-
+-    image: "/images/trailer2%20(1).jpeg",
+-    images: galleryImages("trailer2", 8),
+-
+-    description:
+-      "2024 Vanguard VXP 53'×102\"×13'6\" dry van trailer. Sliding Air Ride suspension, tire inflation system, aluminum roof, logistic seams on 48-inch centers, swing doors, front and rear vents, and LP 22.5 tires.",
+-    category: "trailer",
+-
+-    engine: "N/A",
+-    horsepower: 0,
+-    fuelType: "N/A",
+-    transmission: "N/A",
+-
+-    suspension: "Air Ride",
+-    wheelType: "Steel",
+-  },
+-
+-  {
+-    id: "kenworth-w900-truck26",
+-    name: "Kenworth W900 Extended Day Cab",
+-    brand: "Kenworth",
+-    year: 2015,
+-    condition: "Used",
+-    stockNumber: "X1766",
+-    vin: "1XKWD40X4FJ446047",
+-    dot: true,
+-    hours: 30561,
+-
+-    price: 25000,
+-    downPayment: 2000,
+-    currency: "USD",
+-
+-    mileage: 677071,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck26%20(1).jpeg",
+-    images: galleryImages("truck26", 9),
+-
+-    description:
+-      "2015 Kenworth W900 Extended Day Cab, purchased new and fleet maintained. Cummins ISX15 rated at 600 HP paired with Eaton UltraShift Plus 18-speed automated transmission. Air disc brakes, wheel diff lock, heavy-duty frame and equipment, loaded premium cab/interior and gauge package, lights and signal package, premium air equipment, and zinc phosphate frame rail process. 14,600 lb front axle, 46,000 lb rear axle, 60,600 lb GVW, 135-gallon fuel capacity, and sliding fifth wheel.",
+-    category: "tractor",
+-
+-    engine: "Cummins ISX15",
+-    engineManufacturer: "Cummins",
+-    engineModel: "ISX15",
+-    engineDisplacement: 15,
+-    horsepower: 600,
+-    fuelType: "Diesel",
+-
+-    transmission: "Eaton UltraShift Plus 18-Speed Automated",
+-    transmissionSpeeds: 18,
+-
+-    drive: "4x2",
+-    suspension: "Air Ride",
+-    rearAxles: "Tandem (46,000 lb)",
+-    gvwr: "Class 8: 33,001 pounds or greater (60,600 lb GVW)",
+-    wheelType: "Aluminum",
+-    wheelbase: "220 in",
+-    driveSide: "Left Hand Drive",
+-    fifthWheelType: "Sliding",
+-    fuelCapacity: "135 gal",
+-    color: "Red",
+-    cabStyle: "Conventional",
+-  },
+-
+-  {
+-    id: "international-mv607-536513",
+-    name: "International MV607",
+-    brand: "International",
+-    year: 2022,
+-    condition: "Used",
+-    vin: "3H4EUMML6NL536513",
+-
+-    price: 10500,
+-    downPayment: 2000,
+-    currency: "USD",
+-
+-    mileage: 168341,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck30%20(10).jpeg",
+-    images: galleryImages("truck30", 16),
+-
+-    description:
+-      "2022 International MV607 with a Smyrna Truck & Cargo 26-foot van body offers a versatile solution for a variety of commercial transportation needs. Powered by a reliable Cummins B6.7 diesel engine.",
+-    category: "box truck",
+-
+-    engine: "Cummins B6.7 — 6.7L Inline-6",
+-    engineManufacturer: "Cummins",
+-    engineModel: "B6.7",
+-    horsepower: 240,
+-    fuelType: "Diesel",
+-
+-    transmission: "Allison HS Automatic",
+-    axleRatio: "5.57",
+-
+-    suspension: "Spring",
+-    rearAxles: "Single",
+-    gvwr: "25,999 lb",
+-    wheelbase: "254 in",
+-    driveSide: "Left Hand Drive",
+-    color: "White",
+-    cabStyle: "Conventional",
+-  },
+-
+-  {
+-    id: "freightliner-m2-kdkx5781",
+-    name: "Freightliner M2",
+-    brand: "Freightliner",
+-    year: 2019,
+-    condition: "Used",
+-    vin: "3ALACWFC3KDKX5781",
+-
+-    price: 10000,
+-    downPayment: 2000,
+-    currency: "USD",
+-
+-    mileage: 234000,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck31%20(1).jpeg",
+-    images: galleryImages("truck31", 12),
+-
+-    description:
+-      "2019 Freightliner M2 26ft box truck with an aluminum lift gate. Powered by a 6.7 Cummins ISB engine paired with an Allison automatic transmission. Air suspension, upgraded dashboard, Bluetooth radio, and air seat. Fleet maintained, inspected, and road ready. Also available for $27,500 cash outright.",
+-    category: "box truck",
+-
+-    engine: "Cummins ISB — 6.7L Inline-6",
+-    engineManufacturer: "Cummins",
+-    engineModel: "ISB 6.7",
+-    engineDisplacement: 6.7,
+-    horsepower: 220,
+-    fuelType: "Diesel",
+-
+-    transmission: "Allison Automatic",
+-
+-    suspension: "Air Ride",
+-    driveSide: "Left Hand Drive",
+-    color: "White",
+-    cabStyle: "Conventional",
+-  },
+-
+-  {
+-    id: "international-4300-kl328418",
+-    name: "International 4300",
+-    brand: "International",
+-    year: 2019,
+-    condition: "Used",
+-    stockNumber: "A67",
+-    vin: "3HAEUMML8KL328418",
+-
+-    price: 10000,
+-    downPayment: 1500,
+-    currency: "USD",
+-
+-    mileage: 266430,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck32%20(6).jpeg",
+-    images: galleryImages("truck32", 10),
+-
+-    description:
+-      "The 2019 International 4300 is a versatile and dependable 26-foot box truck built to handle demanding commercial and delivery operations. Powered by a proven Cummins diesel engine and paired with an automatic transmission, this truck offers a strong combination of performance, efficiency, and easy operation. A practical solution for businesses looking for a reliable medium-duty truck.",
+-    category: "box truck",
+-
+-    engine: "Cummins ISB — 6.7L Inline-6",
+-    engineManufacturer: "Cummins",
+-    engineModel: "ISB 6.7",
+-    engineDisplacement: 6.7,
+-    horsepower: 200,
+-    fuelType: "Diesel",
+-
+-    transmission: "Automatic",
+-
+-    driveSide: "Left Hand Drive",
+-    color: "White",
+-    cabStyle: "Conventional",
+-  },
+-
+-  {
+-    id: "international-mv607-extended-cab-1501",
+-    name: "International MV607 Extended Cab Edition",
+-    brand: "International",
+-    year: 2022,
+-    condition: "Used",
+-
+-    price: 11000,
+-    downPayment: 2000,
+-    currency: "USD",
+-
+-    mileage: 23857,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck33%20(2).jpeg",
+-    images: galleryImages("truck33", 10),
+-
+-    description:
+-      "2022 International MV607 Extended Cab Edition with an extended cab back seat to pull over and lay down on after a hard day of driving. Features a 26ft box with a heavy-duty 3,300 lb Dhollandia lift gate and 16ft ramp, 103\" interior height, and 26,000 lb GVWR (Non-CDL). Cummins 6.7L engine with Allison automatic transmission, Air Ride suspension and air ride seats, Bluetooth audio, and grey interior. One owner, financing available.",
+-    category: "box truck",
+-
+-    engine: "Cummins 6.7L Inline-6",
+-    engineManufacturer: "Cummins",
+-    horsepower: 220,
+-    fuelType: "Diesel",
+-
+-    transmission: "Allison Automatic",
+-
+-    suspension: "Air Ride",
+-    gvwr: "26,000 lb (Non-CDL)",
+-    driveSide: "Left Hand Drive",
+-    color: "White",
+-    cabStyle: "Extended Cab",
+-  },
+-
+-  {
+-    id: "freightliner-m2-106-plus-vdxd6255",
+-    name: "Freightliner Business Class M2 106 Plus",
+-    brand: "Freightliner",
+-    year: 2027,
+-    condition: "New",
+-    stockNumber: "972811",
+-    vin: "3ALACWFC9VDXD6255",
+-
+-    price: 11500,
+-    downPayment: 2000,
+-    currency: "USD",
+-
+-    mileage: 1950,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck34%20(3).jpeg",
+-    images: galleryImages("truck34", 4),
+-
+-    description:
+-      "2027 Freightliner Business Class M2 106 Plus extended cab box truck. 4x2 axle configuration with 255/70R22.5 tires front and rear, air brakes, engine brake, cruise control, heated mirrors, tilt/telescope steering, power locks, and A/C.",
+-    category: "box truck",
+-
+-    engine: "Cummins B6.7 — 6.7L Inline-6",
+-    engineManufacturer: "Cummins",
+-    engineModel: "B6.7",
+-    horsepower: 240,
+-    fuelType: "Diesel",
+-
+-    transmission: "Allison HS Automatic",
+-    axleRatio: "5.56",
+-
+-    drive: "4x2",
+-    rearAxles: "Single",
+-    driveSide: "Left Hand Drive",
+-    color: "White",
+-    cabStyle: "Extended Cab",
+-  },
+-
+-  {
+-    id: "freightliner-cascadia-suj1070",
+-    name: "Freightliner Cascadia 126",
+-    brand: "Freightliner",
+-    year: 2024,
+-    condition: "Used",
+-    vin: "3AKJHHDR7RSUJ1070",
+-
+-    price: 25000,
+-    downPayment: 3000,
+-    currency: "USD",
+-
+-    mileage: 707681,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck35%20(1).jpeg",
+-    images: galleryImages("truck35", 9),
+-
+-    description:
+-      "2024 Freightliner Cascadia 126 with Detroit DD15 engine rated at 455 HP and Detroit DT12 12-speed automated transmission. 6x4 drivetrain, tandem rear axles, Air Ride suspension, and 2.85 rear ratio. 235-inch wheelbase, air slide fifth wheel, full fairings, and 72-inch sleeper with auxiliary power unit (APU). Class 8 rated at 80,000 lbs GVWR, all aluminum wheels, and white exterior — a well-equipped long-haul tractor ready to work.",
+-    category: "tractor",
+-
+-    engine: "Detroit DD15 — 14.81L Inline-6",
+-    engineManufacturer: "Detroit",
+-    engineModel: "DD15",
+-    engineDisplacement: 14.81,
+-    horsepower: 455,
+-    fuelType: "Diesel",
+-
+-    transmission: "Detroit DT12 12-Speed Automated",
+-    transmissionSpeeds: 12,
+-    axleRatio: "2.85",
+-
+-    drive: "6x4",
+-    suspension: "Air Ride",
+-    rearAxles: "Tandem",
+-    gvwr: "Class 8: 33,001 pounds or greater (80,000 lbs GVWR)",
+-    wheelType: "All Aluminum",
+-    wheelbase: "235 in",
+-    fifthWheelType: "Air Slide",
+-    driveSide: "Left Hand Drive",
+-    sleeperSize: "72 in",
+-    hasApu: true,
+-    color: "White",
+-    cabStyle: "Conventional",
+-  },
+-
+-  {
+-    id: "freightliner-cascadia-dut7435",
+-    name: "Freightliner Cascadia 126",
+-    brand: "Freightliner",
+-    year: 2024,
+-    condition: "Used",
+-    vin: "3AKJHHDR2RDUT7435",
+-
+-    price: 25000,
+-    downPayment: 3000,
+-    currency: "USD",
+-
+-    mileage: 486005,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck36%20(1).jpeg",
+-    images: galleryImages("truck36", 19),
+-
+-    description:
+-      "2024 Freightliner Cascadia 126 with Detroit engine rated at 455 HP and Detroit DT12-OA-1650 12-speed automated manual transmission. AirLiner suspension, 12,350 lb front axle and 40,000 lb rear axle, and 2.16 rear ratio. 227-inch wheelbase, air slide fifth wheel, and 72-inch raised roof sleeper. Class 8 rated at 52,350 lbs GVWR, engine brake equipped, and white exterior — a well-equipped long-haul tractor ready to work.",
+-    category: "tractor",
+-
+-    engine: "Detroit — 14.81L Inline-6",
+-    engineManufacturer: "Detroit",
+-    horsepower: 455,
+-    fuelType: "Diesel",
+-
+-    transmission: "Detroit DT12-OA-1650 12-Speed Automated Manual",
+-    transmissionSpeeds: 12,
+-    axleRatio: "2.16",
+-
+-    drive: "6x4",
+-    suspension: "AirLiner",
+-    rearAxles: "Tandem (40,000 lb)",
+-    gvwr: "Class 8: 33,001 pounds or greater (52,350 lbs GVWR)",
+-    wheelbase: "227 in",
+-    fifthWheelType: "Air Slide",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Raised Roof Sleeper",
+-    sleeperSize: "72 in",
+-    color: "White",
+-    cabStyle: "Conventional",
+-  },
+-
+-  {
+-    id: "freightliner-cascadia-sus5616",
+-    name: "Freightliner Cascadia 126",
+-    brand: "Freightliner",
+-    year: 2024,
+-    condition: "Used",
+-    vin: "3AKJHHDR7RSUS5616",
+-
+-    price: 25000,
+-    downPayment: 3000,
+-    currency: "USD",
+-
+-    mileage: 505144,
+-    mileageUnit: "mi",
+-
+-    image: "/images/truck37%20(1).jpeg",
+-    images: galleryImages("truck37", 20),
+-
+-    description:
+-      "2024 Freightliner Cascadia 126 with Detroit DD15 TCO 50 State engine rated at 425 HP and Detroit DT12 automatic transmission. 6x4 tandem drivetrain with 2.15 rear ratio, sliding fifth wheel, and 221-inch wheelbase. 72-inch raised roof sleeper, dual 100-gallon fuel tanks (200-gallon total capacity), engine brake, and beige/tan exterior — a well-equipped long-haul tractor ready to work.",
+-    category: "tractor",
+-
+-    engine: "Detroit DD15 TCO 50 State — 14.81L Inline-6",
+-    engineManufacturer: "Detroit",
+-    engineModel: "DD15 TCO 50 State",
+-    engineDisplacement: 14.81,
+-    horsepower: 425,
+-    fuelType: "Diesel",
+-
+-    transmission: "Detroit DT12 Automatic",
+-    transmissionSpeeds: 12,
+-    axleRatio: "2.15",
+-
+-    drive: "6x4",
+-    rearAxles: "Tandem",
+-    wheelbase: "221 in",
+-    fifthWheelType: "Sliding",
+-    driveSide: "Left Hand Drive",
+-    sleeperType: "Raised Roof Sleeper",
+-    sleeperSize: "72 in",
+-    fuelCapacity: "200 gal (Dual 100 gal Tanks)",
+-    color: "Beige / Tan",
+-    cabStyle: "Conventional",
+-  },
+-
+-];
+-
+-/** Utility: get all unique brands from the data */
+-export const allBrands = [...new Set(trucks.map((t) => t.brand))];
+-
+-/** Utility: get all unique categories from the data */
+-export const allCategories = [...new Set(trucks.map((t) => t.category))];
+-
+-/** Look up a single truck by id */
+-export function getTruckById(id: string): Truck | undefined {
+-  return trucks.find((t) => t.id === id);
+-}
+-
+-/** Format price with correct currency symbol */
+-export function formatPrice(truck: Truck): string {
+-  const symbol = truck.currency === "USD" ? "$" : "€";
+-  return `${symbol}${truck.price.toLocaleString()}`;
+-}
+-
+-/** Format mileage with correct unit */
+-export function formatMileage(truck: Truck): string {
+-  return `${truck.mileage.toLocaleString()} ${truck.mileageUnit ?? "km"}`;
+-}
++export interface Truck {
++  // ── Identity ──────────────────────────────────────────────────
++  id: string;
++  name: string;
++  brand: string;
++  year: number;
++  condition?: string;          // e.g. "Used" | "New"
++  stockNumber?: string;
++  vin?: string;
++  hours?: number;
++  dot?: boolean;
++
++  // ── Pricing ───────────────────────────────────────────────────
++  price: number;
++  downPayment?: number;
++  currency?: "EUR" | "USD";   // defaults to "EUR"
++
++  // ── Mileage ───────────────────────────────────────────────────
++  mileage: number;
++  mileageUnit?: "km" | "mi";  // defaults to "km"
++
++  // ── Images ────────────────────────────────────────────────────
++  image: string;              // primary / thumbnail image
++  images?: string[];          // full gallery (used on detail page)
++
++  // ── Description ───────────────────────────────────────────────
++  description: string;
++  category: "tractor" | "dump truck" | "trailer" | "box truck" | "flatbed" | "parts";
++
++  // ── Engine ────────────────────────────────────────────────────
++  engine: string;             // formatted display string
++  engineManufacturer?: string;
++  engineModel?: string;
++  engineDisplacement?: number; // litres
++  horsepower: number;
++  fuelType: string;
++
++  // ── Transmission ──────────────────────────────────────────────
++  transmission: string;
++  transmissionSpeeds?: number;
++
++  // ── Chassis / Body ────────────────────────────────────────────
++  color?: string;
++  drive?: string;             // e.g. "6x4"
++  suspension?: string;        // e.g. "Air Ride"
++  rearAxles?: string;         // e.g. "Tandem"
++  gvwr?: string;              // e.g. "Class 8 (33,001 lbs+)"
++  wheelType?: string;         // e.g. "All Steel"
++  wheelbase?: string;         // e.g. "178 in"
++  driveSide?: string;         // e.g. "Left Hand Drive"
++  fifthWheelType?: string;
++  cabStyle?: string;
++  sleeperType?: string;
++  sleeperSize?: string;
++  fuelCapacity?: string;
++  axleRatio?: string;
++  beds?: number;
++  hasApu?: boolean;
++}
++
++// ── Helper: build gallery paths for files named "prefix (n).jpeg" ──────────
++function galleryImages(prefix: string, count: number): string[] {
++  return Array.from(
++    { length: count },
++    (_, i) => `/images/${prefix}%20(${i + 1}).jpeg`
++  );
++}
++
++export const trucks: Truck[] = [
++  // ────────────────────────────────────────────────
++  //  REAL TRUCKS
++  // ────────────────────────────────────────────────
++
++  {
++    id: "freightliner-cascadia-100666",
++    name: "Freightliner Cascadia 126",
++    brand: "Freightliner",
++    year: 2023,
++    condition: "Used",
++    stockNumber: "100666",
++    vin: "3AKJHHDR9PSUH3028",
++    hours: 11811,
++
++    price: 13000,
++    downPayment: 2000,
++    currency: "USD",
++
++    mileage: 287402,
++    mileageUnit: "mi",
++
++    image: "/images/truck2%20(1).jpeg",
++    images: galleryImages("truck2", 26),
++
++    description:
++      "2023 Freightliner Cascadia 126 with Detroit DD15 rated at 455 HP and Detroit DT12 12-speed automated transmission. 6x4 drivetrain, Air Ride suspension, sliding fifth wheel, and aluminum wheels with 295/75 R22.5 tires. Raised roof sleeper, dual 100-gallon fuel tanks (200-gallon capacity), and well-equipped cab make this an ideal late-model long-haul tractor.",
++    category: "tractor",
++
++    engine: "Detroit DD15 — 14.81L Inline-6",
++    engineManufacturer: "Detroit",
++    engineModel: "DD15",
++    engineDisplacement: 14.81,
++    horsepower: 455,
++    fuelType: "Diesel",
++
++    transmission: "Detroit DT12 12-Speed Automated",
++    transmissionSpeeds: 12,
++
++    drive: "6x4",
++    suspension: "Air Ride",
++    rearAxles: "Tandem",
++    gvwr: "Class 8: 33,001 lbs or greater (52,350 lbs GVW)",
++    wheelType: "All Aluminum",
++    wheelbase: "262 in",
++    fifthWheelType: "Sliding",
++    driveSide: "Left Hand Drive",
++    sleeperType: "Raised Roof Sleeper",
++    sleeperSize: "70 in",
++    fuelCapacity: "200 gal",
++    color: "White",
++    cabStyle: "Conventional",
++  },
++
++  // {
++  //   id: "freightliner-cascadia-268250",
++  //   name: "Freightliner Cascadia 126",
++  //   brand: "Freightliner",
++  //   year: 2023,
++  //   condition: "Used",
++  //   stockNumber: "268250",
++  //   vin: "3AKJHHDRXPSNN5516",
++  //   dot: true,
++
++  //   price: 13000,
++  //   downPayment: 2000,
++  //   currency: "USD",
++
++  //   mileage: 380535,
++  //   mileageUnit: "mi",
++
++  //   image: "/images/truck3%20(1).jpeg",
++  //   images: galleryImages("truck3", 26),
++
++  //   description:
++  //     "2023 Freightliner Cascadia 126 with Detroit DD15 (455 HP) and Detroit 12-speed automated transmission. 6x4 drivetrain, tandem rear axles, Class 8 rating, and aluminum wheels. Raised roof sleeper with two beds and 72-inch bunk, plus APU for comfortable rest periods. Ideal linehaul tractor with 80,000 lb GVW capability.",
++  //   category: "tractor",
++
++  //   engine: "Detroit DD15 — 14.81L Inline-6",
++  //   engineManufacturer: "Detroit",
++  //   engineModel: "DD15",
++  //   engineDisplacement: 14.81,
++  //   horsepower: 455,
++  //   fuelType: "Diesel",
++
++  //   transmission: "Detroit 12-Speed Automated",
++  //   transmissionSpeeds: 12,
++  //   axleRatio: "2.64",
++
++  //   drive: "6x4",
++  //   rearAxles: "Tandem",
++  //   gvwr: "Class 8: 33,001 lbs or greater (80,000 lbs GVW)",
++  //   wheelType: "Aluminum",
++  //   wheelbase: "241 in",
++  //   driveSide: "Left Hand Drive",
++  //   sleeperType: "Raised Roof Sleeper",
++  //   sleeperSize: "72 in",
++  //   beds: 2,
++  //   hasApu: true,
++  //   color: "Grey",
++  //   cabStyle: "Conventional",
++  // },
++
++  // {
++  //   id: "freightliner-cascadia-uc5646",
++  //   name: "Freightliner Cascadia 126",
++  //   brand: "Freightliner",
++  //   year: 2022,
++  //   condition: "Used",
++  //   stockNumber: "UC5646",
++  //   vin: "3AKJHHDR5NSNC7132",
++
++  //   price: 12500,
++  //   downPayment: 2000,
++  //   currency: "USD",
++
++  //   mileage: 431254,
++  //   mileageUnit: "mi",
++
++  //   image: "/images/truck6%20(1).jpeg",
++  //   images: galleryImages("truck6", 16),
++
++  //   description:
++  //     "2022 Freightliner Cascadia 126 with Detroit DD15 engine producing 455 HP. Equipped with Detroit DT12 12-speed automated transmission, 6x4 drive, Air Ride suspension, and tandem rear axles. All aluminum wheels and 223-inch wheelbase. Raised roof sleeper configuration for long-haul comfort.",
++  //   category: "tractor",
++
++  //   engine: "Detroit DD15 — 14.81L Inline-6",
++  //   engineManufacturer: "Detroit",
++  //   engineModel: "DD15",
++  //   engineDisplacement: 14.81,
++  //   horsepower: 455,
++  //   fuelType: "Diesel",
++
++  //   transmission: "Detroit DT12 12-Speed Automated",
++  //   transmissionSpeeds: 12,
++
++  //   drive: "6x4",
++  //   suspension: "Air Ride",
++  //   rearAxles: "Tandem",
++  //   gvwr: "Class 8: 33,001 pounds or greater",
++  //   wheelType: "All Aluminum",
++  //   wheelbase: "223 in",
++  //   driveSide: "Left Hand Drive",
++  //   sleeperType: "Raised Roof Sleeper",
++  // },
++
++  {
++    id: "freightliner-cascadia-2339",
++    name: "Freightliner Cascadia 126",
++    brand: "Freightliner",
++    year: 2020,
++    condition: "Used",
++    stockNumber: "2339",
++    vin: "3AKJHHDR8LSLW2940",
++
++    price: 12000,
++    downPayment: 1500,
++    currency: "USD",
++
++    mileage: 577275,
++    mileageUnit: "mi",
++
++    image: "/images/truck7%20(1).jpeg",
++    images: galleryImages("truck7", 16),
++
++    description:
++      "2020 Freightliner Cascadia 126 with Detroit DD15 14.8L engine rated at 505 HP and Detroit DT12 12-speed automated transmission. 6x4 drive, tandem axles, Air Ride suspension, and 3.08 rear ratio. All aluminum wheels, 227-inch wheelbase, 72-inch raised roof sleeper with single bunk and bunk heater. 200-gallon fuel capacity and conventional cab make this a solid long-haul tractor, sold ready to work.",
++    category: "tractor",
++
++    engine: "Detroit DD15 — 14.81L Inline-6",
++    engineManufacturer: "Detroit",
++    engineModel: "DD15",
++    engineDisplacement: 14.81,
++    horsepower: 505,
++    fuelType: "Diesel",
++
++    transmission: "Detroit DT12 12-Speed Automated",
++    transmissionSpeeds: 12,
++    axleRatio: "3.08",
++
++    drive: "6x4",
++    suspension: "Air Ride",
++    rearAxles: "Tandem",
++    gvwr: "Class 8: 33,001 pounds or greater (52,350 lbs GVW)",
++    wheelType: "All Aluminum",
++    wheelbase: "227 in",
++    fifthWheelType: "Sliding",
++    fuelCapacity: "200 gal",
++    driveSide: "Left Hand Drive",
++    sleeperType: "Raised Roof Sleeper",
++    sleeperSize: "72 in",
++    beds: 1,
++    hasApu: true,
++    color: "White",
++    cabStyle: "Conventional",
++  },
++
++  {
++    id: "freightliner-cascadia-21-frht-350",
++    name: "Freightliner Cascadia 126",
++    brand: "Freightliner",
++    year: 2021,
++    condition: "Used",
++    stockNumber: "21 FRHT#350",
++    vin: "3AKJHHDR7MSMK1350",
++
++    price: 11000,
++    downPayment: 1500,
++    currency: "USD",
++
++    mileage: 571418,
++    mileageUnit: "mi",
++
++    image: "/images/truck8%20(1).jpeg",
++    images: galleryImages("truck8", 17),
++
++    description:
++      "2021 Freightliner Cascadia 126 with Detroit DD15 14.8L engine rated at 505 HP and Detroit DT12 12-speed automated transmission. 6x4 drivetrain with 2.94 rear ratio, Air Ride suspension, tandem axles, and all aluminum wheels. 231-inch wheelbase, 70-inch raised roof sleeper with two beds, sliding fifth wheel, and collision mitigation system for added safety.",
++    category: "tractor",
++
++    engine: "Detroit DD15 — 14.8L Inline-6",
++    engineManufacturer: "Detroit",
++    engineModel: "DD15",
++    engineDisplacement: 14.8,
++    horsepower: 505,
++    fuelType: "Diesel",
++
++    transmission: "Detroit DT12 12-Speed Automated",
++    transmissionSpeeds: 12,
++    axleRatio: "2.94",
++
++    drive: "6x4",
++    suspension: "Air Ride",
++    rearAxles: "Tandem",
++    gvwr: "Class 8: 33,001 pounds or greater (52,000 lbs GVW)",
++    wheelType: "All Aluminum",
++    wheelbase: "231 in",
++    fifthWheelType: "Sliding",
++    driveSide: "Left Hand Drive",
++    sleeperType: "Raised Roof Sleeper",
++    sleeperSize: "70 in",
++    beds: 2,
++    color: "Maroon",
++    cabStyle: "Conventional",
++  },
++
++  {
++    id: "freightliner-cascadia-lllc1833",
++    name: "Freightliner Cascadia 126 Mid Roof",
++    brand: "Freightliner",
++    year: 2020,
++    condition: "Used",
++    vin: "1FUJHHDV5LLLC1833",
++
++    price: 11500,
++    downPayment: 1500,
++    currency: "USD",
++
++    mileage: 548469,
++    mileageUnit: "mi",
++
++    image: "/images/truck9%20(1).jpeg",
++    images: galleryImages("truck9", 23),
++
++    description:
++      "2020 Freightliner Cascadia 126 Mid Roof powered by a Detroit DD13 12.81L engine rated at 450 HP, paired with a Detroit DT12 12-speed automated transmission. Equipped with PTO and 2-line wet kit for walking floor trailer, Thermo King APU, engine brake, Air Ride suspension with dump, and double locking differentials. Strong, clean truck regularly serviced with no reported oil or coolant leaks and active DEF system, ready to work.",
++    category: "tractor",
++
++    engine: "Detroit DD13 — 12.81L Inline-6",
++    engineManufacturer: "Detroit",
++    engineModel: "DD13",
++    engineDisplacement: 12.81,
++    horsepower: 450,
++    fuelType: "Diesel",
++
++    transmission: "Detroit DT12 12-Speed Automated",
++    transmissionSpeeds: 12,
++    axleRatio: "3.25",
++
++    drive: "6x4",
++    suspension: "Air Ride",
++    rearAxles: "Tandem",
++    gvwr: "Class 8: 33,001 pounds or greater",
++    wheelbase: "235 in",
++    fifthWheelType: "Sliding",
++    driveSide: "Left Hand Drive",
++    sleeperType: "Mid Roof Sleeper",
++    hasApu: true,
++  },
++
++  {
++    id: "freightliner-cascadia-smj3191",
++    name: "Freightliner Cascadia 126",
++    brand: "Freightliner",
++    year: 2021,
++    condition: "Used",
++    stockNumber: "SMJ3191",
++    vin: "3AKJHHDR6MSMJ3191",
++
++    price: 11500,
++    downPayment: 1500,
++    currency: "USD",
++
++    mileage: 797002,
++    mileageUnit: "mi",
++
++    image: "/images/truck11%20(1).jpeg",
++    images: galleryImages("truck11", 17),
++
++    description:
++      "2021 Freightliner Cascadia PT126SLP heavy duty sleeper with Detroit DD15 14.8L engine rated at 400 HP and Detroit DT12 12-speed automated transmission. 6x4 drivetrain with 2.28 rear ratio, Air Ride suspension, tandem axles, and all aluminum wheels. 233-inch wheelbase and 72-inch raised roof sleeper with double bunks make this red Cascadia a high-mileage but capable long-haul truck backed by OEM support.",
++    category: "tractor",
++
++    engine: "Detroit DD15 — 14.8L Inline-6",
++    engineManufacturer: "Detroit",
++    engineModel: "DD15",
++    engineDisplacement: 14.8,
++    horsepower: 400,
++    fuelType: "Diesel",
++
++    transmission: "Detroit DT12 12-Speed Automated",
++    transmissionSpeeds: 12,
++    axleRatio: "2.28",
++
++    drive: "6x4",
++    suspension: "Air Ride",
++    rearAxles: "Tandem",
++    gvwr: "Class 8: 33,001 pounds or greater",
++    wheelType: "All Aluminum",
++    wheelbase: "233 in",
++    driveSide: "Left Hand Drive",
++    sleeperType: "Raised Roof Sleeper",
++    sleeperSize: "72 in",
++    beds: 2,
++    color: "Red",
++  },
++
++  {
++    id: "volvo-vnl64t760-95948",
++    name: "Volvo VNL64T760",
++    brand: "Volvo",
++    year: 2024,
++    condition: "Used",
++    stockNumber: "95948",
++    vin: "4V4C9EH1RN643459",
++
++    price: 15000,
++    downPayment: 2000,
++    currency: "USD",
++
++    mileage: 382465,
++    mileageUnit: "mi",
++
++    image: "/images/truck12%20(1).jpeg",
++    images: galleryImages("truck12", 17),
++
++    description:
++      "2024 Volvo VNL64T760 heavy duty conventional sleeper truck with Volvo D13 engine producing 455 HP and automatic transmission. 6x4 drivetrain, Air Ride suspension, tandem rear axles, and aluminum wheels. 252-inch wheelbase and 96-inch raised roof sleeper. Sold as-is, where-is without warranty. Started on site, full operations not tested. Pre-purchase inspections encouraged.",
++    category: "tractor",
++
++    engine: "Volvo D13 — 12.81L Inline-6",
++    engineManufacturer: "Volvo",
++    engineModel: "D13",
++    engineDisplacement: 12.81,
++    horsepower: 455,
++    fuelType: "Diesel",
++
++    transmission: "Automatic",
++    transmissionSpeeds: 12,
++
++    drive: "6x4",
++    suspension: "Air Ride",
++    rearAxles: "Tandem",
++    gvwr: "Class 8: 33,001 pounds or greater (50,678 lbs GVWR)",
++    wheelType: "Aluminum",
++    wheelbase: "252 in",
++    fuelCapacity: "150 gal",
++    driveSide: "Left Hand Drive",
++    sleeperType: "Raised Roof Sleeper",
++    sleeperSize: "96 in",
++    fifthWheelType: "Air Slide",
++    cabStyle: "Conventional",
++  },
++
++  {
++    id: "volvo-vnl64t760-uc5543",
++    name: "Volvo VNL64T760",
++    brand: "Volvo",
++    year: 2023,
++    condition: "Used",
++    stockNumber: "UC5543",
++    vin: "4V4NC9EH1PN308439",
++
++    price: 13500,
++    downPayment: 1500,
++    currency: "USD",
++
++    mileage: 357079,
++    mileageUnit: "mi",
++
++    image: "/images/truck13%20(1).jpeg",
++    images: galleryImages("truck13", 24),
++
++    description:
++      "2023 Volvo VNL64T760 heavy duty conventional sleeper truck with Volvo D13 engine producing 455 HP and I-Shift 12-speed automatic transmission. 6x4 drivetrain, Air Ride suspension, tandem rear axles, and aluminum wheels. 228-inch wheelbase and raised roof sleeper. Copper exterior color.",
++    category: "tractor",
++
++    engine: "Volvo D13 — 12.81L Inline-6",
++    engineManufacturer: "Volvo",
++    engineModel: "D13",
++    engineDisplacement: 12.81,
++    horsepower: 455,
++    fuelType: "Diesel",
++
++    transmission: "I-Shift 12-Speed Automatic",
++    transmissionSpeeds: 12,
++
++    drive: "6x4",
++    suspension: "Air Ride",
++    rearAxles: "Tandem",
++    gvwr: "Class 8: 33,001 pounds or greater",
++    wheelType: "Aluminum",
++    wheelbase: "228 in",
++    driveSide: "Left Hand Drive",
++    sleeperType: "Raised Roof Sleeper",
++    color: "Copper",
++    cabStyle: "Conventional",
++  },
++
++  {
++    id: "volvo-vnl64t760-2531",
++    name: "Volvo VNL64T760",
++    brand: "Volvo",
++    year: 2024,
++    condition: "Used",
++    stockNumber: "2531",
++    vin: "4V4NC9EH1RN662531",
++    dot: true,
++
++    price: 15000,
++    downPayment: 2000,
++    currency: "USD",
++
++    mileage: 168605,
++    mileageUnit: "mi",
++
++    image: "/images/truck15%20(1).jpeg",
++    images: galleryImages("truck15", 29),
++
++    description:
++      "2024 Volvo VNL64T760 with only 168,605 original miles! Still under factory warranty! California truck with no rust. All virgin tires on polished aluminum wheels. Volvo D13 455 HP engine with I-Shift 12-speed automated transmission and 2.64 gear ratio. Features include refrigerator, microwave, TV, inverter, double bunk, and fully inspected, serviced, and detailed. Financing and extended warranty available!",
++    category: "tractor",
++
++    engine: "Volvo D13 — 12.81L Inline-6",
++    engineManufacturer: "Volvo",
++    engineModel: "D13",
++    engineDisplacement: 12.81,
++    horsepower: 455,
++    fuelType: "Diesel",
++
++    transmission: "I-Shift 12-Speed Automated",
++    transmissionSpeeds: 12,
++    axleRatio: "2.64",
++
++    drive: "6x4",
++    suspension: "Air Ride",
++    rearAxles: "Tandem",
++    gvwr: "Class 8: 33,001 pounds or greater (80,000 lbs GVWR)",
++    wheelType: "All Aluminum",
++    wheelbase: "225 in",
++    driveSide: "Left Hand Drive",
++    sleeperType: "Raised Roof Sleeper",
++    sleeperSize: "70 in",
++    beds: 2,
++    color: "White",
++    cabStyle: "Conventional",
++    fifthWheelType: "Sliding",
++  },
++
++  {
++    id: "freightliner-cascadia-lj3604",
++    name: "Freightliner Cascadia 126",
++    brand: "Freightliner",
++    year: 2020,
++    condition: "Used",
++    stockNumber: "LJ3604",
++    vin: "1FUJHHDR6LLLJ3604",
++
++    price: 13000,
++    downPayment: 2000,
++    currency: "USD",
++
++    mileage: 572857,
++    mileageUnit: "mi",
++
++    image: "/images/truck16%20(1).jpeg",
++    images: galleryImages("truck16", 22),
++
++    description:
++      "2020 Freightliner Cascadia 126 with 572,857 miles. Detroit DD15 engine producing 505 HP with engine brake, paired with Detroit DT12 12-speed automated transmission. 72-inch mid-roof XT sleeper, 40,000 lb rear ends with 3.08 ratio, TriPac auxiliary power unit, super singles, Air Ride suspension, hydraulic power steering, dual aluminum fuel tanks, stainless steel quarter fenders, bunk heater, tilt and telescoping steering wheel, cruise control, power windows, adjustable 5th wheel, 240-inch wheelbase, disc brakes, and aluminum disc wheels. Green Elite exterior.",
++    category: "tractor",
++
++    engine: "Detroit DD15 — 14.81L Inline-6",
++    engineManufacturer: "Detroit",
++    engineModel: "DD15",
++    engineDisplacement: 14.81,
++    horsepower: 505,
++    fuelType: "Diesel",
++
++    transmission: "Detroit DT12 12-Speed Automated",
++    transmissionSpeeds: 12,
++    axleRatio: "3.08",
++
++    drive: "6x4",
++    suspension: "Air Ride",
++    rearAxles: "Tandem",
++    gvwr: "Class 8: 33,001 pounds or greater (53,300 lbs GVWR)",
++    wheelType: "Aluminum",
++    wheelbase: "240 in",
++    driveSide: "Left Hand Drive",
++    sleeperType: "Mid Roof Sleeper",
++    sleeperSize: "72 in",
++    beds: 1,
++    hasApu: true,
++    color: "Green Elite",
++    cabStyle: "Conventional",
++    fifthWheelType: "Fixed",
++    fuelCapacity: "Dual Aluminum Fuel Tanks",
++  },
++
++  {
++    id: "freightliner-122sd-a357",
++    name: "Freightliner 122SD",
++    brand: "Freightliner",
++    year: 2022,
++    condition: "Used",
++    stockNumber: "A357",
++    vin: "3AKJGNDRONDNF7595",
++
++    price: 14000,
++    downPayment: 1500,
++    currency: "USD",
++
++    mileage: 399974,
++    mileageUnit: "mi",
++
++    image: "/images/truck19%20(1).jpeg",
++    images: galleryImages("truck19", 9),
++
++    description:
++      "2022 Freightliner 122SD with 399,974 miles. 72-inch raised roof sleeper with double bunk. Just polished! California compliant. Detroit DD15 engine producing 455 HP paired with Eaton-Fuller 13-speed automatic transmission. 6x4 drivetrain, Air Ride suspension, tandem rear axles, and aluminum wheels. 226-inch wheelbase.",
++    category: "tractor",
++
++    engine: "Detroit DD15 — 14.8L Inline-6",
++    engineManufacturer: "Detroit",
++    engineModel: "DD15",
++    engineDisplacement: 14.8,
++    horsepower: 455,
++    fuelType: "Diesel",
++
++    transmission: "Eaton-Fuller 13-Speed Automatic",
++    transmissionSpeeds: 13,
++    axleRatio: "3.08",
++
++    drive: "6x4",
++    suspension: "Air Ride",
++    rearAxles: "Tandem",
++    gvwr: "Class 8: 33,001 pounds or greater",
++    wheelType: "Aluminum",
++    wheelbase: "226 in",
++    driveSide: "Left Hand Drive",
++    sleeperType: "Raised Roof Sleeper",
++    sleeperSize: "72 in",
++    beds: 2,
++    cabStyle: "Conventional",
++  },
++
++  {
++    id: "freightliner-122sd-ndnn4022",
++    name: "Freightliner 122SD",
++    brand: "Freightliner",
++    year: 2022,
++    condition: "Used",
++    stockNumber: "NDNN4022",
++    vin: "3AKJGNDR9NDNN4022",
++
++    price: 14000,
++    downPayment: 1500,
++    currency: "USD",
++
++    mileage: 371749,
++    mileageUnit: "mi",
++
++    image: "/images/truck20%20(1).jpeg",
++    images: galleryImages("truck20", 11),
++
++    description:
++      "2022 Freightliner 122SD (Coronado) with 371,749 miles. One owner truck! Detroit DD15 engine producing 505 HP paired with Eaton Ultra Shift 13-speed automated transmission. 6x4 drivetrain, Air Ride suspension, tandem rear axles, and all aluminum wheels. Flat top sleeper configuration. Call today!",
++    category: "tractor",
++
++    engine: "Detroit DD15 — 14.8L Inline-6",
++    engineManufacturer: "Detroit",
++    engineModel: "DD15",
++    engineDisplacement: 14.8,
++    horsepower: 505,
++    fuelType: "Diesel",
++
++    transmission: "Eaton Ultra Shift 13-Speed Automated",
++    transmissionSpeeds: 13,
++
++    drive: "6x4",
++    suspension: "Air Ride",
++    rearAxles: "Tandem",
++    gvwr: "Class 8: 33,001 pounds or greater",
++    wheelType: "All Aluminum",
++    driveSide: "Left Hand Drive",
++    sleeperType: "Flat Top Sleeper",
++    cabStyle: "Conventional",
++  },
++  {
++    id: "kenworth-w900l-truck21",
++    name: "Kenworth W900L",
++    brand: "Kenworth",
++    year: 2018,
++    condition: "Used",
++
++    price: 25000,
++    downPayment: 2000,
++    currency: "USD",
++
++    mileage: 395573,
++    mileageUnit: "mi",
++
++    image: "/images/truck21%20(1).jpeg",
++    images: galleryImages("truck21", 13),
++
++    description:
++      "Excellent condition, work-ready 2018 Kenworth W900L with strong specs and low recent maintenance miles. Cummins X15 (565 HP), Fuller Super 18 manual transmission with about 25,000 miles on transmission, 8x4 drive, tri-axle setup with 46,000 lb rear ends, drop axle, and wet kit configured for side dump and belly dump. Dual fuel tanks (90 gal/100 gal), 11R22.5 tires, front tires around 1,000 miles, rear tires about 50% remaining, dual Legacy low-back seats, heated LED headlights, and full locking differentials. No downtime - get in and go to work.",
++    category: "tractor",
++
++    engine: "Cummins X15",
++    engineManufacturer: "Cummins",
++    engineModel: "X15",
++    horsepower: 565,
++    fuelType: "Diesel",
++
++    transmission: "Fuller Super 18 Manual",
++    transmissionSpeeds: 18,
++
++    drive: "8x4",
++    suspension: "Air Ride",
++    rearAxles: "Tri (46,000 lb)",
++    gvwr: "Class 8: 33,001 pounds or greater",
++    wheelType: "All Aluminum",
++    wheelbase: "283 in",
++    driveSide: "Left Hand Drive",
++    sleeperType: "Mid Roof Sleeper",
++    sleeperSize: "38 in AeroCab",
++    fuelCapacity: "90 gal / 100 gal",
++    cabStyle: "Conventional",
++  },
++  {
++    id: "kenworth-t680-truck23",
++    name: "Kenworth T680",
++    brand: "Kenworth",
++    year: 2022,
++    condition: "Used",
++    stockNumber: "NJ101217U",
++    vin: "1XKYD49X7NJ101217",
++
++    price: 30000,
++    downPayment: 2000,
++    currency: "USD",
++
++    mileage: 399103,
++    mileageUnit: "mi",
++
++    image: "/images/truck23%20(1).jpeg",
++    images: galleryImages("truck23", 19),
++
++    description:
++      "2022 Kenworth T680 in used condition. Cummins X15 rated at 450 HP with Endurant 12-speed automated transmission. 6x4 drive, AG 400L suspension, tandem rear axles with 40,000 lb rear axle rating, all aluminum wheels, and 244-inch wheelbase. Mid roof sleeper with 76-inch sleeper size and one bed. Power locks, A/C in good condition, vinyl/cloth seats, and APU equipped.",
++    category: "tractor",
++
++    engine: "Cummins X15",
++    engineManufacturer: "Cummins",
++    engineModel: "X15",
++    engineDisplacement: 15.1,
++    horsepower: 450,
++    fuelType: "Diesel",
++
++    transmission: "Endurant 12-Speed Automated",
++    transmissionSpeeds: 12,
++
++    drive: "6x4",
++    suspension: "AG 400L",
++    rearAxles: "Tandem (40,000 lb)",
++    gvwr: "Class 8: 33,001 pounds or greater",
++    wheelType: "All Aluminum",
++    wheelbase: "244 in",
++    driveSide: "Left Hand Drive",
++    sleeperType: "Mid Roof Sleeper",
++    sleeperSize: "76 in",
++    beds: 1,
++    hasApu: true,
++    cabStyle: "Conventional",
++  },
++  {
++    id: "peterbilt-579-md742911",
++    name: "Peterbilt 579",
++    brand: "Peterbilt",
++    year: 2021,
++    condition: "Used",
++    vin: "1XPBDP9X8MD742911",
++
++    price: 18000,
++    downPayment: 2000,
++    currency: "USD",
++
++    mileage: 375462,
++    mileageUnit: "mi",
++
++    image: "/images/truck29%20(1).jpeg",
++    images: galleryImages("truck29", 14),
++
++    description:
++      "2021 Peterbilt 579 conventional sleeper with remaining OEM Peterbilt extended warranty — 6-year/600,000-mile engine & aftertreatment coverage and 5-year/600,000-mile basic vehicle & towing coverage (DIS: July 1, 2021). PACCAR MX-13 engine with 12-speed automatic transmission, Low Air Leaf suspension, tandem rear axles, and 2.64 axle ratio. 80-inch Ultraloft sleeper, aero molded bumper, Premier Interior in Sterling Gray, Mordura driver and passenger seats, dual 26-inch aluminum 100-gallon fuel tanks (200-gallon total), and 228-inch wheelbase. White exterior.",
++    category: "tractor",
++
++    engine: "PACCAR MX-13",
++    engineManufacturer: "PACCAR",
++    engineModel: "MX-13",
++    horsepower: 510,
++    fuelType: "Diesel",
++
++    transmission: "12-Speed Automatic",
++    transmissionSpeeds: 12,
++    axleRatio: "2.64",
++
++    drive: "6x4",
++    suspension: "Low Air Leaf",
++    rearAxles: "Tandem",
++    gvwr: "Class 8: 33,001 pounds or greater",
++    wheelType: "Aluminum",
++    wheelbase: "228 in",
++    driveSide: "Left Hand Drive",
++    sleeperType: "Ultraloft Sleeper",
++    sleeperSize: "80 in",
++    fuelCapacity: "200 gal",
++    color: "White",
++    cabStyle: "Conventional",
++  },
++
++  {
++    id: "peterbilt-579-truck28",
++    name: "Peterbilt 579",
++    brand: "Peterbilt",
++    year: 2026,
++    condition: "New",
++
++    price: 30000,
++    downPayment: 2000,
++    currency: "USD",
++
++    mileage: 0,
++    mileageUnit: "mi",
++
++    image: "/images/truck28%20(1).jpeg",
++    images: galleryImages("truck28", 16),
++
++    description:
++      "Brand-new 2026 Peterbilt 579 Prestige trim in Sterling Grey/White. PACCAR MX-13 engine producing 510 HP and 1,850 lb-ft of torque, paired with the PACCAR TX-12 12-speed automated transmission. Meritor 12,500 lb front axle and Meritor 40,000 lb rear axle with 3.42 ratio. Peterbilt Low Air Leaf rear suspension and 244-inch wheelbase. 80-inch Ultraloft cab configuration. 295/75R22.5 tires front and rear. A flagship spec ready to work from day one.",
++    category: "tractor",
++
++    engine: "PACCAR MX-13",
++    engineManufacturer: "PACCAR",
++    engineModel: "MX-13",
++    horsepower: 510,
++    fuelType: "Diesel",
++
++    transmission: "PACCAR TX-12 12-Speed Automated",
++    transmissionSpeeds: 12,
++    axleRatio: "3.42",
++
++    drive: "6x4",
++    suspension: "Peterbilt Low Air Leaf",
++    rearAxles: "Tandem (40,000 lb)",
++    gvwr: "Class 8: 33,001 pounds or greater",
++    wheelbase: "244 in",
++    driveSide: "Left Hand Drive",
++    sleeperType: "Ultraloft Sleeper",
++    sleeperSize: "80 in",
++    color: "White",
++    cabStyle: "Conventional",
++  },
++
++  {
++    id: "freightliner-cascadia-rsva8454",
++    name: "Freightliner Cascadia 126",
++    brand: "Freightliner",
++    year: 2024,
++    condition: "Used",
++    vin: "3AKJHHDR1RSVA8454",
++
++    price: 25000,
++    downPayment: 3000,
++    currency: "USD",
++
++    mileage: 225000,
++    mileageUnit: "mi",
++
++    image: "/images/truck27%20(1).jpeg",
++    images: galleryImages("truck27", 22),
++
++    description:
++      "2024 Freightliner Cascadia 126 with only 225,000 miles and active warranty through August 28, 2028 (up to 550,000 miles). Detroit DD15 engine producing 505 HP with engine brake, turbo, and Detroit DT12 12-speed automated transmission. 6x4 drivetrain, 4-bag Air Ride suspension, tandem rear axles with 3.08 gear ratio, and 239-inch wheelbase. 72-inch raised roof sleeper, aluminum wheels, 300-gallon total fuel capacity (dual 150-gallon tanks), APU, collision mitigation system, power locks, and A/C. Gray exterior. A clean, low-mileage late-model Cascadia ready to earn.",
++    category: "tractor",
++
++    engine: "Detroit DD15 — 14.81L Inline-6",
++    engineManufacturer: "Detroit",
++    engineModel: "DD15",
++    engineDisplacement: 14.81,
++    horsepower: 505,
++    fuelType: "Diesel",
++
++    transmission: "Detroit DT12 12-Speed Automated",
++    transmissionSpeeds: 12,
++    axleRatio: "3.08",
++
++    drive: "6x4",
++    suspension: "4 Bag Air Ride",
++    rearAxles: "Tandem",
++    gvwr: "Class 8: 33,001 pounds or greater (80,000 lbs GVW)",
++    wheelType: "Aluminum",
++    wheelbase: "239 in",
++    driveSide: "Left Hand Drive",
++    sleeperType: "Raised Roof Sleeper",
++    sleeperSize: "72 in",
++    beds: 1,
++    hasApu: true,
++    fuelCapacity: "300 gal",
++    color: "Gray",
++    cabStyle: "Conventional",
++  },
++
++  // ────────────────────────────────────────────────
++  //  TRAILERS
++  // ────────────────────────────────────────────────
++  {
++    id: "vanguard-vxp-trailer1",
++    name: "Vanguard VXP 53' Dry Van",
++    brand: "Vanguard",
++    year: 2017,
++    condition: "Used",
++
++    price: 6000,
++    downPayment: 1500,
++    currency: "USD",
++
++    mileage: 0,
++    mileageUnit: "mi",
++
++    image: "/images/trailer1%20(1).jpeg",
++    images: galleryImages("trailer1", 6),
++
++    description:
++      "2017 Vanguard VXP 53'×102\" dry van trailer. Air Ride suspension, aluminum roof, 48-inch logistic centers, side skirts, front and rear vents, galvanized rear frame, swing doors, wood floor, and 22.5 LP tires on all-steel wheels. Tandem rear axles. Plate/composite construction with logistic posts.",
++    category: "trailer",
++
++    engine: "N/A",
++    horsepower: 0,
++    fuelType: "N/A",
++    transmission: "N/A",
++
++    suspension: "Air Ride",
++    rearAxles: "Tandem",
++    wheelType: "All Steel",
++    color: "White",
++  },
++
++  {
++    id: "utility-reefer-trailer7",
++    name: "Utility 53' Reefer Trailer",
++    brand: "Utility",
++    year: 2021,
++    condition: "Used",
++
++    price: 7000,
++    downPayment: 1500,
++    currency: "USD",
++
++    mileage: 0,
++    mileageUnit: "mi",
++
++    image: "/images/trailer7%20(1).jpeg",
++    images: galleryImages("trailer7", 9),
++
++    description:
++      "2021 Utility reefer trailer with Thermo King S600 unit — owner-operator spec. Chrome unit, 3 lights, side skirts, 13,000 hours. Tires and drum brakes in good condition.",
++    category: "trailer",
++
++    engine: "Thermo King S600",
++    horsepower: 0,
++    fuelType: "Diesel",
++    transmission: "N/A",
++
++    hours: 13000,
++  },
++
++  {
++    id: "thermoking-reefer-trailer4",
++    name: "Thermo King 53' Reefer Trailer",
++    brand: "Thermo King",
++    year: 2022,
++    condition: "Used",
++
++    price: 7500,
++    downPayment: 1500,
++    currency: "USD",
++
++    mileage: 0,
++    mileageUnit: "mi",
++
++    image: "/images/trailer4%20(1).jpeg",
++    images: galleryImages("trailer4", 10),
++
++    description:
++      "2022 Thermo King 53' reefer trailer with Thermo King C-600 unit at 11,800 hours. Equipped with PSI tire inflation system, side skirts, swing doors, rub rails, and galvanized cross members. New brake shoes, newer deep rubber tires, and new battery. No rust, clean title, road ready.",
++    category: "trailer",
++
++    engine: "Thermo King C-600",
++    horsepower: 0,
++    fuelType: "Diesel",
++    transmission: "N/A",
++
++    hours: 11800,
++  },
++
++  {
++    id: "wabash-53ft-trailer3",
++    name: "Wabash 53' Dry Van",
++    brand: "Wabash",
++    year: 2022,
++    condition: "Used",
++
++    price: 7500,
++    downPayment: 1500,
++    currency: "USD",
++
++    mileage: 0,
++    mileageUnit: "mi",
++
++    image: "/images/trailer3%20(1).jpeg",
++    images: galleryImages("trailer3", 6),
++
++    description:
++      "2022 Wabash 53ft dry van trailer in like-new condition. Clean title, excellent brakes all around, good tires, and annual inspection valid through 2025. Road ready and available now.",
++    category: "trailer",
++
++    engine: "N/A",
++    horsepower: 0,
++    fuelType: "N/A",
++    transmission: "N/A",
++  },
++
++  {
++    id: "international-mv607-536513",
++    name: "International MV607",
++    brand: "International",
++    year: 2022,
++    condition: "Used",
++    vin: "3H4EUMML6NL536513",
++
++    price: 10500,
++    downPayment: 2000,
++    currency: "USD",
++
++    mileage: 168341,
++    mileageUnit: "mi",
++
++    image: "/images/truck30%20(10).jpeg",
++    images: galleryImages("truck30", 16),
++
++    description:
++      "2022 International MV607 with a Smyrna Truck & Cargo 26-foot van body offers a versatile solution for a variety of commercial transportation needs. Powered by a reliable Cummins B6.7 diesel engine.",
++    category: "box truck",
++
++    engine: "Cummins B6.7 — 6.7L Inline-6",
++    engineManufacturer: "Cummins",
++    engineModel: "B6.7",
++    horsepower: 240,
++    fuelType: "Diesel",
++
++    transmission: "Allison HS Automatic",
++    axleRatio: "5.57",
++
++    suspension: "Spring",
++    rearAxles: "Single",
++    gvwr: "25,999 lb",
++    wheelbase: "254 in",
++    driveSide: "Left Hand Drive",
++    color: "White",
++    cabStyle: "Conventional",
++  },
++
++  {
++    id: "international-4300-kl328418",
++    name: "International 4300",
++    brand: "International",
++    year: 2019,
++    condition: "Used",
++    stockNumber: "A67",
++    vin: "3HAEUMML8KL328418",
++
++    price: 10000,
++    downPayment: 1500,
++    currency: "USD",
++
++    mileage: 266430,
++    mileageUnit: "mi",
++
++    image: "/images/truck32%20(6).jpeg",
++    images: galleryImages("truck32", 10),
++
++    description:
++      "The 2019 International 4300 is a versatile and dependable 26-foot box truck built to handle demanding commercial and delivery operations. Powered by a proven Cummins diesel engine and paired with an automatic transmission, this truck offers a strong combination of performance, efficiency, and easy operation. A practical solution for businesses looking for a reliable medium-duty truck.",
++    category: "box truck",
++
++    engine: "Cummins ISB — 6.7L Inline-6",
++    engineManufacturer: "Cummins",
++    engineModel: "ISB 6.7",
++    engineDisplacement: 6.7,
++    horsepower: 200,
++    fuelType: "Diesel",
++
++    transmission: "Automatic",
++
++    driveSide: "Left Hand Drive",
++    color: "White",
++    cabStyle: "Conventional",
++  },
++
++  {
++    id: "international-mv607-extended-cab-1501",
++    name: "International MV607 Extended Cab Edition",
++    brand: "International",
++    year: 2022,
++    condition: "Used",
++
++    price: 11000,
++    downPayment: 2000,
++    currency: "USD",
++
++    mileage: 23857,
++    mileageUnit: "mi",
++
++    image: "/images/truck33%20(2).jpeg",
++    images: galleryImages("truck33", 10),
++
++    description:
++      "2022 International MV607 Extended Cab Edition with an extended cab back seat to pull over and lay down on after a hard day of driving. Features a 26ft box with a heavy-duty 3,300 lb Dhollandia lift gate and 16ft ramp, 103\" interior height, and 26,000 lb GVWR (Non-CDL). Cummins 6.7L engine with Allison automatic transmission, Air Ride suspension and air ride seats, Bluetooth audio, and grey interior. One owner, financing available.",
++    category: "box truck",
++
++    engine: "Cummins 6.7L Inline-6",
++    engineManufacturer: "Cummins",
++    horsepower: 220,
++    fuelType: "Diesel",
++
++    transmission: "Allison Automatic",
++
++    suspension: "Air Ride",
++    gvwr: "26,000 lb (Non-CDL)",
++    driveSide: "Left Hand Drive",
++    color: "White",
++    cabStyle: "Extended Cab",
++  },
++
++  {
++    id: "freightliner-m2-106-plus-vdxd6255",
++    name: "Freightliner Business Class M2 106 Plus",
++    brand: "Freightliner",
++    year: 2027,
++    condition: "New",
++    stockNumber: "972811",
++    vin: "3ALACWFC9VDXD6255",
++
++    price: 11500,
++    downPayment: 2000,
++    currency: "USD",
++
++    mileage: 1950,
++    mileageUnit: "mi",
++
++    image: "/images/truck34%20(3).jpeg",
++    images: galleryImages("truck34", 4),
++
++    description:
++      "2027 Freightliner Business Class M2 106 Plus extended cab box truck. 4x2 axle configuration with 255/70R22.5 tires front and rear, air brakes, engine brake, cruise control, heated mirrors, tilt/telescope steering, power locks, and A/C.",
++    category: "box truck",
++
++    engine: "Cummins B6.7 — 6.7L Inline-6",
++    engineManufacturer: "Cummins",
++    engineModel: "B6.7",
++    horsepower: 240,
++    fuelType: "Diesel",
++
++    transmission: "Allison HS Automatic",
++    axleRatio: "5.56",
++
++    drive: "4x2",
++    rearAxles: "Single",
++    driveSide: "Left Hand Drive",
++    color: "White",
++    cabStyle: "Extended Cab",
++  },
++
++  {
++    id: "freightliner-cascadia-dut7435",
++    name: "Freightliner Cascadia 126",
++    brand: "Freightliner",
++    year: 2024,
++    condition: "Used",
++    vin: "3AKJHHDR2RDUT7435",
++
++    price: 25000,
++    downPayment: 3000,
++    currency: "USD",
++
++    mileage: 486005,
++    mileageUnit: "mi",
++
++    image: "/images/truck36%20(1).jpeg",
++    images: galleryImages("truck36", 19),
++
++    description:
++      "2024 Freightliner Cascadia 126 with Detroit engine rated at 455 HP and Detroit DT12-OA-1650 12-speed automated manual transmission. AirLiner suspension, 12,350 lb front axle and 40,000 lb rear axle, and 2.16 rear ratio. 227-inch wheelbase, air slide fifth wheel, and 72-inch raised roof sleeper. Class 8 rated at 52,350 lbs GVWR, engine brake equipped, and white exterior — a well-equipped long-haul tractor ready to work.",
++    category: "tractor",
++
++    engine: "Detroit — 14.81L Inline-6",
++    engineManufacturer: "Detroit",
++    horsepower: 455,
++    fuelType: "Diesel",
++
++    transmission: "Detroit DT12-OA-1650 12-Speed Automated Manual",
++    transmissionSpeeds: 12,
++    axleRatio: "2.16",
++
++    drive: "6x4",
++    suspension: "AirLiner",
++    rearAxles: "Tandem (40,000 lb)",
++    gvwr: "Class 8: 33,001 pounds or greater (52,350 lbs GVWR)",
++    wheelbase: "227 in",
++    fifthWheelType: "Air Slide",
++    driveSide: "Left Hand Drive",
++    sleeperType: "Raised Roof Sleeper",
++    sleeperSize: "72 in",
++    color: "White",
++    cabStyle: "Conventional",
++  },
++
++];
++
++/** Utility: get all unique brands from the data */
++export const allBrands = [...new Set(trucks.map((t) => t.brand))];
++
++/** Utility: get all unique categories from the data */
++export const allCategories = [...new Set(trucks.map((t) => t.category))];
++
++/** Look up a single truck by id */
++export function getTruckById(id: string): Truck | undefined {
++  return trucks.find((t) => t.id === id);
++}
++
++/** Format price with correct currency symbol */
++export function formatPrice(truck: Truck): string {
++  const symbol = truck.currency === "USD" ? "$" : "€";
++  return `${symbol}${truck.price.toLocaleString()}`;
++}
++
++/** Format mileage with correct unit */
++export function formatMileage(truck: Truck): string {
++  return `${truck.mileage.toLocaleString()} ${truck.mileageUnit ?? "km"}`;
++}
+diff --git a/app/page.tsx b/app/page.tsx
+index 56011de..0bedade 100644
+--- a/app/page.tsx
++++ b/app/page.tsx
+@@ -5,6 +5,7 @@ import FeaturedTrucks from "./components/FeaturedTrucks";
+ import Brands from "./components/Brands";
+ import LocationMap from "./components/LocationMap";
+ 
++import FinancingSection from "./components/FinancingSection";
+ import ContactSection from "./components/ContactSection";
+ import Footer from "./components/Footer";
+ 
+@@ -18,6 +19,7 @@ export default function Home() {
+         <FeaturedTrucks />
+         <Brands />
+         <LocationMap />
++        <FinancingSection />
+         <ContactSection />
+       </main>
+       <Footer />
+diff --git a/app/trucks/[id]/page.tsx b/app/trucks/[id]/page.tsx
+index 10de12f..e06ddbf 100644
+--- a/app/trucks/[id]/page.tsx
++++ b/app/trucks/[id]/page.tsx
+@@ -22,6 +22,7 @@ import Footer from "../../components/Footer";
+ import TruckImageGallery from "../../components/TruckImageGallery";
+ import TruckInquiryModalWrapper from "../../components/TruckInquiryModalWrapper";
+ import PaymentMethods from "../../components/PaymentMethods";
++import FinancingSection from "../../components/FinancingSection";
+ import { getTruckById, trucks, formatPrice, formatMileage } from "../../data/trucks";
+ 
+ /* ── Static params so Next can pre-render all truck pages ── */
+@@ -284,6 +285,7 @@ export default async function TruckDetailPage({
+             </div>
+           )}
+         </div>
++        <FinancingSection />
+       </main>
+       <Footer />
+     </>
+diff --git a/app/trucks/page.tsx b/app/trucks/page.tsx
+index dede3b7..dfe59c5 100644
+--- a/app/trucks/page.tsx
++++ b/app/trucks/page.tsx
+@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
+ import Header from "../components/Header";
+ import Footer from "../components/Footer";
+ import TruckCard from "../components/TruckCard";
++import FinancingSection from "../components/FinancingSection";
+ import { trucks, allBrands, allCategories } from "../data/trucks";
+ import { SlidersHorizontal } from "lucide-react";
+ 
+@@ -128,6 +129,7 @@ export default function TrucksPage() {
+             </div>
+           )}
+         </div>
++        <FinancingSection />
+       </main>
+       <Footer />
+     </>
