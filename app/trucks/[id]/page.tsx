@@ -22,6 +22,7 @@ import Footer from "../../components/Footer";
 import TruckImageGallery from "../../components/TruckImageGallery";
 import TruckInquiryModalWrapper from "../../components/TruckInquiryModalWrapper";
 import PaymentMethods from "../../components/PaymentMethods";
+import FinancingSection from "../../components/FinancingSection";
 import { getTruckById, trucks, formatPrice, formatMileage } from "../../data/trucks";
 
 /* ── Static params so Next can pre-render all truck pages ── */
@@ -284,6 +285,7 @@ export default async function TruckDetailPage({
             </div>
           )}
         </div>
+        <FinancingSection />
       </main>
       <Footer />
     </>

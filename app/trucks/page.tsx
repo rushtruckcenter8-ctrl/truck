@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import TruckCard from "../components/TruckCard";
+import FinancingSection from "../components/FinancingSection";
 import { trucks, allBrands, allCategories } from "../data/trucks";
 import { SlidersHorizontal } from "lucide-react";
 
@@ -128,6 +129,7 @@ export default function TrucksPage() {
             </div>
           )}
         </div>
+        <FinancingSection />
       </main>
       <Footer />
     </>

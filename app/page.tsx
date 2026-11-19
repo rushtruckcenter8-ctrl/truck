@@ -5,6 +5,7 @@ import FeaturedTrucks from "./components/FeaturedTrucks";
 import Brands from "./components/Brands";
 import LocationMap from "./components/LocationMap";
 
+import FinancingSection from "./components/FinancingSection";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 
@@ -18,6 +19,7 @@ export default function Home() {
         <FeaturedTrucks />
         <Brands />
         <LocationMap />
+        <FinancingSection />
         <ContactSection />
       </main>
       <Footer />
