@@ -231,6 +231,18 @@ export default async function TruckDetailPage({
               {/* CTA */}
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <TruckInquiryModalWrapper truck={truck} />
+                <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLSe-Ol2lA1RIO-h28kjvkVy1B0yBGDCyPpaRP_syn9uctTt0Zw/viewform"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-3 px-8 py-4 font-semibold rounded-sm text-base transition-opacity hover:opacity-90"
+          style={{ background: "var(--primary)", color: "var(--background)" }}
+        >
+          Apply for Financing
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </a>
               </div>
 
               {/* Payment options */}
