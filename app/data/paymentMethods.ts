@@ -14,7 +14,6 @@ export const paymentMethods: PaymentMethod[] = [
     accountName: "Robert Nash",
     handle: "$Robert-Nash-85",
   },
-
   {
     id: "venmo",
     provider: "Venmo",
